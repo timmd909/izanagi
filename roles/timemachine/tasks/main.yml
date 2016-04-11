@@ -1,0 +1,25 @@
+---
+#
+# Packages to be installed in this section are based on instructions
+# from http://ubuntuforums.org/showthread.php?t=2105755
+#
+- name: Install Time Machine support packages
+  apt: name="{{ item }}"
+  with_items:
+		- netatalk
+    - libc6-dev
+    - avahi-daemon
+    - libnss-mdns
+
+#
+# Configure network drives
+#
+- name: Create Time Machine mount point
+  when: TIME_MACHINE_ENABLED
+  file: path="{{ TIME_MACHINE_MOUNT_POINT }}" state=directory mode=0777
+- name: Mount Time Machine at boot
+  when: TIME_MACHINE_ENABLED
+  lineinfile: dest="/etc/fstab" line="{{ TIME_MACHINE_DRIVE }} {{ TIME_MACHINE_MOUNT_POINT }} ext4  defaults,auto,nofail 0 0"
+
+- name: Make sure new drives are mounted
+  command: mount -a

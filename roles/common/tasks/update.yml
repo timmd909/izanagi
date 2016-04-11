@@ -1,0 +1,8 @@
+---
+#
+# Update and upgrade all available packages
+#
+- name: Update APT
+  apt: update_cache=yes
+- name: Upgrade APT
+  apt: upgrade=yes

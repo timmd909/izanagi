@@ -1,0 +1,21 @@
+---
+
+- name: Install necessary utilities
+  apt: "name={{ item }}"
+  with_items:
+      - locate
+      - lsof
+      - nmap
+      - screen
+      - vim
+
+- name: Install top-like programs
+  apt: "name={{ item }}"
+  with_items:
+      - htop
+      - iotop
+
+- name: Install build tools
+  apt: "name={{ item }}"
+  with_items:
+      - git

@@ -1,0 +1,15 @@
+---
+
+- name: Install Apache
+  apt: name="{{ item }}" state=present
+  with_items:
+      - apache2
+      - php5-cgi
+      - libapache2-mod-php5
+      - php5-imagick
+
+- name: Configure Apache modules
+  apache2_module: state=present name="{{ item }}"
+  with_items:
+      - ssl
+      - rewrite
