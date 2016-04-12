@@ -22,3 +22,6 @@
   with_items:
     - ssl
     - rewrite
+  notify:
+    - restart apache2
+

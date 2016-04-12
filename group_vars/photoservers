@@ -1,2 +1,7 @@
 ---
 
+lychee_repository: "https://github.com/electerious/Lychee.git"
+lychee_tag: "v3.1.0"
+lychee_prefix: "/usr/local"
+lychee_user: "lychee"
+lychee_document_root: "/var/www/lychee"

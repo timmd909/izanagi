@@ -3,3 +3,13 @@
 # Main configuration file for setting up a photo
 # server running Lychee
 #
+
+- name: Install lychee Apache configuration
+  template:
+    src: "etc/apache2/sites-available/lychee.conf"
+    dest: "/etc/apache2/sites-available/lychee.conf"
+
+- name: Enable Lychee Apache sites
+  command: a2ensite lychee
+  notify:
+    - restart apache2
