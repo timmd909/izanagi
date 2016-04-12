@@ -7,6 +7,7 @@
       - lsof
       - nmap
       - screen
+      - software-properties-common
       - vim
 
 - name: Install top-like programs

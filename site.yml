@@ -4,14 +4,9 @@
   sudo: yes
   roles:
       - common
-- hosts: zanzou
+- hosts: photoservers
   sudo: yes
   roles:
     - common
-  # vars_files:
-  #     - "../ansible/machines/{{ HOSTNAME }}.yml"
-  # tasks:
-  #     - include: tasks/configure-system.yml
-  #     - include: tasks/configure-users.yml
-  #     - include: tasks/configure-networking.yml
-  #     - include: tasks/configure-misc.yml
+    - webserver
+    - sqlserver
