@@ -3,10 +3,10 @@
 - hosts: all
   sudo: yes
   roles:
-      - common
+    - common
+
 - hosts: photoservers
   sudo: yes
   roles:
-    - common
     - webserver
     - sqlserver

@@ -4,8 +4,8 @@
 #
 - name: Add MariaDB certificates
   apt_key:
-    server: hkp://keyserver.ubuntu.com:80
-    id: 0xcbcb082a1bb943db
+    keyserver: keyserver.ubuntu.com
+    id: "0xcbcb082a1bb943db"
     state: present
 
 - name: Add MariaDB repository
