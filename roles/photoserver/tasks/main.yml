@@ -18,7 +18,6 @@
   user:
     name: "{{ lychee_user }}"
     shell: "/bin/bash"
-    # shell: "/bin/false"  change to this later on
     state: present
     ssh_key_type: rsa
     createhome: yes
@@ -34,3 +33,6 @@
     dest: "{{ lychee_document_root }}"
     version: "{{ lychee_version }}"
 
+
+- name: Lock Lychee user account
+  user: name="{{ lychee_user }}" shell="/bin/false"
