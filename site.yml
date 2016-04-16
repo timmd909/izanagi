@@ -10,3 +10,15 @@
   roles:
     - webserver
     - sqlserver
+    - photoserver
+
+- hosts: webservers
+  sudo: yes
+  roles:
+    - webserver
+    - sqlserver
+
+- hosts: sqlservers
+  sudo: yes
+  roles:
+    - sqlserver

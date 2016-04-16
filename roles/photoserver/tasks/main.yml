@@ -6,10 +6,31 @@
 
 - name: Install lychee Apache configuration
   template:
-    src: "etc/apache2/sites-available/lychee.conf"
+    src: "etc/apache2/sites-available/lychee.conf.j2"
     dest: "/etc/apache2/sites-available/lychee.conf"
 
 - name: Enable Lychee Apache sites
   command: a2ensite lychee
   notify:
     - restart apache2
+
+- name: Create Lychee user account
+  user:
+    name: "{{ lychee_user }}"
+    shell: "/bin/bash"
+    # shell: "/bin/false"  change to this later on
+    state: present
+    ssh_key_type: rsa
+    createhome: yes
+    home: "{{ lychee_home }}"
+
+- name: Clone Lychee repository
+  become: yes
+  become_user: "{{ lychee_user }}"
+  become_method: sudo
+  git:
+    clone: yes
+    repo: "{{ lychee_repository }}"
+    dest: "{{ lychee_document_root }}"
+    version: "{{ lychee_version }}"
+
