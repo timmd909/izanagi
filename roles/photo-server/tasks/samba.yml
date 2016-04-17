@@ -17,12 +17,13 @@
 
 - name: "Setup Samba/Lychee DropBox permissions (Step #1)"
   acl:
-    name: "{{ lychee_document_root }}/uploads/import"
+    default: yes
     entity: nobody
+    etype: user
+    name: "{{ lychee_document_root }}/uploads/import"
     permissions: rwx
     recursive: yes
     state: present
-    etype: user
 
 - name: "Setup Samba/Lychee DropBox permissions (Step #2)"
   acl:
@@ -35,11 +36,21 @@
     state: present
 
 - name: "Setup Samba/Lychee DropBox permissions (Step #3)"
+  acl:
+    default: yes
+    entity: "www-data"
+    etype: user
+    name: "{{ lychee_document_root }}/uploads/import"
+    permissions: rwx
+    recursive: yes
+    state: present
+
+- name: "Setup Samba/Lychee DropBox permissions (Step #4)"
   file:
     path: "{{ lychee_document_root }}/uploads/import/index.html"
     owner: root
     group: root
 
 
-- name: "Setup Samba/Lychee DropBox permissions (Step #4)"
+- name: "Setup Samba/Lychee DropBox permissions (Step #5)"
   shell: "setfacl -x 'u:{{ lychee_user }}' {{ lychee_document_root }}/uploads/import/index.html"
