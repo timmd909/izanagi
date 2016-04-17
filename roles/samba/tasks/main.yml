@@ -1,0 +1,7 @@
+---
+
+- name: Install SAMBA
+  apt: name="{{ item }}"
+  with_items:
+    - samba
+    - smbclient

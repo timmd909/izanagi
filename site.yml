@@ -11,6 +11,7 @@
     - webserver
     - sqlserver
     - photoserver
+    - samba
 
 - hosts: webservers
   sudo: yes
