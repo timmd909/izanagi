@@ -6,12 +6,14 @@
     state: present
     block: |
       [Lychee Dropbox]
+      comment = Lychee bulk import dropbox
+      create mask = 0777
+      force user = nobody
+      guest account = nobody
       guest ok = yes
       guest only = yes
       path = {{ lychee_document_root }}/uploads/import/
-      comment = Lychee bulk import dropbox
       read only = no
-      create mask = 0777
 
 - name: "Setup Samba/Lychee DropBox permissions (Step #1)"
   acl:
@@ -24,9 +26,20 @@
 
 - name: "Setup Samba/Lychee DropBox permissions (Step #2)"
   acl:
+    default: yes
+    entity: "{{ lychee_user }}"
+    etype: user
     name: "{{ lychee_document_root }}/uploads/import"
-    entity: nobody
     permissions: rwx
     recursive: yes
-    state: absent
-    etype: user
+    state: present
+
+- name: "Setup Samba/Lychee DropBox permissions (Step #3)"
+  file:
+    path: "{{ lychee_document_root }}/uploads/import/index.html"
+    owner: root
+    group: root
+
+
+- name: "Setup Samba/Lychee DropBox permissions (Step #4)"
+  shell: "setfacl -x 'u:{{ lychee_user }}' {{ lychee_document_root }}/uploads/import/index.html"

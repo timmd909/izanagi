@@ -24,7 +24,7 @@
   ;   wins server = w.x.y.z
 
   # This will prevent nmbd to search for NetBIOS names through DNS.
-  dns proxy = no
+  dns proxy = yes
 
 #
 # Networking
@@ -105,7 +105,7 @@
 
   # This option controls how unsuccessful authentication attempts are mapped
   # to anonymous connections
-  map to guest = nobody
+  map to guest = bad user
 
 #
 # Domains

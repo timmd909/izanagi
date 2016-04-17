@@ -10,6 +10,11 @@
       - software-properties-common
       - vim
 
+- name: Set VIM as default editor
+  alternatives:
+    name: editor
+    path: /usr/bin/vim
+
 - name: Install top-like programs
   apt: "name={{ item }}"
   with_items:
