@@ -18,7 +18,13 @@
     - webserver
     - sqlserver
 
+- hosts: timemachines
+  sudo: yes
+  roles:
+    - timemachine
+
 - hosts: sqlservers
   sudo: yes
   roles:
     - sqlserver
+

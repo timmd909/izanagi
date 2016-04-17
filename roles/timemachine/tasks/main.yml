@@ -6,7 +6,7 @@
 - name: Install Time Machine support packages
   apt: name="{{ item }}"
   with_items:
-		- netatalk
+    - netatalk
     - libc6-dev
     - avahi-daemon
     - libnss-mdns
