@@ -1,0 +1,32 @@
+---
+
+- name: Configure SAMBA
+  blockinfile:
+    dest: "/etc/samba/smb.conf"
+    state: present
+    block: |
+      [Lychee Dropbox]
+      guest ok = yes
+      guest only = yes
+      path = {{ lychee_document_root }}/uploads/import/
+      comment = Lychee bulk import dropbox
+      read only = no
+      create mask = 0777
+
+- name: "Setup Samba/Lychee DropBox permissions (Step #1)"
+  acl:
+    name: "{{ lychee_document_root }}/uploads/import"
+    entity: nobody
+    permissions: rwx
+    recursive: yes
+    state: present
+    etype: user
+
+- name: "Setup Samba/Lychee DropBox permissions (Step #2)"
+  acl:
+    name: "{{ lychee_document_root }}/uploads/import"
+    entity: nobody
+    permissions: rwx
+    recursive: yes
+    state: absent
+    etype: user

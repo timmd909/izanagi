@@ -17,6 +17,10 @@
   ServerAdmin webmaster@localhost
   DocumentRoot {{ lychee_document_root }}
 
+  <Directory {{ lychee_document_root }}/uploads/import>
+    Options -Indexes
+  </Directory>
+
   # Available loglevels: trace8, ..., trace1, debug, info, notice, warn,
   # error, crit, alert, emerg.
   # It is also possible to configure the loglevel for particular

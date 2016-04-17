@@ -8,24 +8,23 @@
 - hosts: photoservers
   sudo: yes
   roles:
-    - webserver
-    - sqlserver
-    - photoserver
-    - samba
+    - "web-server"
+    - "sql-server"
+    - "samba-server"
+    - "photo-server"
 
 - hosts: webservers
   sudo: yes
   roles:
-    - webserver
-    - sqlserver
+    - "web-server"
+    - "sql-server"
 
 - hosts: timemachines
   sudo: yes
   roles:
-    - timemachine
+    - "time-machine"
 
 - hosts: sqlservers
   sudo: yes
   roles:
-    - sqlserver
-
+    - "sql-server"

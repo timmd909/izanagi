@@ -1,19 +1,4 @@
 ---
-#
-# Main configuration file for setting up a photo
-# server running Lychee
-#
-
-- name: Install lychee Apache configuration
-  template:
-    src: "etc/apache2/sites-available/lychee.conf.j2"
-    dest: "/etc/apache2/sites-available/lychee.conf"
-
-- name: Disable default Apache site
-  command: a2dissite 000-default
-
-- name: Enable Lychee Apache site
-  command: a2ensite lychee
 
 - name: Create Lychee user account
   user:
@@ -51,18 +36,6 @@
     src: "home/lychee/lychee/data/config.php.j2"
     dest: "{{ lychee_document_root }}/data/config.php"
 
-- name: Restart Apache
-  service: name=apache2 state="{{ item }}"
-  with_items:
-    - stopped
-    - started
-
-- name: Setup Lychee Database
-  command: "echo '{{ item }}' | mysql -u root"
-  with_items:
-    - "CREATE DATABASE IF NOT EXISTS lychee"
-    - "CREATE USER IF NOT EXISTS lychee@localhost"
-    - "GRANT ALL ON {{ lychee_db_database }}.* TO {{ lychee_db_user }}@localhost"
-
 - name: Lock Lychee user account
   user: name="{{ lychee_user }}" shell="/bin/false"
+

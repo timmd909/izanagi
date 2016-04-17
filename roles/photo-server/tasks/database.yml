@@ -1,0 +1,14 @@
+---
+
+- name: "Create Lychee Database (Step #1)"
+  template:
+    src: tmp/create-lychee-database.sql.j2
+    dest: /tmp/create-lychee-database.sql
+
+- name: Setup Lychee Database
+  shell: "echo '{{ item }}' | mysql -u root"
+  with_items:
+    - "CREATE DATABASE IF NOT EXISTS lychee"
+    - "CREATE USER IF NOT EXISTS lychee@localhost"
+    - "GRANT ALL ON {{ lychee_db_database }}.* TO {{ lychee_db_user }}@localhost"
+

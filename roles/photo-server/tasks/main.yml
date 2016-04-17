@@ -1,0 +1,16 @@
+---
+#
+# Main configuration file for setting up a photo
+# server running Lychee
+#
+
+- include: "apache.yml"
+- include: "install.yml"
+- include: "database.yml"
+- include: "samba.yml"
+
+- name: Restart Apache
+  service: name=apache2 state="{{ item }}"
+  with_items:
+    - stopped
+    - started

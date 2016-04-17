@@ -1,0 +1,18 @@
+---
+
+- name: Install SAMBA
+  apt: name="{{ item }}"
+  with_items:
+    - samba
+    - smbclient
+
+- name: Install base SAMBA configuration
+  template:
+    src: "etc/samba/smb.conf.j2"
+    dest: "/etc/samba/smb.conf"
+
+- name: Restart SAMBA
+  service: name=samba state="{{ item }}"
+  with_items:
+    - stopped
+    - started
