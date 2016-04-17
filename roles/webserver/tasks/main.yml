@@ -35,4 +35,7 @@
     - "memory_limit = {{ apache_php_memory_limit }}"
 
 - name: Restart Apache
-  service: name=apache2 state=restarted
+  service: name=apache2 state="{{ item }}"
+  with_items:
+    - stopped
+    - started

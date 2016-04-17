@@ -2,3 +2,6 @@
 
 - include: upgrade.yml
 - include: utilities.yml
+
+- name: Install ACL
+  apt: name=acl state=present
