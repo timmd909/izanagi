@@ -2,6 +2,8 @@
 #
 # Update and upgrade all available packages
 #
+- name: Update APT keys
+  shell: apt-key update
 - name: Update APT
   apt: update_cache=yes
 - name: Upgrade APT
