@@ -10,7 +10,7 @@ lychee_document_root: "/home/lychee/lychee"
 lychee_db_user: "lychee"
 lychee_db_database: "lychee"
 
-apache_php_max_execution_time: 100
+apache_php_max_execution_time: 600
 apache_php_post_max_size: 100M
 apache_php_upload_max_size: 100M
 apache_php_upload_max_filesize: 50M
