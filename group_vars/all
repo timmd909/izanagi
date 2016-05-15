@@ -1,4 +1,15 @@
 #
+# Update/installation tweaks intended to be overidden on the
+# command line.
+#
+# Ex:
+#   ansible-playbook -i hosts site.yml -e skip_update=true
+#
+
+# Skip all APT updates, adding of keys, etc.
+skip_update: false
+
+#
 # web-server default values
 #
 apache_php_max_execution_time: 30
