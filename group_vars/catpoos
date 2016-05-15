@@ -1,0 +1,12 @@
+---
+#
+# Default CATPOO configuration
+#
+
+touchscreen_calibration_1: 80
+touchscreen_calibration_2: 1950
+touchscreen_calibration_3: 250
+touchscreen_calibration_4: 1850
+
+touchscreen_swap_axes: 1
+

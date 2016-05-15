@@ -28,3 +28,9 @@
   sudo: yes
   roles:
     - "sql-server"
+
+- hosts: catpoos
+  sudo: yes
+  roles:
+    - "web-server"
+    - "catpoo"

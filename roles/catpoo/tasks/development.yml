@@ -1,0 +1,43 @@
+#
+# Programming languages
+#
+- name: Install build utilities
+  apt: name={{ item }}
+  with_items:
+  - autoconf
+  - automake
+  - byacc
+  - build-essential
+  - flex
+  - libtool
+  - m4
+  - make
+
+#- name: Install GCC, G++
+#  apt: name={{ item }}
+#  with_items:
+#  - gpp
+#  - gcc
+#  - g++
+
+- name: Install Python
+  apt: name={{ item }}
+  with_items:
+  - python
+  - python-pysqlite2
+
+#
+# Node and utilites
+#
+#- name: Download latest Node
+#  command: wget http://node-arm.herokuapp.com/node_latest_armhf.deb
+#
+#- name: Install Node
+#  command: dpkg -i node_latest_armhf.deb
+#
+#- name: Node cleanup
+#  command: rm node_latest_armhf.deb
+#
+#- name: Install Grunt CLI
+#  command: npm install -g grunt-cli
+#

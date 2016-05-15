@@ -1,9 +1,14 @@
 [webservers]
-1.3.3.7 HOSTNAME="fooserver"
-foohostbar HOSTNAME="fooserver2"
+# hostorip   HOSTNAME=hostname
 
 [photoservers]
-1.3.3.7 HOSTNAME="fooserver"
+# hostorip   HOSTNAME=hostname
+
+[sqlservers]
+# hostorip   HOSTNAME=hostname
 
 [timemachines]
-1.3.3.7 HOSTNAME="foomachine"
+# hostorip   HOSTNAME=hostname
+
+[catpoos]
+# hostorip   HOSTNAME=hostname
