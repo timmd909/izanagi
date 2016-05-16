@@ -9,3 +9,6 @@
 - name: Install ACL
   sudo: yes
   apt: name=acl state=present
+
+- include: user-env.yml
+  sudo: no
