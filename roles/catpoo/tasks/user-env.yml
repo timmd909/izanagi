@@ -1,9 +1,7 @@
 ---
-
 #
 # Tasks meant to be run as a regular user
 #
-
 - name: "Install XInput calibration software"
   git:
     accept_hostkey: yes
@@ -20,7 +18,12 @@
   with_items:
     - "[ -e Makefile ] || ./autogen.sh"
     - "make -j 2"
-    - "make install"
+
+- name: "Install XInput calibrator"
+  sudo: yes
+  shell: make install
+  args:
+    chdir: "{{ ansible_env.HOME }}/src/xinput_calibrator/"
 
 - name: "Configure LightDM"
   sudo: yes
