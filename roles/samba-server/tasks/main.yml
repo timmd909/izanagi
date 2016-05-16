@@ -13,9 +13,16 @@
     src: "etc/samba/smb.conf.j2"
     dest: "/etc/samba/smb.conf"
 
-- name: Restart SAMBA
+- name: Stop SAMBA
   sudo: yes
-  service: name=samba state="{{ item }}"
+  service: name="{{ item }}" state=stopped
   with_items:
-    - stopped
-    - started
+  - nmbd
+  - smbd
+
+- name: Start SAMBA
+  sudo: yes
+  service: name="{{ item }}" state=started
+  with_items:
+  - nmbd
+  - smbd
