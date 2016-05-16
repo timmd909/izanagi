@@ -13,3 +13,18 @@
     repo: "https://github.com/tias/xinput_calibrator.git"
     version: v0.7.5
 
+- name: "Compile XInput calibrator"
+  shell: "{{ item }}"
+  args:
+    chdir: "{{ ansible_env.HOME }}/src/xinput_calibrator/"
+  with_items:
+    - "[ -e Makefile ] || ./autogen.sh"
+    - "make -j 2"
+    - "make install"
+
+- name: "Configure LightDM"
+  sudo: yes
+  template:
+    src: etc/lightdm/lightdm.conf.j2
+    dest: /etc/lightdm/lightdm.conf
+

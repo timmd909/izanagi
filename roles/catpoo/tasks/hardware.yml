@@ -29,11 +29,6 @@
           alias egrep='egrep --color=auto'
       fi
 
-- name: "Configure LightDM"
-  template:
-    src: etc/lightdm/lightdm.conf.j2
-    dest: /etc/lightdm/lightdm.conf
-
 - name: "Set default runlevel"
   lineinfile:
     dest: "/etc/inittab"
@@ -49,15 +44,6 @@
 
 - name: "Install XInput"
   apt: name=xinput
-
-- name: "Compile XInput calibrator"
-  shell: "{{ item }}"
-  args:
-    chdir: /usr/local/src/xinput_calibrator
-  with_items:
-    - "[ -e Makefile ] || ./autogen.sh"
-    - "make -j 2"
-    - "make install"
 
 - name: "Make sure xorg configuration directory exists"
   file:

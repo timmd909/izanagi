@@ -3,6 +3,9 @@
 - name: "Install miscellaneous libraries"
   apt: name="{{ item }}"
   with_items:
-    - libboost-all-dev
-    - libcgicc5
-    - libcgicc5-dev
+  - libboost-all-dev
+  - libcgicc5
+  - libcgicc5-dev
+
+- name: "Install GNU Krell monitors"
+  apt: name="gkrellm"
