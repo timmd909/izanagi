@@ -1,17 +1,20 @@
 ---
 
 - name: Install SAMBA
+  sudo: yes
   apt: name="{{ item }}"
   with_items:
     - samba
     - smbclient
 
 - name: Install base SAMBA configuration
+  sudo: yes
   template:
     src: "etc/samba/smb.conf.j2"
     dest: "/etc/samba/smb.conf"
 
 - name: Restart SAMBA
+  sudo: yes
   service: name=samba state="{{ item }}"
   with_items:
     - stopped

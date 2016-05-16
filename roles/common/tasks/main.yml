@@ -1,8 +1,11 @@
 ---
 
 - include: upgrade.yml
+  sudo: yes
 
 - include: utilities.yml
+  sudo: yes
 
 - name: Install ACL
+  sudo: yes
   apt: name=acl state=present

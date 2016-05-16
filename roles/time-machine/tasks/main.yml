@@ -4,6 +4,7 @@
 # from http://ubuntuforums.org/showthread.php?t=2105755
 #
 - name: Install Time Machine support packages
+  sudo: yes
   apt: name="{{ item }}"
   with_items:
     - netatalk
@@ -15,11 +16,14 @@
 # Configure network drives
 #
 - name: Create Time Machine mount point
+  sudo: yes
   when: TIME_MACHINE_ENABLED
   file: path="{{ TIME_MACHINE_MOUNT_POINT }}" state=directory mode=0777
 - name: Mount Time Machine at boot
+  sudo: yes
   when: TIME_MACHINE_ENABLED
   lineinfile: dest="/etc/fstab" line="{{ TIME_MACHINE_DRIVE }} {{ TIME_MACHINE_MOUNT_POINT }} ext4  defaults,auto,nofail 0 0"
 
 - name: Make sure new drives are mounted
+  sudo: yes
   command: mount -a

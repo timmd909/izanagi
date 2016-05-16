@@ -1,0 +1,15 @@
+---
+
+#
+# Tasks meant to be run as a regular user
+#
+
+- name: "Install XInput calibration software"
+  git:
+    accept_hostkey: yes
+    clone: yes
+    dest: "{{ ansible_env.HOME }}/src/xinput_calibrator/"
+    recursive: yes
+    repo: "https://github.com/tias/xinput_calibrator.git"
+    version: v0.7.5
+

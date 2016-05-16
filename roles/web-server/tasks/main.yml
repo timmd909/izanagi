@@ -1,6 +1,7 @@
 ---
 
 - name: Install PHP
+  sudo: yes
   apt: name="{{ item }}" state=present
   with_items:
     - php5
@@ -14,18 +15,21 @@
     - php-apc
 
 - name: Install Apache
+  sudo: yes
   apt: name="{{ item }}" state=present
   with_items:
     - apache2
     - libapache2-mod-php5
 
 - name: Configure Apache modules
+  sudo: yes
   apache2_module: state=present name="{{ item }}"
   with_items:
     - ssl
     - rewrite
 
 - name: Update Apache PHP settings
+  sudo: yes
   lineinfile:
     dest="/etc/php5/apache2/php.ini"
     line="{{ item }}"
@@ -37,6 +41,7 @@
     - "memory_limit = {{ apache_php_memory_limit }}"
 
 - name: Restart Apache
+  sudo: yes
   service: name=apache2 state="{{ item }}"
   with_items:
     - stopped

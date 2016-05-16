@@ -1,12 +1,13 @@
 ---
 
-- include: "development.yml"
-- include: "hardware.yml"
-- include: "opencv.yml"
+- include: "user-env.yml"
+  sudo: no
 
-- name: "Install miscellaneous libraries"
-  apt: name="{{ item }}"
-  with_items:
-    - libboost-all-dev
-    - libcgicc5
-    - libcgicc5-dev
+- include: "hardware.yml"
+  sudo: yes
+- include: "development.yml"
+  sudo: yes
+- include: "opencv.yml"
+  sudo: yes
+- include: "miscellaneous.yml"
+  sudo: yes

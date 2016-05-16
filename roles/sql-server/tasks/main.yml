@@ -3,6 +3,7 @@
 # Configures and installs MariaDB
 #
 - name: Add MariaDB certificates
+  sudo: yes
   apt_key:
     keyserver: keyserver.ubuntu.com
     id: "0xcbcb082a1bb943db"
@@ -10,16 +11,19 @@
   when: skip_update == false
 
 - name: Add MariaDB repository
+  sudo: yes
   apt_repository:
     repo: 'deb http://ftp.utexas.edu/mariadb/repo/10.1/ubuntu trusty main'
     state: present
   when: skip_update == false
 
 - name: Update APT
+  sudo: yes
   apt: update_cache=yes
   when: skip_update == false
 
 - name: Install MariaDB
+  sudo: yes
   apt: name="{{ item }}" state=present
   with_items:
     - mariadb-server

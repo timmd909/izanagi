@@ -1,12 +1,10 @@
 ---
 
 - hosts: all
-  sudo: yes
   roles:
-    - common
+    - "common"
 
 - hosts: photoservers
-  sudo: yes
   roles:
     - "web-server"
     - "sql-server"
@@ -14,23 +12,20 @@
     - "photo-server"
 
 - hosts: webservers
-  sudo: yes
   roles:
     - "web-server"
     - "sql-server"
 
 - hosts: timemachines
-  sudo: yes
   roles:
     - "time-machine"
 
 - hosts: sqlservers
-  sudo: yes
   roles:
     - "sql-server"
 
 - hosts: catpoos
-  sudo: yes
   roles:
-    - "web-server"
     - "catpoo"
+    - "web-server"
+

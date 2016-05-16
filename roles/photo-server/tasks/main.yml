@@ -5,11 +5,16 @@
 #
 
 - include: "apache.yml"
+  sudo: yes
 - include: "install.yml"
+  sudo: yes
 - include: "database.yml"
+  sudo: yes
 - include: "samba.yml"
+  sudo: yes
 
 - name: Restart Apache
+  sudo: yes
   service: name=apache2 state="{{ item }}"
   with_items:
     - stopped
