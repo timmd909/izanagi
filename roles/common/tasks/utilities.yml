@@ -7,7 +7,6 @@
       - lsof
       - nmap
       - screen
-      - software-properties-common
       - vim
 
 - name: Set VIM as default editor
