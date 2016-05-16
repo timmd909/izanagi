@@ -1,0 +1,14 @@
+@ IN SOA {{ dns_host }}.{{ dns_tld }}. ns1.dyndns.org. (
+                        2006071801		; serial
+                        28800			; refresh, seconds
+                        604800			; retry, seconds
+                        604800			; expire, seconds
+                        86400 )			; minimum, seconds
+
+@	IN	NS	timmd909.
+;IN  NS {{ dns_host }}.{{ dns_tld }}.
+;IN  NS ns1.dyndns.org.
+
+1   IN PTR {{ dns_host }}.{{ dns_tld }}.
+1   IN PTR www.{{ dns_host }}.{{ dns_tld }}.
+

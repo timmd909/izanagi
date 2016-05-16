@@ -26,6 +26,7 @@
 
 - hosts: catpoos
   roles:
-    - "catpoo"
+    - "dns-server"
     - "web-server"
+    - "catpoo"
 

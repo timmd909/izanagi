@@ -1,0 +1,11 @@
+$TTL 604800
+@ IN	SOA www.{{ dns_host }}.{{ dns_tld }}. tim.{{ dns_host }}.{{ dns_tld }}. (
+	2011102402
+	28800
+	3600
+	604800
+	38400 )
+@ IN NS www.{{ dns_host }}.{{ dns_tld }}.
+
+www        IN A 10.13.37.1
+{{ dns_host }}.local. IN A 10.13.37.1

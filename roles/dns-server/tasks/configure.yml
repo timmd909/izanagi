@@ -1,0 +1,24 @@
+---
+
+- name: Install Bind
+  apt: name=bind9
+
+- name: Make sure Bind zones directory exists
+  file:
+    dest: /etc/bind/zones
+    state: directory
+
+- name: Configure DNS
+  template:
+    src: "{{ item }}.j2"
+    dest: "/{{ item }}"
+  with_items:
+  - etc/bind/bad-hosts.conf
+  - etc/bind/named.conf.local
+  - etc/bind/zones/in-addr.arpa
+  - etc/bind/zones/local.zone
+
+- name: Restart BIND
+  service:
+    state: restarted
+    name: bind9

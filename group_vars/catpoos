@@ -1,6 +1,7 @@
 ---
+
 #
-# Default CATPOO configuration
+# Touch screen calibration
 #
 
 touchscreen_calibration_1: 80
@@ -10,3 +11,16 @@ touchscreen_calibration_4: 1850
 
 touchscreen_swap_axes: 1
 
+#
+# DNS configuration
+#
+
+dns_tld: local
+dns_host: catpoo
+
+# IP address of the DNS server
+dns_ip_octet_1: 10
+dns_ip_octet_2: 13
+dns_ip_octet_3: 37
+dns_ip_octet_4: 1
+dns_ip_address: "{{ ip_octet_1 }}.{{ ip_octet_2 }}.{{ ip_octet_3 }}.{{ ip_octet_4 }}"
