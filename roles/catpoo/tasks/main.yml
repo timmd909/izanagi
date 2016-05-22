@@ -1,8 +1,5 @@
 ---
 
-- include: "user-env.yml"
-  sudo: no
-
 - include: "hardware.yml"
   sudo: yes
 - include: "development.yml"
@@ -13,3 +10,6 @@
   sudo: yes
 - include: "network.yml"
   sudo: yes
+
+- include: "user-env.yml"
+  sudo: no
