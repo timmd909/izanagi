@@ -8,10 +8,11 @@
     state: present
 
 - name: Vim configuration settings
-  blockinfile:
+  lineinfile:
     dest: "{{ ansible_env.HOME }}/.vimrc"
-    create: yes
-    content: |
-      set tabstop=2
-      syntax on
-      colorscheme elflord
+    state: present
+    line: "{{ item }}"
+  with_items:
+  - set tabstop=2
+  - syntax on
+  - colorscheme elflord
