@@ -11,3 +11,5 @@
   sudo: yes
 - include: "miscellaneous.yml"
   sudo: yes
+- include: "network.yml"
+  sudo: yes

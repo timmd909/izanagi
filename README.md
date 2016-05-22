@@ -16,6 +16,12 @@ It's name is a nod to [Izanagi](http://naruto.wikia.com/wiki/Izanagi) from
 | `timemachine`    | Time Machine server                     |                |
 | `webserver`      | Basic Apache web server                 |                |
 
+## Ansible Variables
+
+| Variable Name | Description                              | Default    |
+|---------------|------------------------------------------|------------|
+| `skip_update` | Do not run APT updates or upgrades       | `false`    |
+
 ## Assumptions
 
 * All of these scripts are expected to be run on Ubuntu or another

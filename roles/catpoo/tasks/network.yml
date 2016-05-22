@@ -1,0 +1,25 @@
+---
+
+- name: Install hostapd
+  apt: name=hostapd
+
+- name: Install custom hostapd
+  command: "{{ item }}"
+  with_items:
+  - wget http://adafruit-download.s3.amazonaws.com/adafruit_hostapd_14128.zip
+  - unzip adafruit_hostapd_14128.zip
+  - chown root.root hostapd
+  - chmod +x hostapd
+  - mv hostapd /usr/sbin/hostapd
+  - rm adafruit_hostapd_14128.zip
+
+- name: Configure hostapd
+  template:
+    dest: /etc/hostapd/hostapd.conf
+    src: etc/hostapd/hostapd.conf.j2
+
+- name: Configure hostapd defaults
+  template:
+    dest: /etc/default/hostapd
+    src: etc/default/hostapd.js
+

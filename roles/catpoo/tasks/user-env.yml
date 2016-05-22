@@ -31,3 +31,15 @@
     src: etc/lightdm/lightdm.conf.j2
     dest: /etc/lightdm/lightdm.conf
 
+- name: "Configure GNU Krellm GUI"
+  template:
+    src: "home/user/.gkrellm2/{{ item }}.j2"
+    dest: "{{ ansible_env.HOME }}/.gkrellm2/{{ item }}"
+  with_items:
+    - "sensor-config"
+    - "user-config"
+
+- name: "Autostart gkrellm"
+  template:
+    src: "home/user/.config/autostart/gkrellm.desktop.j2"
+    dest: "{{ ansible_env.HOME }}/.config/autostart/gkrellm.desktop"

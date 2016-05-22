@@ -9,3 +9,9 @@
 
 - name: "Install GNU Krell monitors"
   apt: name="gkrellm"
+
+- name: Install Gnome applications
+  apt: name={{ item }}
+  with_items:
+  - network-manager
+  - network-manager-gnome

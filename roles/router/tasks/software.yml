@@ -1,0 +1,7 @@
+---
+- name: Install DHCPD
+  sudo: yes
+  apt: name=isc-dhcp-server
+
+- name: Install Bridge Utils
+  apt: name=bridge-utils
