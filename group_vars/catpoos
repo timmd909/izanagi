@@ -11,6 +11,7 @@ wap_ip_octet_3: 37
 wap_ip_octet_4: 1
 wap_device: wlan1
 
+
 #
 # Touch screen calibration
 #
@@ -21,6 +22,7 @@ touchscreen_calibration_3: 250
 touchscreen_calibration_4: 1850
 
 touchscreen_swap_axes: 1
+
 
 #
 # DNS configuration
@@ -35,6 +37,7 @@ dns_ip_octet_2: "{{ wap_ip_octet_2 }}"
 dns_ip_octet_3: "{{ wap_ip_octet_3 }}"
 dns_ip_octet_4: "{{ wap_ip_octet_4 }}"
 #dns_ip_address: "{{ dns_octet_1 }}.{{ dns_octet_2 }}.{{ dns_octet_3 }}.{{ dns_octet_4 }}"
+
 
 #
 # Routing

@@ -5,9 +5,6 @@
     src: "etc/apache2/sites-available/lychee.conf.j2"
     dest: "/etc/apache2/sites-available/lychee.conf"
 
-- name: Disable default Apache site
-  command: a2dissite 000-default
-
 - name: Enable Lychee Apache site
-  command: a2ensite lychee
+  shell: a2ensite lychee
 

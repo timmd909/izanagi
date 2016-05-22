@@ -1,0 +1,86 @@
+---
+
+#
+# Clean out and clone repo
+#
+- name: Clean out CATPOO
+  shell: sudo rm -rf {{ ansible_env.HOME }}/src/catpoo
+- name: Clone CATPOO repo
+  git: repo="git@github.com:timmd909/catpoo.git" clone=yes dest={{ ansible_env.HOME }}/src/catpoo recursive=yes accept_hostkey=yes
+
+#
+# Install dependencies
+#
+- name: Install vendors
+  shell: "{{ ansible_env.HOME }}/src/catpoo/composer.phar --no-interaction install"
+  args: chdir="{{ ansible_env.HOME }}/src/catpoo/www"
+- name: Install Node modules
+  shell: npm install
+  args: chdir="{{ ansible_env.HOME }}/src/catpoo"
+
+#
+# Configure web server
+#
+- name: Update www-data ACL for CATPOO
+  acl:
+    default: yes
+    entity: "{{ apache_username }}"
+    etype: user
+    name: "{{ item }}"
+    permissions: "rwx"
+    recursive: yes
+    state: present
+  with_items:
+    - "{{ ansible_env.HOME }}/src/catpoo/www/app/cache"
+    - "{{ ansible_env.HOME }}/src/catpoo/www/app/logs"
+
+- name: Update user ACL for CATPOO
+  acl:
+    default: yes
+    entity: "{{ ansible_env.USER }}"
+    etype: user
+    name: "{{ item }}"
+    permissions: "rwx"
+    recursive: yes
+    state: present
+  with_items:
+    - "{{ ansible_env.HOME }}/src/catpoo/www/app/cache"
+    - "{{ ansible_env.HOME }}/src/catpoo/www/app/logs"
+
+- name: Install Apache CATPOO site configuration
+  template:
+    dest: "{{ ansible_env.HOME }}/src/catpoo/config/catpoo-site"
+    src: "home/user/src/catpoo/config/catpoo-site.j2"
+
+- name: Symlink CATPOO site configuration
+  file:
+    state: link
+    src: "{{ ansible_env.HOME }}/src/catpoo/config/catpoo-site"
+    path: /etc/apache2/sites-available/catpoo-site
+
+- name: Enable Apache modules for CATPOO
+  sudo: yes
+  apache2_module: state=present name="{{ item }}"
+  with_items:
+    - proxy
+    - proxy_http
+
+- name: Enable CATPOO site
+  sudo: yes
+  shell: a2ensite catpoo-site
+
+- name: Restart Apache
+  sudo: yes
+  shell: service apache2 restart
+
+#
+# Build any 3rd party libraries necessary
+#
+- name: Build Thrift
+  shell: "{{ item }}"
+  args: chdir="{{ ansible_env.HOME }}/src/catpoo/3rdparty/thrift"
+  with_items:
+    - ./bootstrap.sh
+    - ./configure --without-qt4 --without-csharp --without-java --without-erlang --without-perl --without-haskell --without-go --without-d --with-cpp
+    - nice make -j 4
+    - sudo make install

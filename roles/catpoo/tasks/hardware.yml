@@ -29,18 +29,11 @@
           alias egrep='egrep --color=auto'
       fi
 
-- name: "Set default runlevel"
-  lineinfile:
-    dest: "/etc/inittab"
-    state: present
-    regexp: "id:.:initdefault:"
-    line: "id:3:initdefault:"
-
-- name: "Make sure LightDM is enabled in default runlevel"
-  service:
-    enabled: yes
-    runlevel: 3
-    name: lightdm
+#- name: "Make sure LightDM is enabled in default runlevel"
+#  service:
+#    enabled: yes
+#    runlevel: 3
+#    name: lightdm
 
 - name: "Install XInput"
   apt: name=xinput

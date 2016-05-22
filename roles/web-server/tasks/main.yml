@@ -46,3 +46,7 @@
   with_items:
     - stopped
     - started
+
+- name: Disable default Apache site
+  sudo: yes
+  shell: a2dissite 000-default

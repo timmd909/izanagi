@@ -11,19 +11,24 @@
     repo: "https://github.com/tias/xinput_calibrator.git"
     version: v0.7.5
 
-- name: "Compile XInput calibrator"
-  shell: "{{ item }}"
+- name: "Autogen XInput calibrator"
+  shell: "./autogen.sh"
   args:
     chdir: "{{ ansible_env.HOME }}/src/xinput_calibrator/"
-  with_items:
-    - "[ -e Makefile ] || ./autogen.sh"
-    - "make -j 2"
+    creates: "{{ ansible_env.HOME }}/src/xinput_calibrator/Makefile"
+
+- name: "Compile XInput calibrator"
+  shell: "make"
+  args:
+    chdir: "{{ ansible_env.HOME }}/src/xinput_calibrator/"
+    creates: "{{ ansible_env.HOME }}/src/xinput_calibrator/src/xinput_calibrator"
 
 - name: "Install XInput calibrator"
   sudo: yes
   shell: make install
   args:
     chdir: "{{ ansible_env.HOME }}/src/xinput_calibrator/"
+    creates: "/usr/local/bin/xinput_calibrator"
 
 - name: "Configure LightDM"
   sudo: yes
@@ -31,7 +36,16 @@
     src: etc/lightdm/lightdm.conf.j2
     dest: /etc/lightdm/lightdm.conf
 
-- name: "Configure GNU Krellm GUI"
+- name: "Configure GNU Krellm GUI (Step 1 of 3)"
+  file:
+    state: directory
+    path: "{{ item }}"
+  with_items:
+    - "{{ ansible_env.HOME }}/.gkrellm2/"
+    - "{{ ansible_env.HOME }}/.config/"
+    - "{{ ansible_env.HOME }}/.config/autostart/"
+
+- name: "Configure GNU Krellm GUI (Step 2 of 3)"
   template:
     src: "home/user/.gkrellm2/{{ item }}.j2"
     dest: "{{ ansible_env.HOME }}/.gkrellm2/{{ item }}"
@@ -39,7 +53,7 @@
     - "sensor-config"
     - "user-config"
 
-- name: "Autostart gkrellm"
+- name: "Configure GNU Krellm GUI (Step 3 of 3)"
   template:
     src: "home/user/.config/autostart/gkrellm.desktop.j2"
     dest: "{{ ansible_env.HOME }}/.config/autostart/gkrellm.desktop"

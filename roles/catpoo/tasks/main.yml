@@ -4,6 +4,8 @@
   sudo: yes
 - include: "development.yml"
   sudo: yes
+- include: "gui.yml"
+  sudo: yes
 - include: "opencv.yml"
   sudo: yes
 - include: "miscellaneous.yml"
@@ -12,4 +14,6 @@
   sudo: yes
 
 - include: "user-env.yml"
+  sudo: no
+- include: "catpoo.yml"
   sudo: no

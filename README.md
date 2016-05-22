@@ -10,11 +10,14 @@ It's name is a nod to [Izanagi](http://naruto.wikia.com/wiki/Izanagi) from
 
 ## Included Roles
 
-| Role Name        |  Description                            | Required Roles |
-|------------------|-----------------------------------------|----------------|
-| `photoserver`    | Lychee server                           | webserver      |
-| `timemachine`    | Time Machine server                     |                |
-| `webserver`      | Basic Apache web server                 |                |
+Here's a list of the major roles available.
+
+| Role Name        |  Description                                            |
+|------------------|---------------------------------------------------------|
+| `catpoo`         | [Robot project to chase small animals](https://github.com/timmd909/catpoo/) |
+| `photo-server`   | Lychee server                                           |
+| `time-machine`   | Time Machine server                                     |
+| `web-server`     | Basic Apache web server                                 |
 
 ## Ansible Variables
 

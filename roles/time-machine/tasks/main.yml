@@ -26,4 +26,4 @@
 
 - name: Make sure new drives are mounted
   sudo: yes
-  command: mount -a
+  shell: mount -a
