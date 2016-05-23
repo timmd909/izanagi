@@ -1,0 +1,4 @@
+---
+
+- name: Enable IPv4 forwarding
+  lineinfile: dest=/etc/sysctl.conf line="net.ipv4.ip_forward=1"
