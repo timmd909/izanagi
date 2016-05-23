@@ -1,22 +1,50 @@
 ---
 
 #
+# Install Composer
+#
+- name: Download Composer
+  shell: "{{ item }}"
+  with_items:
+    - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+    - php composer-setup.php
+
+- name: Install Composer
+  shell: "cp composer.phar /usr/local/bin/composer"
+  sudo: yes
+
+- name: Cleanup Composer
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+    - "{{ ansible_env.HOME }}/composer-setup.php"
+    - "{{ ansible_env.HOME }}composer.phar"
+
+#
 # Clean out and clone repo
 #
-- name: Clean out CATPOO
-  shell: sudo rm -rf {{ ansible_env.HOME }}/src/catpoo
 - name: Clone CATPOO repo
-  git: repo="git@github.com:timmd909/catpoo.git" clone=yes dest={{ ansible_env.HOME }}/src/catpoo recursive=yes accept_hostkey=yes
+  git:
+    accept_hostkey: yes
+    clone: yes
+    dest: "{{ ansible_env.HOME }}/src/catpoo"
+    force: yes
+    recursive: yes
+    repo: "git@github.com:timmd909/catpoo.git"
+    version: master
 
 #
 # Install dependencies
 #
-- name: Install vendors
-  shell: "{{ ansible_env.HOME }}/src/catpoo/composer.phar --no-interaction install"
-  args: chdir="{{ ansible_env.HOME }}/src/catpoo/www"
+- name: Install Composer vendors
+  shell: "composer --no-interaction install"
+  args:
+    chdir: "{{ ansible_env.HOME }}/src/catpoo/www"
 - name: Install Node modules
   shell: npm install
-  args: chdir="{{ ansible_env.HOME }}/src/catpoo"
+  args:
+    chdir: "{{ ansible_env.HOME }}/src/catpoo"
 
 #
 # Configure web server
@@ -53,10 +81,11 @@
     src: "home/user/src/catpoo/config/catpoo-site.j2"
 
 - name: Symlink CATPOO site configuration
+  sudo: yes
   file:
     state: link
     src: "{{ ansible_env.HOME }}/src/catpoo/config/catpoo-site"
-    path: /etc/apache2/sites-available/catpoo-site
+    path: /etc/apache2/sites-available/catpoo-site.conf
 
 - name: Enable Apache modules for CATPOO
   sudo: yes
@@ -76,11 +105,22 @@
 #
 # Build any 3rd party libraries necessary
 #
-- name: Build Thrift
+- name: Prepare Thrift for compilation
   shell: "{{ item }}"
-  args: chdir="{{ ansible_env.HOME }}/src/catpoo/3rdparty/thrift"
+  args:
+    chdir: "{{ ansible_env.HOME }}/src/catpoo/3rdparty/thrift"
+    creates: "{{ ansible_env.HOME }}/src/catpoo/3rdparty/thrift/Makefile"
   with_items:
     - ./bootstrap.sh
     - ./configure --without-qt4 --without-csharp --without-java --without-erlang --without-perl --without-haskell --without-go --without-d --with-cpp
-    - nice make -j 4
-    - sudo make install
+
+- name: Compile Thrift
+  shell: make
+  args:
+    chdir: "{{ ansible_env.HOME }}/src/catpoo/3rdparty/thrift"
+
+- name: Install Thrift
+  shell: make install
+  sudo: yes
+  args: chdir="{{ ansible_env.HOME }}/src/catpoo/3rdparty/thrift"
+

@@ -27,3 +27,9 @@
   template:
     src: etc/network/interfaces.j2
     dest: /etc/network/interfaces
+
+- name: Make sure NetworkManager is started at boot
+  shell: systemctl enable NetworkManager
+
+- name: Make sure that nothing usurps Network Manager
+  shell: systemctl mask network
