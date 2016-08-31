@@ -1,6 +1,6 @@
 ---
 
-lychee_repository: "https://github.com/electerious/Lychee.git"
+lychee_repository: "https://github.com/timmd909/Lychee.git"
 lychee_version: "v3.1.0"
 lychee_user: "lychee"
 lychee_home: "/home/lychee"
