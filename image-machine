@@ -9,11 +9,19 @@ if [[ "$1" == "" ]]; then
   echo "Usage: $0 <hostname>"
   echo
   echo "Available hosts:"
+  echo
   HOSTS="`cat hosts | grep -vE '^(#|\[)' | grep -vE '^$' | cut -d\  -f1 | sort | uniq `"
-  echo $HOSTS
+  for HOST in $HOSTS ; do
+    echo " * $HOST"
+  done
+  echo
+
   exit 42
 fi
 
-ansible-playbook -i hosts site.yml "--limit=$1"
+MACHINE="$1"
+shift
+
+( set -x ; ansible-playbook -i hosts site.yml "--limit=$MACHINE" )
 
 popd > /dev/null
