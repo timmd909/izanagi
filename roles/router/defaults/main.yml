@@ -4,8 +4,7 @@
 router_external_nic: eth0
 # Plug this into the router
 router_internal_nic: eth1
-# If this is non-empty, use this as the wireless
-# access point device.
+# Set to false to disable wireless access point
 router_wireless_ap: wlan0
 
 # Default internal IP scheme
@@ -19,3 +18,7 @@ dns_ip_octet_1: "{{ internal_ip_octet_1 }}"
 dns_ip_octet_2: "{{ internal_ip_octet_2 }}"
 dns_ip_octet_3: "{{ internal_ip_octet_3 }}"
 dns_ip_octet_4: "{{ internal_ip_octet_4 }}"
+
+# Set to true to use the hostapd from Adafruit that works
+# well with the wireless USB NICs they sell
+use_adafruit_hostapd: false

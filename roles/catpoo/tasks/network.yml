@@ -1,28 +1,5 @@
 ---
 
-- name: Install hostapd
-  apt: name=hostapd
-
-- name: Install custom hostapd
-  shell: "{{ item }}"
-  with_items:
-    - wget http://adafruit-download.s3.amazonaws.com/adafruit_hostapd_14128.zip
-    - unzip adafruit_hostapd_14128.zip
-    - chown root.root hostapd
-    - chmod +x hostapd
-    - mv hostapd /usr/sbin/hostapd
-    - rm adafruit_hostapd_14128.zip
-
-- name: Configure hostapd
-  template:
-    src: etc/hostapd/hostapd.conf.j2
-    dest: /etc/hostapd/hostapd.conf
-
-- name: Configure hostapd defaults
-  template:
-    src: etc/default/hostapd.j2
-    dest: /etc/default/hostapd
-
 - name: Make sure NetworkManager is started at boot
   shell: systemctl enable NetworkManager
 

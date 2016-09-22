@@ -4,3 +4,6 @@
   sudo: yes
 - include: "configure.yml"
   sudo: yes
+- include: "access-point.yml"
+  sudo: yes
+  when: router_wireless_ap != false

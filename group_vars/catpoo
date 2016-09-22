@@ -1,0 +1,7 @@
+---
+
+# Enable the modified hostapd from Adafruit. The
+# default one never seems to work.
+use_adafruit_hostapd: true
+
+wireless_hostapd_driver: rtl871xdrv
