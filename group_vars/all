@@ -10,7 +10,7 @@
 skip_update: false
 
 #
-# web-server default values
+# Web server related default values
 #
 apache_php_max_execution_time: 30
 apache_php_post_max_size: 8M

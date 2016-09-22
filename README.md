@@ -16,6 +16,7 @@ Here's a list of the major roles available.
 |------------------|---------------------------------------------------------|
 | `catpoo`         | [Robot project to chase small animals](https://github.com/timmd909/catpoo/) |
 | `photo-server`   | Lychee server                                           |
+| `puck`           | Personal router and more                                |
 | `time-machine`   | Time Machine server                                     |
 | `web-server`     | Basic Apache web server                                 |
 

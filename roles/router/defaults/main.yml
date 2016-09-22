@@ -1,0 +1,6 @@
+---
+
+# Plug this into the internets
+router_external_nic: eth0
+# Plug this into the router
+router_internal_nic: eth1

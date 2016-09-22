@@ -30,3 +30,7 @@
     - "web-server"
     - "catpoo"
 
+- hosts: pucks
+  roles:
+   - "dns-server"
+   - "router"
