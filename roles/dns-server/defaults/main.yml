@@ -1,0 +1,21 @@
+---
+
+# Default domain postfix. The default hostname
+# is "router.izanagi", which hopefully will never
+# resolve to anything.
+# If you want the DNS server to be dns.example.com,
+# then `dns_domain` would be "example.com"
+# and `dns_host` would be "dns".
+dns_domain: izanagi
+dns_host: router
+
+# IPv4 address of the DNS server chopped up into
+# octets.
+dns_ip_octet_1: 10
+dns_ip_octet_2: 0
+dns_ip_octet_3: 0
+dns_ip_octet_4: 1
+
+# Shortcut for the entire IPv4 address
+dns_ip_address: "{{ dns_octet_1 }}.{{ dns_octet_2 }}.{{ dns_octet_3 }}.{{ dns_octet_4 }}"
+dns_network_device: eth0
