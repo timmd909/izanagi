@@ -1,6 +1,7 @@
 ---
 
 - name: Restart BIND
+  sudo: yes
   service:
     state: restarted
     name: bind9

@@ -28,6 +28,7 @@
   roles:
     - "dns-server"
     - "web-server"
+    - "router"
     - "catpoo"
 
 - hosts: pucks

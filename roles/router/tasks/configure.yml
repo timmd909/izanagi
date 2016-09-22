@@ -2,3 +2,21 @@
 
 - name: Enable IPv4 forwarding
   lineinfile: dest=/etc/sysctl.conf line="net.ipv4.ip_forward=1"
+
+#
+# Configure
+#
+- name: Install main network interfaces file
+  template:
+    src: etc/network/interfaces.j2
+    dest: /etc/network/interfaces
+
+- name: Install internal network interface file
+  template:
+    src: etc/network/interfaces.d/internal.j2
+    dest: /etc/network/interfaces.d/internal
+
+- name: Install external network interface file
+  template:
+    src: etc/network/interfaces.d/external.j2
+    dest: /etc/network/interfaces.d/external
