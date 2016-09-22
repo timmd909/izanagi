@@ -20,3 +20,30 @@
   template:
     src: etc/network/interfaces.d/external.j2
     dest: /etc/network/interfaces.d/external
+
+- name: Install wireless network interface file
+  template:
+    src: etc/network/interfaces.d/wireless.j2
+    dest: /etc/network/interfaces.d/wireless
+  when: router_access_point_nic != false
+- name: Remove wireless network interface file
+  file:
+    path: /etc/network/interfaces.d/wireless
+    state: absent
+  when: router_access_point_nic == false
+
+- name: Install IP Tables rules
+  template:
+    src: etc/iptables.rules.j2
+    dest: /etc/iptables.rules
+
+- name: Make iptables rules apply automatically
+  template:
+    src: etc/network/if-up.d/iptables-restore.j2
+    dest: /etc/network/if-up.d/iptables-restore
+
+- name: Fix iptables rules permissions
+  file:
+    mode: 0755
+    path: /etc/network/if-up.d/iptables-restore
+

@@ -1,0 +1,7 @@
+---
+
+- name: "Restart hostapd"
+  sudo: yes
+  service:
+    state: restarted
+    name: hostapd

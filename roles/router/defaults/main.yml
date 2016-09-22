@@ -1,11 +1,44 @@
 ---
 
+#
+# Wired device settings
+#
+
 # Plug this into the internets
 router_external_nic: eth0
 # Plug this into the router
 router_internal_nic: eth1
+
+#
+# Wireless settings
+#
+
 # Set to false to disable wireless access point
-router_wireless_ap: wlan0
+router_access_point_nic: wlan0
+# Wireless SSID
+router_ssid: "WhatThePuck"
+# Make sure to change the wireless password
+# (btw, see http://bleach.wikia.com/wiki/Kisuke_Urahara)
+router_wireless_password: "sandal-hat"
+
+# Wireless channel defaults to my favorite number
+router_wireless_channel: 4
+
+# Set to true to use the hostapd from Adafruit that works
+# well with the wireless USB NICs they sell
+use_adafruit_hostapd: false
+
+wireless_ip_octet_1: 10
+wireless_ip_octet_2: 1
+wireless_ip_octet_3: 1
+wireless_ip_octet_4: 2
+
+# Default driver to use with hostapd
+wireless_hostapd_driver: nl80211
+
+#
+# IPv4 network settings
+#
 
 # Default internal IP scheme
 internal_ip_octet_1: 10
@@ -18,7 +51,3 @@ dns_ip_octet_1: "{{ internal_ip_octet_1 }}"
 dns_ip_octet_2: "{{ internal_ip_octet_2 }}"
 dns_ip_octet_3: "{{ internal_ip_octet_3 }}"
 dns_ip_octet_4: "{{ internal_ip_octet_4 }}"
-
-# Set to true to use the hostapd from Adafruit that works
-# well with the wireless USB NICs they sell
-use_adafruit_hostapd: false

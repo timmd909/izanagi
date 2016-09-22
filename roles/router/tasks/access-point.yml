@@ -1,7 +1,15 @@
 ---
+#
+# This file runs only when the access point is enabled
+#
 
 - name: Install hostapd
   apt: name=hostapd
+  when: router_access_point_nic != false
+
+- name: Uninstall hostapd
+  apt: name=hostapd purge=true state=absent
+  when: router_access_point_nic == false
 
 - name: Install custom hostapd
   shell: "{{ item }}"
@@ -14,13 +22,23 @@
     - rm adafruit_hostapd_14128.zip
   when: use_adafruit_hostapd == true
 
-- name: Configure hostapd
-  template:
-    src: etc/hostapd/hostapd.conf.j2
-    dest: /etc/hostapd/hostapd.conf
-
 - name: Configure hostapd defaults
   template:
     src: etc/default/hostapd.j2
     dest: /etc/default/hostapd
+  when: router_access_point_nic != false
 
+- name: Configure hostapd
+  template:
+    src: etc/hostapd/hostapd.conf.j2
+    dest: /etc/hostapd/hostapd.conf
+  notify:
+    - Restart hostapd
+  when: router_access_point_nic != false
+
+- name: Remove hostapd configuration
+  file: path="{{ item }}" state=absent
+  with_items:
+    - "/etc/hostapd/hostapd.conf"
+    - "/etc/default/hostapd"
+  when: router_access_point_nic == false
