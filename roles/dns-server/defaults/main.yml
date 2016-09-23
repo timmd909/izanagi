@@ -17,7 +17,6 @@ dns_ip_octet_3: 0
 dns_ip_octet_4: 1
 
 # Shortcut for the entire IPv4 address
-dns_ip_address: "{{ dns_ip_octet_1 }}.{{ dns_ip_octet_2 }}.{{ dns_ip_octet_3 }}.{{ dns_ip_octet_4 }}"
 dns_network_device: eth0
 
 # A list of hosts. This list is shared with the router role.

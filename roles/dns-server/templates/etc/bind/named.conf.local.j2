@@ -6,7 +6,7 @@
 // organization
 //include "/etc/bind/zones.rfc1918";
 
-zone "{{ dns_host }}.{{ dns_domain }}" {
+zone "{{ dns_domain }}" {
   type master;
   file "/etc/bind/zones/local.zone";
 };

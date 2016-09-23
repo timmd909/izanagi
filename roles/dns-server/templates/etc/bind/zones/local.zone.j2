@@ -1,15 +1,15 @@
 $TTL 604800
-@ IN	SOA www.{{ dns_host }}.{{ dns_domain }}. tim.{{ dns_host }}.{{ dns_domain }}. (
+@ IN	SOA {{ dns_host }}.{{ dns_domain }}. router.{{ dns_domain }}. (
 	2011102402
 	28800
 	3600
 	604800
 	38400 )
-@ IN NS www.{{ dns_host }}.{{ dns_domain }}.
+@ IN NS {{ dns_host }}.{{ dns_domain }}.
 
-www        IN A {{ dns_ip_address }}
-{{ dns_host }}.{{ dns_domain }}. IN A {{ dns_ip_address }}
+{{ dns_host }}.{{ dns_domain }}. IN A {{ dns_ip_octet_1 }}.{{ dns_ip_octet_2 }}.{{ dns_ip_octet_3 }}.{{ dns_ip_octet_4 }}
+{{ dns_domain }}. IN A {{ dns_ip_octet_1 }}.{{ dns_ip_octet_2 }}.{{ dns_ip_octet_3 }}.{{ dns_ip_octet_4 }}
 
-#
-# Additional hosts defined by `internal_hosts`:
-#
+;
+; Additional hosts defined by `internal_hosts`:
+;
