@@ -2,6 +2,8 @@
 
 - name: "Restart hostapd"
   sudo: yes
-  service:
-    state: restarted
-    name: hostapd
+  service: state=restarted name=hostapd
+
+- name: "Restart DHCPD"
+  sudo: yes
+  service: state=restarted name=isc-dhcp-server

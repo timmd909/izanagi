@@ -5,6 +5,3 @@
 
 - name: Install Bridge Utils
   apt: name=bridge-utils
-
-- name: Install Network Manager
-  apt: name=network-manager

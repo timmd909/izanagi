@@ -45,9 +45,26 @@ internal_ip_octet_1: 10
 internal_ip_octet_2: 1
 internal_ip_octet_3: 1
 internal_ip_octet_4: 1
+internal_ip_address: "{{ internal_ip_octet_1 }}.{{ internal_ip_octet_2 }}.{{ internal_ip_octet_3 }}.{{ internal_ip_octet_4 }}"
+
+internal_ip_dhcp_range_start: 150
+internal_ip_dhcp_range_end: 250
 
 # Make sure the DNS is the same as the router's IP
 dns_ip_octet_1: "{{ internal_ip_octet_1 }}"
 dns_ip_octet_2: "{{ internal_ip_octet_2 }}"
 dns_ip_octet_3: "{{ internal_ip_octet_3 }}"
 dns_ip_octet_4: "{{ internal_ip_octet_4 }}"
+
+#
+# DHCP and DNS host information. Includes the hostname,
+# MAC address, and the last octet of the IP address.
+# This list is shared w/ the `dns` role.
+#
+internal_hosts:
+#  - name: hostname1
+#    mac: "01:02:03:04:05:06"
+#    ip: 123
+#  - name: hostname2
+#    ethernet: "31:32:33:04:05:06"
+#    ip: 102

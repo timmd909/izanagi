@@ -1,4 +1,4 @@
-allow-hotplug {{ router_internal_nic }}
+auto {{ router_internal_nic }}
 iface {{ router_internal_nic }} inet static
   address {{ internal_ip_octet_1 }}.{{ internal_ip_octet_2 }}.{{ internal_ip_octet_3 }}.{{ internal_ip_octet_4 }}
   netmask 255.255.255.0

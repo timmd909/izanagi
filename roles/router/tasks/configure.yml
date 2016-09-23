@@ -47,3 +47,8 @@
     mode: 0755
     path: /etc/network/if-up.d/iptables-restore
 
+- name: Configure DHCPD
+  template:
+    src: etc/dhcp/dhcpd.conf.j2
+    dest: /etc/dhcp/dhcpd.conf
+  notify: Restart DHCPD

@@ -7,5 +7,9 @@ $TTL 604800
 	38400 )
 @ IN NS www.{{ dns_host }}.{{ dns_domain }}.
 
-www        IN A 10.13.37.1
-{{ dns_host }}.local. IN A 10.13.37.1
+www        IN A {{ dns_ip_address }}
+{{ dns_host }}.{{ dns_domain }}. IN A {{ dns_ip_address }}
+
+#
+# Additional hosts defined by `internal_hosts`:
+#

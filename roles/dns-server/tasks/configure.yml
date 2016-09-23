@@ -20,3 +20,18 @@
     - etc/default/isc-dhcp-server
   notify:
     - Restart BIND
+
+- name: Add local host information
+  with_items: "{{ internal_hosts }}"
+  lineinfile:
+    dest: /etc/bind/zones/local.zone
+    state: present
+    line: "{{ item.name }} IN A {{ internal_ip_octet_1 }}.{{ internal_ip_octet_2 }}.{{ internal_ip_octet_3 }}.{{ item.ip }}"
+
+- name: Add local host information (IN ADDR ARPA)
+  with_items: "{{ internal_hosts }}"
+  lineinfile:
+    dest: /etc/bind/zones/in-addr.arpa
+    state: present
+    line: "{{ item.ip }} IN PTR {{ item.name }}.{{ dns_domain }}."
+

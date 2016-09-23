@@ -1,4 +1,4 @@
-allow-hotplug {{ router_access_point_nic }}
+auto-hotplug {{ router_access_point_nic }}
 iface {{ router_access_point_nic }} inet static
   address {{ wireless_ip_octet_1 }}.{{ wireless_ip_octet_2 }}.{{ wireless_ip_octet_3 }}.{{ wireless_ip_octet_4 }}
   netmask 255.255.255.0
