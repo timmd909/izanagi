@@ -47,8 +47,18 @@
     mode: 0755
     path: /etc/network/if-up.d/iptables-restore
 
+#
+# DHCP
+#
 - name: Configure DHCPD
   template:
     src: etc/dhcp/dhcpd.conf.j2
     dest: /etc/dhcp/dhcpd.conf
+
+- name: Add DHCP host information
+  with_items: "{{ internal_hosts }}"
+  lineinfile:
+    dest: /etc/dhcp/dhcpd.conf
+    state: present
+    line: "host {{ item.name }} { hardware ethernet {{ item.mac }}; fixed-address {{ internal_ip_octet_1 }}.{{ internal_ip_octet_2 }}.{{ internal_ip_octet_3 }}.{{ item.ip }}; }"
   notify: Restart DHCPD
