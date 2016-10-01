@@ -34,4 +34,5 @@
 - hosts: pucks
   roles:
    - "dns-server"
+   - "web-server"
    - "router"
