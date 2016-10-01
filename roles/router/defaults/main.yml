@@ -68,3 +68,12 @@ internal_hosts:
 #  - name: hostname2
 #    ethernet: "31:32:33:04:05:06"
 #    ip: 102
+
+#
+# Miscellaneous
+#
+
+# Dyn support
+ddclient_username: ~
+ddclient_password: ~
+ddclient_hostname: ~

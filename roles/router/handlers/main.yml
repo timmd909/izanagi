@@ -7,3 +7,10 @@
 - name: "Restart DHCPD"
   sudo: yes
   service: state=restarted name=isc-dhcp-server
+
+- name: "Restart ddclient"
+  sudo: yes
+  service: state=restarted name=ddclient
+- name: "Stop ddclient"
+  sudo: yes
+  service: state=stopped name=ddclient

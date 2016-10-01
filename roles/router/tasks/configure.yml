@@ -4,7 +4,7 @@
   lineinfile: dest=/etc/sysctl.conf line="net.ipv4.ip_forward=1"
 
 #
-# Configure
+# Configure network devices
 #
 - name: Install main network interfaces file
   template:
@@ -32,6 +32,9 @@
     state: absent
   when: router_access_point_nic == false
 
+#
+# Configure routing and firewall
+#
 - name: Install IP Tables rules
   template:
     src: etc/iptables.rules.j2
@@ -62,3 +65,23 @@
     state: present
     line: "host {{ item.name }} { hardware ethernet {{ item.mac }}; fixed-address {{ internal_ip_octet_1 }}.{{ internal_ip_octet_2 }}.{{ internal_ip_octet_3 }}.{{ item.ip }}; }"
   notify: Restart DHCPD
+
+#
+# Miscellaneous
+#
+- name: Setup ddclient
+  template:
+    src: etc/ddclient.conf.j2
+    dest: /etc/ddclient.conf
+  notify: Restart ddclient
+  when: ddclient_hostname != null
+
+- name: Make sure ddclient configuration is only readable by root
+  file: mode=0700 dest="/etc/ddclient.conf"
+  when: ddclient_hostname != null
+
+- name: Remove ddclient configuration
+  when: ddclient_hostname == null
+  file: dest="/etc/ddclient.conf" state=absent
+  notify: Stop ddclient
+
