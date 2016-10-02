@@ -1,0 +1,25 @@
+---
+
+- name: Configure Apache modules
+  apache2_module: state=present name="{{ item }}"
+  with_items:
+    - ssl
+    - rewrite
+
+- name: Update Apache PHP settings
+  lineinfile:
+    dest="/etc/php5/apache2/php.ini"
+    line="{{ item }}"
+  with_items:
+    - "max_execution_time = {{ apache_php_max_execution_time }}"
+    - "post_max_size = {{ apache_php_post_max_size }}"
+    - "upload_max_size = {{ apache_php_upload_max_size }}"
+    - "upload_max_filesize = {{ apache_php_upload_max_filesize }}"
+    - "memory_limit = {{ apache_php_memory_limit }}"
+
+- name: Disable default Apache sites
+  shell: "a2dissite {{ item }}"
+  with_items:
+    - 000-default
+    - default-ssl
+  notify: Restart Apache
