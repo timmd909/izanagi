@@ -6,15 +6,11 @@
 
 - hosts: photoservers
   roles:
-    - "web-server"
-    - "sql-server"
-    - "samba-server"
     - "photo-server"
 
 - hosts: webservers
   roles:
     - "web-server"
-    - "sql-server"
 
 - hosts: timemachines
   roles:
@@ -26,13 +22,8 @@
 
 - hosts: catpoos
   roles:
-    - "dns-server"
-    - "web-server"
-    - "router"
     - "catpoo"
 
 - hosts: pucks
   roles:
-   - "dns-server"
-   - "web-server"
    - "router"

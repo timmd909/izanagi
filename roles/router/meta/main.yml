@@ -1,0 +1,5 @@
+---
+
+dependencies:
+  - { role: "web-server" }
+  - { role: "dns-server" }

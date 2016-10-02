@@ -1,0 +1,6 @@
+---
+
+dependencies:
+  - { role: "web-server" }
+  - { role: "sql-server" }
+  - { role: "samba-server" }
