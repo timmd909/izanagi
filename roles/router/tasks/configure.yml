@@ -74,14 +74,14 @@
     src: etc/ddclient.conf.j2
     dest: /etc/ddclient.conf
   notify: Restart ddclient
-  when: ddclient_hostname != null
+  when: ddclient_hostname
 
 - name: Make sure ddclient configuration is only readable by root
   file: mode=0700 dest="/etc/ddclient.conf"
-  when: ddclient_hostname != null
+  when: ddclient_hostname
 
 - name: Remove ddclient configuration
-  when: ddclient_hostname == null
   file: dest="/etc/ddclient.conf" state=absent
   notify: Stop ddclient
+  when: not ddclient_hostname
 
