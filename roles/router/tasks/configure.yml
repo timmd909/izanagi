@@ -85,3 +85,14 @@
   notify: Stop ddclient
   when: not ddclient_hostname
 
+#
+# Apache configuration
+#
+- name: Configure web server
+  template:
+    src: etc/apache2/sites-available/router.conf.j2
+    dest: /etc/apache2/sites-available/router.conf
+
+- name: Enable router apache config
+  shell: "a2ensite router"
+  notify: "Restart Apache"
