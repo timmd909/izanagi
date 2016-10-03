@@ -26,4 +26,4 @@
 
 - hosts: pucks
   roles:
-   - "router"
+   - "puck"

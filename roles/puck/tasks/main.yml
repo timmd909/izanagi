@@ -1,0 +1,6 @@
+---
+
+- include: "install.yml"
+  sudo: yes
+- include: "configure.yml"
+  sudo: yes

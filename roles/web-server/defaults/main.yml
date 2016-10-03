@@ -8,3 +8,5 @@ apache_php_upload_max_size: 16M
 apache_php_upload_max_filesize: 32M
 apache_php_memory_limit: 64M
 apache_username: www-data
+
+apache_admin_email: "webmaster@localhost"

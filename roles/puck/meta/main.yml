@@ -1,0 +1,8 @@
+---
+
+dependencies:
+  - role: "time-machine"
+  - role: "samba-server"
+    samba_server_description: "Puck shared drive"
+  - role: "router"
+    router_web_ui: false

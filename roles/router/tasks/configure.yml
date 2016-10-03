@@ -93,6 +93,13 @@
     src: etc/apache2/sites-available/router.conf.j2
     dest: /etc/apache2/sites-available/router.conf
 
-- name: Enable router apache config
+- name: Enable router Apache config
   shell: "a2ensite router"
   notify: "Restart Apache"
+  when: router_web_ui
+
+- name: Disable router Apache config
+  shell: "a2dissite router"
+  notify: "Restart Apache"
+  when: not router_web_ui
+
