@@ -1,0 +1,13 @@
+---
+
+- name: "Mount Time Machine partition"
+  mount:
+    name: "{{ time_machine_mount_point }}"
+    src: "{{ time_machine_drive }}"
+    state: mounted
+
+- name: "Unmount Time Machine partition"
+  mount:
+    name: "{{ time_machine_mount_point }}"
+    state: unmounted
+

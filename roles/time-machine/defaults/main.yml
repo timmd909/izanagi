@@ -3,4 +3,4 @@
 time_machine_mount_point: "/srv/tim-machine"
 
 # Don't use another time machine drive
-time_machine_drive: ""
+time_machine_drive:

@@ -21,9 +21,19 @@
 
 - name: Mount Time Machine at boot
   sudo: yes
-  lineinfile: dest="/etc/fstab" line="{{ time_machine_drive }} {{ time_machine_mount_point }} ext4  defaults,auto,nofail 0 0"
-  when: time_machine_drive != ""
+  mount:
+    fstype: ext4
+    name: "{{ time_machine_mount_point }}"
+    opts: "defaults,auto,nofail"
+    src: "{{ time_machine_drive }}"
+    state: present
+  when: time_machine_drive is defined
+  notify: Mount Time Machine partition
 
-- name: Make sure new drives are mounted
+- name: Clear Time Machine mount
   sudo: yes
-  shell: mount -a
+  mount:
+    name: "{{ time_machine_mount_point }}"
+    state: absent
+  when: time_machine_drive is undefined
+  notify: Unmount Time Machine partition
