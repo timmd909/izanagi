@@ -1,11 +1,6 @@
 #
-# Update/installation tweaks intended to be overidden on the
-# command line.
-#
-# Ex:
-#   ansible-playbook -i hosts site.yml -e skip_update=true
+# Common configuration for all roles.
 #
 
-# Skip all APT updates, adding of keys, etc.
-skip_update: false
+---
 

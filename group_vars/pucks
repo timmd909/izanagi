@@ -1,4 +1,0 @@
----
-
-dns_network_device: "{{ router_internal_nic }}"
-
