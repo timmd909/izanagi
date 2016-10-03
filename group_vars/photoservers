@@ -1,9 +1,0 @@
----
-
-# Bang! Knock the Apache defaults up a bit
-apache_php_max_execution_time: 600
-apache_php_post_max_size: 100M
-apache_php_upload_max_size: 100M
-apache_php_upload_max_filesize: 50M
-apache_php_memory_limit: 128M
-

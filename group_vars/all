@@ -9,12 +9,3 @@
 # Skip all APT updates, adding of keys, etc.
 skip_update: false
 
-#
-# Web server related default values
-#
-apache_php_max_execution_time: 30
-apache_php_post_max_size: 8M
-apache_php_upload_max_size: 16M
-apache_php_upload_max_filesize: 32M
-apache_php_memory_limit: 64M
-apache_username: www-data

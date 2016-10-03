@@ -3,7 +3,8 @@
 apache_http_root: "/var/www"
 
 apache_php_max_execution_time: 100
-apache_php_post_max_size: 50M
-apache_php_upload_max_size: 50M
-apache_php_upload_max_filesize: 16M
+apache_php_post_max_size: 8M
+apache_php_upload_max_size: 16M
+apache_php_upload_max_filesize: 32M
 apache_php_memory_limit: 64M
+apache_username: www-data
