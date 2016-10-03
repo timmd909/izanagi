@@ -7,5 +7,6 @@ dependencies:
     apache_php_upload_max_size: 100M
     apache_php_upload_max_filesize: 50M
     apache_php_memory_limit: 128M
+    samba_server_description: "Lychee media server"
   - role: "sql-server"
   - role: "samba-server"

@@ -1,3 +1,4 @@
 ---
 
 samba_workgroup: WORKGROUP
+samba_server_description: "Basic SAMBA server"

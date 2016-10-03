@@ -10,4 +10,3 @@ lychee_document_root: "/home/lychee/lychee"
 lychee_db_user: "lychee"
 lychee_db_database: "lychee"
 
-samba_server_description: "Lychee media server"
