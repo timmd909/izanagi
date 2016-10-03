@@ -74,16 +74,16 @@
     src: etc/ddclient.conf.j2
     dest: /etc/ddclient.conf
   notify: Restart ddclient
-  when: ddclient_hostname
+  when: ddclient_hostname is defined
 
 - name: Make sure ddclient configuration is only readable by root
   file: mode=0700 dest="/etc/ddclient.conf"
-  when: ddclient_hostname
+  when: ddclient_hostname is defined
 
 - name: Remove ddclient configuration
   file: dest="/etc/ddclient.conf" state=absent
   notify: Stop ddclient
-  when: not ddclient_hostname
+  when: ddclient_hostname is undefined
 
 #
 # Apache configuration
