@@ -17,23 +17,26 @@
 #
 - name: Create Time Machine mount point
   sudo: yes
-  file: path="{{ time_machine_mount_point }}" state=directory mode=0777
+  file: path="{{ time_machine_root_dir }}" state=directory mode=0777
 
 - name: Mount Time Machine at boot
   sudo: yes
   mount:
-    fstype: ext4
-    name: "{{ time_machine_mount_point }}"
-    opts: "defaults,auto,nofail"
+    fstype: "{{ time_machine_drive_fstype }}"
+    name: "{{ time_machine_root_dir }}"
+    opts: "{{ time_machine_drive_opts }}"
     src: "{{ time_machine_drive }}"
     state: present
-  when: time_machine_drive is defined
+  when: time_machine_drive == "None"
   notify: Mount Time Machine partition
 
 - name: Clear Time Machine mount
   sudo: yes
   mount:
-    name: "{{ time_machine_mount_point }}"
+    fstype: "{{ time_machine_drive_fstype }}"
+    name: "{{ time_machine_root_dir }}"
+    opts: "{{ time_machine_drive_opts }}"
+    src: "{{ time_machine_drive }}"
     state: absent
-  when: time_machine_drive is undefined
+  when: time_machine_drive != "None"
   notify: Unmount Time Machine partition
