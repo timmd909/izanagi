@@ -10,8 +10,5 @@
 - name: Update APT
   apt: update_cache=yes
   when: skip_update == false
-
-- name: Upgrade APT
-  apt: upgrade=yes
-  when: skip_update == false
-
+  notify:
+    - Upgrade Packages

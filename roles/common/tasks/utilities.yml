@@ -3,11 +3,11 @@
 - name: Install necessary utilities
   apt: "name={{ item }}"
   with_items:
-      - locate
-      - lsof
-      - nmap
-      - screen
-      - vim
+    - locate
+    - lsof
+    - nmap
+    - screen
+    - vim
 
 - name: Set VIM as default editor
   alternatives:
@@ -17,10 +17,10 @@
 - name: Install top-like programs
   apt: "name={{ item }}"
   with_items:
-      - htop
-      - iotop
+    - htop
+    - iotop
 
 - name: Install build tools
   apt: "name={{ item }}"
   with_items:
-      - git
+    - git
