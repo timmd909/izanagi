@@ -22,6 +22,7 @@ fi
 MACHINE="$1"
 shift
 
-( set -x ; ansible-playbook -i hosts site.yml "--limit=$MACHINE" )
+echo "set -x ; ansible-playbook -i hosts site.yml \"--limit=$MACHINE\""
+( set -x ; ansible-playbook -i hosts site.yml "--limit=$MACHINE")
 
 popd > /dev/null
