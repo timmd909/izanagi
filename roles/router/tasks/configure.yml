@@ -58,6 +58,11 @@
     src: etc/dhcp/dhcpd.conf.j2
     dest: /etc/dhcp/dhcpd.conf
 
+- name: Configure DHCP server
+  template:
+    src: "etc/default/isc-dhcp-server.j2"
+    dest: "/etc/default/isc-dhcp-server"
+
 - name: Add DHCP host information
   with_items: "{{ internal_hosts }}"
   lineinfile:
