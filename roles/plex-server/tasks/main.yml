@@ -1,0 +1,10 @@
+---
+
+- include: "install-pi.yml"
+  when: raspberry_pi == true
+  sudo: yes
+
+- include: "install-ubuntu.yml"
+  when: raspberry_pi == false
+  sudo: yes
+

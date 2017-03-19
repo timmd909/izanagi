@@ -27,3 +27,7 @@
 - hosts: pucks
   roles:
    - "puck"
+
+- hosts: plexservers
+  roles:
+    - "plex-server"

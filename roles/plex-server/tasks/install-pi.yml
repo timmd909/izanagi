@@ -1,0 +1,17 @@
+---
+
+# Raspberry Pi specific installation of Plex Media server
+
+- name: "APT Transport"
+  apt: name=apt-transport-https state=latest
+
+- name: "Add dev2day APT key"
+  apt_key:
+    url: https://dev2day.de/pms/dev2day-pms.gpg.key
+    state: present
+
+- name: "Add dev2day APT repository"
+  apt_repository:
+    repo: deb https://dev2day.de/pms/ jessie main
+    state: present
+    filename: plexmediaserver
