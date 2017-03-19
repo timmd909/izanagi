@@ -14,9 +14,10 @@
 
 - name: Vim configuration settings update
   lineinfile:
+    create: yes
     dest: "{{ ansible_env.HOME }}/.vimrc"
-    state: present
     line: "{{ item }}"
+    state: present
   with_items:
     - set tabstop=2
     - syntax on
@@ -25,9 +26,10 @@
 - name: Configure VIM (for root)
   sudo: yes
   lineinfile:
+    create: yes
     dest: "/root/.vimrc"
-    state: present
     line: "{{ item }}"
+    state: present
   with_items:
     - set tabstop=2
     - syntax on
