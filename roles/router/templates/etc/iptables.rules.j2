@@ -1,10 +1,16 @@
-*nat
--A POSTROUTING -o {{ router_external_nic }} -j MASQUERADE
-COMMIT
 *filter
 :INPUT ACCEPT [0:0]
 :FORWARD ACCEPT [0:0]
 :OUTPUT ACCEPT [0:0]
 -A FORWARD -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
-#-A FORWARD -j LOG
+COMMIT
+*nat
+:PREROUTING ACCEPT [0:0]
+:INPUT ACCEPT [0:0]
+:OUTPUT ACCEPT [0:0]
+:POSTROUTING ACCEPT [0:0]
+-A POSTROUTING -o {{ router_external_nic }} -j MASQUERADE
+{% for forwarded_port in forwarded_ports  %}
+-A PREROUTING -p tcp --dport {{ forwarded_port.outside }} -j DNAT --to-destination 10.0.4.{{ forwarded_port.ip }}:{{ forwarded_port.inside }}
+{% endfor %}
 COMMIT

@@ -1,11 +1,11 @@
 ---
 
 dependencies:
-  - role: "plex-server"
+  - role: "router"
+    router_web_ui: false
   - role: "dns-server"
     dns_network_device: "{{ router_internal_nic }}"
   - role: "time-machine"
   - role: "samba-server"
     samba_server_description: "Puck shared drive"
-  - role: "router"
-    router_web_ui: false
+  - role: "plex-server"
