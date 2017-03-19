@@ -12,5 +12,13 @@
 - name: Install SSHFS
   apt: name=sshfs
 
-- name: Install UPnP Internet Gateway Device support
-  apt: name=linux-igd state=latest
+- name: Install UPnP daemon
+  apt: name="{{ item }}" state=latest
+  with_items:
+    - miniupnpc
+    - miniupnpd
+
+- name: Configure UPnP daemon
+  template:
+    src: etc/default/miniupnpd.j2
+    dest: /etc/default/miniupnpd
