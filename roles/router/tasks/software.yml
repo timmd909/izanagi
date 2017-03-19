@@ -11,3 +11,6 @@
 
 - name: Install SSHFS
   apt: name=sshfs
+
+- name: Install UPnP Internet Gateway Device support
+  apt: name=linux-igd state=latest
