@@ -4,3 +4,6 @@
 [submodule "roles/dns-server"]
 	path = roles/dns-server
 	url = git@github.com:timmd909/izanagi-role-dns-server.git
+[submodule "roles/web-server"]
+	path = roles/web-server
+	url = git@github.com:timmd909/izanagi-role-web-server.git
