@@ -7,3 +7,6 @@
 [submodule "roles/web-server"]
 	path = roles/web-server
 	url = git@github.com:timmd909/izanagi-role-web-server.git
+[submodule "roles/sql-server"]
+	path = roles/sql-server
+	url = git@github.com:timmd909/izanagi-role-sql-server.git
