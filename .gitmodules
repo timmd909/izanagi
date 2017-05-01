@@ -1,3 +1,6 @@
 [submodule "roles/common"]
 	path = roles/common
 	url = git@github.com:timmd909/izanagi-role-common.git
+[submodule "roles/dns-server"]
+	path = roles/dns-server
+	url = git@github.com:timmd909/izanagi-role-dns-server.git
