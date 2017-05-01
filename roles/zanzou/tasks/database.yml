@@ -1,0 +1,15 @@
+
+- name: "Create Zanzou database"
+  mysql_db:
+    state: present
+    name: "{{ zanzou_database }}"
+    host: "{{ zanzou_hostname }}"
+
+- name: "Create Zanzou database user"
+  mysql_user:
+    append_privs: yes
+    host: "{{ zanzou_hostname }}"
+    name: "{{ zanzou_username }}"
+    password: "{{ zanzou_password }}"
+    state: present
+    update_password: yes
