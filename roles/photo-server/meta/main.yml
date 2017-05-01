@@ -9,4 +9,4 @@ dependencies:
     apache_php_memory_limit: 128M
     samba_server_description: "Lychee media server"
   - role: "sql-server"
-  - role: "samba-server"
+

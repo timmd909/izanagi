@@ -10,8 +10,6 @@
   sudo: yes
 - include: "database.yml"
   sudo: yes
-- include: "samba.yml"
-  sudo: yes
 
 - name: Restart Apache
   sudo: yes
