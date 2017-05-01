@@ -1,16 +1,18 @@
-*filter
-:INPUT ACCEPT [0:0]
-:FORWARD ACCEPT [0:0]
-:OUTPUT ACCEPT [0:0]
--A FORWARD -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
-COMMIT
 *nat
-:PREROUTING ACCEPT [0:0]
-:INPUT ACCEPT [0:0]
-:OUTPUT ACCEPT [0:0]
-:POSTROUTING ACCEPT [0:0]
--A POSTROUTING -o {{ router_external_nic }} -j MASQUERADE
+:PREROUTING ACCEPT [86:5826]
+:INPUT ACCEPT [59:3900]
+:OUTPUT ACCEPT [19:1461]
+:POSTROUTING ACCEPT [2:108]
 {% for forwarded_port in forwarded_ports  %}
--A PREROUTING -p tcp --dport {{ forwarded_port.outside }} -j DNAT --to-destination 10.0.4.{{ forwarded_port.ip }}:{{ forwarded_port.inside }}
+-A PREROUTING -i {{ router_external_nic }} -p tcp -m tcp --dport {{ forwarded_port.outside }} -j DNAT --to-destination {{ internal_ip_octet_1 }}.{{ internal_ip_octet_2 }}.{{ internal_ip_octet_3 }}.{{ forwarded_port.ip }}:{{ forwarded_port.inside }}
+{% endfor %}
+-A POSTROUTING -o eth0 -j MASQUERADE
+COMMIT
+*filter
+:INPUT ACCEPT [186:16382]
+:FORWARD ACCEPT [641:153055]
+:OUTPUT ACCEPT [166:22289]
+{% for forwarded_port in forwarded_ports  %}
+-A FORWARD -d {{ internal_ip_octet_1 }}.{{ internal_ip_octet_2 }}.{{ internal_ip_octet_3 }}.{{ forwarded_port.ip }}/32 -p tcp -m tcp --dport {{ forwarded_port.inside }} -j ACCEPT
 {% endfor %}
 COMMIT
