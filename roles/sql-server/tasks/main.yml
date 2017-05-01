@@ -1,24 +1,6 @@
 ---
-#
-# Configures and installs MariaDB
-#
-- name: Add MariaDB certificates
-  sudo: yes
-  apt_key:
-    keyserver: keyserver.ubuntu.com
-    id: "0xcbcb082a1bb943db"
-    state: present
 
-- name: Add MariaDB repository
-  sudo: yes
-  apt_repository:
-    repo: 'deb http://ftp.utexas.edu/mariadb/repo/10.1/ubuntu trusty main'
-    state: present
-  when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '14.04'
-
-- name: Update APT
-  sudo: yes
-  apt: update_cache=yes
+- include: ubuntu-14.04.yml
   when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '14.04'
 
 - name: Install MariaDB
@@ -27,4 +9,3 @@
   with_items:
     - mariadb-server
     - mariadb-client
-  when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '14.04'
