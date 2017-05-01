@@ -1,4 +1,0 @@
----
-
-- include: "configure.yml"
-  sudo: yes
