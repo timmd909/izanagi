@@ -1,0 +1,30 @@
+---
+
+- name: Install PHP (Ubuntu 14.04)
+  apt: name="{{ item }}" state=present
+  with_items:
+    - php5
+    - php5-cgi
+    - php5-curl
+    - php5-gd
+    - php5-imagick
+    - php5-json
+    - php5-mysqlnd
+    - php5-sqlite
+    - php-apc
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '14.04'
+
+- name: Install PHP (Ubuntu 16.04)
+  apt: name="{{ item }}" state=present
+  with_items:
+    - php
+    - php-cgi
+    - php-curl
+    - php-gd
+    - php-imagick
+    - php-json
+    - php-mysqlnd
+    - php-sqlite3
+    - php-apcu
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '16.04'
+
