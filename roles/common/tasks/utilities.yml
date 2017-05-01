@@ -6,6 +6,7 @@
     - locate
     - lsof
     - nmap
+    - python-mysqldb
     - screen
     - vim
 
