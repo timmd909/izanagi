@@ -1,5 +1,0 @@
----
-
-# Whether to skip all APT updates, adding of keys, etc.
-skip_update: false
-
