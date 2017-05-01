@@ -8,19 +8,18 @@
     keyserver: keyserver.ubuntu.com
     id: "0xcbcb082a1bb943db"
     state: present
-  when: skip_update == false
 
 - name: Add MariaDB repository
   sudo: yes
   apt_repository:
     repo: 'deb http://ftp.utexas.edu/mariadb/repo/10.1/ubuntu trusty main'
     state: present
-  when: skip_update == false
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '14.04'
 
 - name: Update APT
   sudo: yes
   apt: update_cache=yes
-  when: skip_update == false
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '14.04'
 
 - name: Install MariaDB
   sudo: yes
@@ -28,3 +27,4 @@
   with_items:
     - mariadb-server
     - mariadb-client
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '14.04'
