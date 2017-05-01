@@ -1,12 +1,16 @@
 [submodule "roles/common"]
 	path = roles/common
 	url = git@github.com:timmd909/izanagi-role-common.git
+  branch = master
 [submodule "roles/dns-server"]
 	path = roles/dns-server
 	url = git@github.com:timmd909/izanagi-role-dns-server.git
+  branch = master
 [submodule "roles/web-server"]
 	path = roles/web-server
 	url = git@github.com:timmd909/izanagi-role-web-server.git
+  branch = master
 [submodule "roles/sql-server"]
 	path = roles/sql-server
 	url = git@github.com:timmd909/izanagi-role-sql-server.git
+  branch = master
