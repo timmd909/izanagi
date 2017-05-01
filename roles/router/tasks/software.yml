@@ -12,13 +12,16 @@
 - name: Install SSHFS
   apt: name=sshfs
 
-- name: Install UPnP daemon
-  apt: name="{{ item }}" state=latest
+#
+# MINIUPNPD didn't even working out... make sure there's no trace
+#
+- name: Uninstall UPnP daemon
+  apt: name="{{ item }}" state=absent
   with_items:
     - miniupnpc
     - miniupnpd
 
-- name: Configure UPnP daemon
-  template:
-    src: etc/default/miniupnpd.j2
-    dest: /etc/default/miniupnpd
+- name: Remove UPnP daemon configuration
+  file:
+    path: /etc/default/miniupnpd
+    state: absent
