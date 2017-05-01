@@ -1,8 +1,3 @@
 #
 # Common configuration for all roles.
 #
-
-# If the destination is a Raspberry Pi, switch this to `true` in the
-# `host_var/` to ensure the slight differences between Ubuntu and
-# Raspberry Pi don't cause problems.
-raspberry_pi: false
