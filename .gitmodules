@@ -14,3 +14,6 @@
 	path = roles/sql-server
 	url = git@github.com:timmd909/izanagi-role-sql-server.git
   branch = master
+[submodule "roles/photo-server"]
+	path = roles/photo-server
+	url = git@github.com:timmd909/izanagi-role-photo-server.git
