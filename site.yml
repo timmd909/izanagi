@@ -1,8 +1,15 @@
 ---
 
 - hosts: all
+  sudo: yes
+  gather_facts: no
+  pre_tasks:
+    - name: 'install python2'
+      raw: sudo apt-get -y install python-minimal aptitude
+
+- hosts: all
   roles:
-    - "common"
+    - common
 
 - hosts: photoservers
   roles:
@@ -22,12 +29,16 @@
 
 - hosts: catpoos
   roles:
-    - "catpoo"
+    - catpoo
 
 - hosts: pucks
   roles:
-   - "puck"
+   - puck
 
 - hosts: plexservers
   roles:
     - "plex-server"
+
+- hosts: minecraft
+  roles:
+    - minecraft
