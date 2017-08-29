@@ -21,3 +21,6 @@
 	path = roles/minecraft
 	url = git@github.com:timmd909/izanagi-role-minecraft.git
 	branch = master
+[submodule "roles/dev-machine"]
+	path = roles/dev-machine
+	url = git@github.com:timmd909/izanagi-role-dev-machine.git

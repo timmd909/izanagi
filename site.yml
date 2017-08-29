@@ -11,6 +11,10 @@
   roles:
     - common
 
+- hosts: dev-machines
+  roles:
+    - dev-machine
+
 - hosts: photoservers
   roles:
     - "photo-server"
