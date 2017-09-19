@@ -46,3 +46,7 @@
 - hosts: minecraft
   roles:
     - minecraft
+
+- hosts: desktops
+  roles:
+    - desktop
