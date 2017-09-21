@@ -20,12 +20,6 @@ Here's a list of the major roles available.
 | `time-machine`   | Time Machine server                                     |
 | `web-server`     | Basic Apache web server                                 |
 
-## Ansible Variables
-
-| Variable Name | Description                              | Default    |
-|---------------|------------------------------------------|------------|
-| `skip_update` | Do not run APT updates or upgrades       | `false`    |
-
 ## Assumptions
 
 * All of these scripts are expected to be run on Ubuntu or another
