@@ -123,4 +123,3 @@
   shell: make install
   sudo: yes
   args: chdir="{{ ansible_env.HOME }}/src/catpoo/3rdparty/thrift"
-

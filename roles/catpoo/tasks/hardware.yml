@@ -47,4 +47,3 @@
   template:
     dest: /etc/X11/xorg.conf.d/99-calibration.conf
     src: etc/X11/xorg.conf.d/99-calibration.conf.j2
-

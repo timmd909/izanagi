@@ -34,4 +34,3 @@
 
 - name: Install Grunt CLI
   shell: npm install -g grunt-cli
-

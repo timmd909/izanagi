@@ -7,4 +7,3 @@
 - include: "install-ubuntu.yml"
   when: ansible_distribution == 'Ubuntu'
   sudo: yes
-
