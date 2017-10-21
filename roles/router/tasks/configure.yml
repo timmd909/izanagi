@@ -107,4 +107,3 @@
   shell: "a2dissite router"
   notify: "Restart Apache"
   when: not router_web_ui
-
