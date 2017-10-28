@@ -1,8 +1,0 @@
----
-
-dependencies:
-  - role: "dns-server"
-  - role: "web-server"
-  - role: "router"
-    use_adafruit_hostapd: true
-    wireless_hostapd_driver: rtl871xdrv
