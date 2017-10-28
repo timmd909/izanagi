@@ -1,9 +1,0 @@
----
-
-- include: "install-pi.yml"
-  when: ansible_nodename == "raspberrypi"
-  sudo: yes
-
-- include: "install-ubuntu.yml"
-  when: ansible_distribution == 'Ubuntu'
-  sudo: yes

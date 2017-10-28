@@ -1,8 +1,0 @@
-auto {{ router_internal_nic }}
-iface {{ router_internal_nic }} inet static
-  address {{ internal_ip_octet_1 }}.{{ internal_ip_octet_2 }}.{{ internal_ip_octet_3 }}.{{ internal_ip_octet_4 }}
-  netmask 255.255.255.0
-  network {{ internal_ip_octet_1 }}.{{ internal_ip_octet_2 }}.{{ internal_ip_octet_3 }}.0
-  broadcast {{ internal_ip_octet_1 }}.{{ internal_ip_octet_2 }}.{{ internal_ip_octet_3 }}.255
-  dns-nameservers {{ internal_ip_octet_1 }}.{{ internal_ip_octet_2 }}.{{ internal_ip_octet_3 }}.{{ internal_ip_octet_4 }}
-  dns-search {{ dns_host }}.{{ dns_domain }}

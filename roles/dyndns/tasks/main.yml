@@ -1,5 +1,0 @@
----
-
-- name: Install ddclient
-  sudo: yes
-  apt: name=ddclient
