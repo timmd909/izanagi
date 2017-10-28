@@ -1,7 +1,0 @@
----
-
-- name: "Restart SAMBA"
-  service: name="{{ item }}" state=restarted
-  with_items:
-    - nmbd
-    - smbd
