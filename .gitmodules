@@ -39,3 +39,12 @@
 [submodule "roles/router"]
 	path = roles/router
 	url = git@github.com:timmd909/izanagi-role-router.git
+[submodule "roles/puck"]
+	path = roles/puck
+	url = git@github.com:timmd909/izanagi-role-puck.git
+[submodule "roles/samba-server"]
+	path = roles/samba-server
+	url = git@github.com:timmd909/izanagi-role-samba-server.git
+[submodule "roles/time-machine"]
+	path = roles/time-machine
+	url = git@github.com:timmd909/izanagi-role-time-machine.git
