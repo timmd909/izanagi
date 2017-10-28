@@ -30,3 +30,12 @@
 [submodule "roles/catpoo"]
 	path = roles/catpoo
 	url = git@github.com:timmd909/izanagi-role-catpoo.git
+[submodule "roles/dyndns"]
+	path = roles/dyndns
+	url = git@github.com:timmd909/izanagi-role-dyndns.git
+[submodule "roles/plex-server"]
+	path = roles/plex-server
+	url = git@github.com:timmd909/izanagi-role-plex-server.git
+[submodule "roles/router"]
+	path = roles/router
+	url = git@github.com:timmd909/izanagi-role-router.git
