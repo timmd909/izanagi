@@ -50,3 +50,7 @@
 - hosts: desktops
   roles:
     - desktop
+
+- hosts: 3d
+  roles:
+    - 3d
