@@ -48,3 +48,6 @@
 [submodule "roles/time-machine"]
 	path = roles/time-machine
 	url = git@github.com:timmd909/izanagi-role-time-machine.git
+[submodule "roles/3d"]
+	path = roles/3d
+	url = git@github.com:timmd909/izanagi-role-3d.git
