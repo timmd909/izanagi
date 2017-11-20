@@ -66,6 +66,7 @@
   roles:
     - 3d
     - desktop
-    - desktop
     - dev-machine
+    - router
+    - sql-server
     - web-server

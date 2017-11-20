@@ -11,6 +11,7 @@ site.retry
 # 
 Vagrantfile
 vagrant-site.retry
+vagrant-site.yml
 .vagrant/
 
 #
