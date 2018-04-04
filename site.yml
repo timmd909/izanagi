@@ -62,3 +62,7 @@
 - hosts: 3d
   roles:
     - 3d
+
+- hosts: syncservers
+  roles:
+    - "sync-server"
