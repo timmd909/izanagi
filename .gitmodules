@@ -54,3 +54,6 @@
 [submodule "roles/sync-server"]
 	path = roles/sync-server
 	url = git@github.com:timmd909/izanagi-role-sync-server.git
+[submodule "roles/motion-server"]
+	path = roles/motion-server
+	url = git@github.com:timmd909/izanagi-role-motion-server.git
