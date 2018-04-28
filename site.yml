@@ -39,12 +39,6 @@
   roles:
     - "sql-server"
 
-- hosts: catpoos
-  roles:
-    - dns-server
-    - router
-    - catpoo
-
 - hosts: pucks
   roles:
    - puck
