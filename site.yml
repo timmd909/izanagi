@@ -41,6 +41,8 @@
 
 - hosts: catpoos
   roles:
+    - dns-server
+    - router
     - catpoo
 
 - hosts: pucks
