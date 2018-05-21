@@ -27,9 +27,6 @@
 [submodule "roles/desktop"]
 	path = roles/desktop
 	url = git@github.com:timmd909/izanagi-role-desktop.git
-[submodule "roles/catpoo"]
-	path = roles/catpoo
-	url = git@github.com:timmd909/izanagi-role-catpoo.git
 [submodule "roles/dyndns"]
 	path = roles/dyndns
 	url = git@github.com:timmd909/izanagi-role-dyndns.git
