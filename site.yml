@@ -54,6 +54,7 @@
 - hosts: desktops
   roles:
     - desktop
+    - sync-server
 
 - hosts: 3d
   roles:
