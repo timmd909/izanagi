@@ -19,7 +19,7 @@
   roles:
     - common
 
-- hosts: dev-machines
+- hosts: devmachines
   roles:
     - dev-machine
 
