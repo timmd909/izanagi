@@ -54,3 +54,6 @@
 [submodule "roles/motion-server"]
 	path = roles/motion-server
 	url = git@github.com:timmd909/izanagi-role-motion-server.git
+[submodule "roles/node"]
+	path = roles/node
+	url = git@github.com:timmd909/izanagi-role-node.git
