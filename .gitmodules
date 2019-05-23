@@ -60,3 +60,6 @@
 [submodule "roles/php"]
 	path = roles/php
 	url = git@github.com:timmd909/izanagi-role-php.git
+[submodule "roles/server"]
+	path = roles/server
+	url = git@github.com:timmd909/izanagi-role-server.git
