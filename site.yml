@@ -67,3 +67,7 @@
 - hosts: syncservers
   roles:
     - "sync-server"
+
+- hosts: hypervisors
+  roles:
+    - hypervisor

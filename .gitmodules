@@ -63,3 +63,6 @@
 [submodule "roles/server"]
 	path = roles/server
 	url = git@github.com:timmd909/izanagi-role-server.git
+[submodule "roles/hypervisor"]
+	path = roles/hypervisor
+	url = git@github.com:timmd909/izanagi-role-hypervisor.git
