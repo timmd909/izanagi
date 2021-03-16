@@ -66,3 +66,6 @@
 [submodule "roles/hypervisor"]
 	path = roles/hypervisor
 	url = git@github.com:timmd909/izanagi-role-hypervisor.git
+[submodule "roles/cloud"]
+	path = roles/cloud
+	url = git@github.com:timmd909/izanagi-role-cloud.git
