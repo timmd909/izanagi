@@ -71,3 +71,7 @@
 - hosts: hypervisors
   roles:
     - hypervisor
+
+- hosts: clouds
+  roles:
+    - cloud
