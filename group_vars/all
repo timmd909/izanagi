@@ -3,3 +3,5 @@
 #
 # Common configuration for all roles.
 #
+
+ansible_python_interpreter: /usr/bin/python3
