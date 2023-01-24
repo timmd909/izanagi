@@ -1,20 +1,5 @@
 ---
 
-# - hosts: all
-#   become: true
-#   become_user: root
-#   # Disable gathering of facts until we're sure that python is installed
-#   gather_facts: False
-#   pre_tasks:
-#     - name: Install Python for Ansible's use
-#       raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
-#       register: output
-#       changed_when: output.stdout != ""
-#
-#     - setup: # Now do the `gather_facts` step
-#
-# # Python should be installed at this point. Carry on usual.
-
 - hosts: all
   roles:
     - common
@@ -50,7 +35,6 @@
 - hosts: desktops
   roles:
     - desktop
-    - sync-server
 
 - hosts: 3d
   roles:
@@ -59,10 +43,6 @@
 - hosts: motionservers
   roles:
     - "motion-server"
-
-- hosts: syncservers
-  roles:
-    - "sync-server"
 
 - hosts: hypervisors
   roles:

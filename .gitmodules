@@ -45,9 +45,6 @@
 [submodule "roles/3d"]
 	path = roles/3d
 	url = https://github.com/timmd909/izanagi-role-3d.git
-[submodule "roles/sync-server"]
-	path = roles/sync-server
-	url = https://github.com/timmd909/izanagi-role-sync-server.git
 [submodule "roles/motion-server"]
 	path = roles/motion-server
 	url = https://github.com/timmd909/izanagi-role-motion-server.git
