@@ -51,7 +51,3 @@
 - hosts: clouds
   roles:
     - cloud
-
-- hosts: baculas
-  roles:
-    - bacula
