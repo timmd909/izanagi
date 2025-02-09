@@ -60,6 +60,3 @@
 [submodule "roles/cloud"]
 	path = roles/cloud
 	url = https://github.com/timmd909/izanagi-role-cloud.git
-[submodule "roles/bacula"]
-	path = roles/bacula
-	url = https://github.com/timmd909/izanagi-role-bacula.git
