@@ -1,0 +1,77 @@
+#!/bin/bash
+
+. {{ borg_client_config_path }}
+
+# some helpers and error handling:
+info() { printf "\n%s %s\n\n" "$( date )" "$*" >&2; }
+trap 'echo $( date ) Backup interrupted >&2; exit 2' INT TERM
+
+# Backup the most important directories into an archive named after
+# the machine this script is currently running on:
+
+borg create                                 \
+  --verbose                                 \
+  --filter AME                              \
+  --list                                    \
+  --stats                                   \
+  --show-rc                                 \
+  --compression lz4                         \
+                                            \
+  --exclude-caches                          \
+  --exclude 'root/.config/borg/security/*'  \
+  --exclude 'home/*/.cache/*'               \
+  --exclude 'var/tmp/*'                     \
+  --exclude 'var/lib/libvirt/images/*'      \
+  --exclude 'var/cache/*'                   \
+                                            \
+  ::'{hostname}-{now}'                      \
+  /etc                                      \
+  /home                                     \
+  /root                                     \
+  /opt                                      \
+  /srv                                      \
+  /var
+
+BACKUP_EXIT=$?
+
+info "Prune repository"
+
+# Use the `prune` subcommand to maintain 7 daily, 4 weekly and 6 monthly
+# archives of THIS machine. The '{hostname}-*' matching is very important to
+# limit prune's operation to this machine's archives and not apply to
+# other machines' archives also:
+
+borg prune                        \
+  --list                          \
+  --glob-archives '{hostname}-*'  \
+  --show-rc                       \
+{% if borg_keep_hourly  %}  --keep-hourly  {{ borg_keep_hourly  }} {% endif %} \
+{% if borg_keep_daily   %}  --keep-daily   {{ borg_keep_daily   }} {% endif %} \
+{% if borg_keep_weekly  %}  --keep-weekly  {{ borg_keep_weekly  }} {% endif %} \
+{% if borg_keep_monthly %}  --keep-monthly {{ borg_keep_monthly }} {% endif %}
+{% if borg_keep_yearly  %}  --keep-yearly  {{ borg_keep_yearly  }} {% endif %}
+
+
+PRUNE_EXIT=$?
+
+# # actually free repo disk space by compacting segments
+#
+# info "Compacting repository"
+#
+# borg compact
+#
+# COMPACT_EXIT=$?
+
+# use highest exit code as global exit code
+GLOBAL_EXIT=$(( BACKUP_EXIT > PRUNE_EXIT ? BACKUP_EXIT : PRUNE_EXIT ))
+# GLOBAL_EXIT=$(( COMPACT_EXIT > GLOBAL_EXIT ? COMPACT_EXIT : GLOBAL_EXIT ))
+
+if [ ${GLOBAL_EXIT} -eq 0 ]; then
+    info "Backup, Prune, and Compact finished successfully"
+elif [ ${GLOBAL_EXIT} -eq 1 ]; then
+    info "Backup, Prune, and/or Compact finished with warnings"
+else
+    info "Backup, Prune, and/or Compact finished with errors"
+fi
+
+exit ${GLOBAL_EXIT}

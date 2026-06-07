@@ -1,0 +1,13 @@
+---
+
+#
+# Main sure we've got up to date packages
+#
+
+# Update and upgrade all available packages
+- name: Update APT and packages
+  apt: update_cache=yes cache_valid_time={{ apt_cache_valid_time }} state=latest
+  become: yes
+
+- name: Install HTTPS transport for APT
+  apt: name=apt-transport-https state=present

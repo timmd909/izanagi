@@ -1,0 +1,50 @@
+---
+
+- name: Install helpful utilities
+  apt:
+    name:
+      - bison
+      - cloc
+      - flex
+      - kdiff3
+      - nmap
+      - xvfb
+
+- name: Install Git
+  apt: name=git state=present
+
+# - name: Install Git related tools
+#   apt:
+#     name:
+#       - giggle
+#       - git
+#       - git-cola
+#       - gitg
+
+- name: Install Graphviz
+  apt: name=graphviz state=present
+
+- name: Install common build utils
+  apt:
+    name:
+      - autoconf
+      - automake
+      - build-essential
+      - cmake
+      - kcachegrind
+      - make
+
+# BROKEN AS OF 2023-01-24 Seems they're forcing people to use snaps now... bleh
+# Manual installation for now is acceptable.
+#
+# - name: Install MySQL APT sources
+#   apt:
+#     deb: https://dev.mysql.com/get/mysql-apt-config_0.8.15-1_all.deb
+#     state: present
+#   when: ansible_distribution == "Ubuntu" and ansible_distribution_version == "20.04"
+#
+# - name: Install MySQL workbench
+#   apt:
+#     name: mysql-workbench-community
+#     update_cache: yes
+#   when: ansible_distribution == "Ubuntu" and ansible_distribution_version == "20.04"
