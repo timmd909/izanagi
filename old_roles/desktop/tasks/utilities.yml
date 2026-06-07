@@ -1,0 +1,21 @@
+---
+
+- name: Install helpful utilities
+  apt:
+    state: latest
+    name:
+      - alsa-utils
+      - synaptic
+      - dconf-editor
+      - gnome-tweaks
+      - ntfs-3g
+      - ntfs-3g-dev
+
+- name: Install Terminator
+  apt: name=terminator state=latest
+
+- apt: name=ubuntu-restricted-extras state=latest
+  when: ansible_distribution == "Ubuntu"
+
+- apt: name=ubuntu-restricted-addons state=latest
+  when: ansible_distribution == "Ubuntu"

@@ -1,0 +1,41 @@
+---
+
+- name: Clone plymouth themes
+  git:
+    clone: yes
+    repo: https://github.com/adi1090x/plymouth-themes.git
+    dest: /usr/src/plymouth-themes
+
+- name: Copy over Plymouth themes
+  copy:
+    remote_src: yes
+    src: "/usr/src/plymouth-themes/{{ item.pack }}/{{ item.theme }}"
+    dest: "/usr/share/plymouth/themes/"
+  with_items: "{{ plymouth_themes }}"
+
+- name: Install Plymouth themes
+  shell:  update-alternatives --install \
+    /usr/share/plymouth/themes/default.plymouth default.plymouth \
+    /usr/share/plymouth/themes/{{ item.theme }}/{{ item.theme }}.plymouth 100
+  with_items: "{{ plymouth_themes }}"
+
+- name: Set default plymouth theme
+  shell: "update-alternatives --set default.plymouth /usr/share/plymouth/themes/{{ plymouth_default_theme }}/{{ plymouth_default_theme }}.plymouth"
+
+- name: Update init RAM filesystem
+  shell: update-initramfs -u
+
+#
+# Login screen updates
+#
+- name: Copy over empty logo for login screen
+  copy:
+    src: empty-logo.png
+    dest: /usr/share/plymouth/empty-logo.png
+
+- name: Update login logo
+  lineinfile:
+    state: present
+    line: "logo='/usr/share/plymouth/empty-logo.png'"
+    insertafter: ^#logo=.*
+    path: /etc/gdm3/greeter.dconf-defaults

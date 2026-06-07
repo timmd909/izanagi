@@ -1,0 +1,67 @@
+---
+
+- name: Install wallpapers (common >= 22.04)
+  apt:
+    name:
+      - budgie-wallpapers
+      - budgie-wallpapers-artful
+      - budgie-wallpapers-bionic
+      - budgie-wallpapers-xenial
+      - budgie-wallpapers-yakkety
+      - budgie-wallpapers-zesty
+      - edgy-community-wallpapers
+      - tropic-wallpapers
+      - ubuntu-mate-wallpapers
+      - ubuntu-mate-wallpapers-artful
+      - ubuntu-mate-wallpapers-bionic
+      - ubuntu-mate-wallpapers-common
+      - ubuntu-mate-wallpapers-complete
+      - ubuntu-mate-wallpapers-legacy
+      - ubuntu-mate-wallpapers-photos
+      - ubuntu-mate-wallpapers-utopic
+      - ubuntu-mate-wallpapers-vivid
+      - ubuntu-mate-wallpapers-wily
+      - ubuntu-mate-wallpapers-xenial
+      - ubuntu-mate-wallpapers-yakkety
+      - ubuntu-mate-wallpapers-zesty
+      - ubuntu-wallpapers
+      - ubuntu-wallpapers-karmic
+      - ubuntu-wallpapers-lucid
+      - ubuntu-wallpapers-maverick
+      - ubuntu-wallpapers-natty
+      - ubuntu-wallpapers-oneiric
+      - ubuntu-wallpapers-precise
+      - ubuntu-wallpapers-quantal
+      - ubuntu-wallpapers-raring
+      - ubuntu-wallpapers-saucy
+      - ubuntu-wallpapers-trusty
+      - ubuntu-wallpapers-xenial
+      - ubuntustudio-wallpapers
+      - ubuntustudio-wallpapers-bionic
+      - ubuntustudio-wallpapers-cosmic
+      - ubuntustudio-wallpapers-disco
+      - ubuntustudio-wallpapers-eoan
+      - ubuntustudio-wallpapers-focal
+      - ubuntustudio-wallpapers-legacy
+      - ubuntustudio-wallpapers-xenial
+      - xubuntu-community-wallpapers
+      - xubuntu-community-wallpapers-xenial
+      - xubuntu-wallpapers
+  when: ansible_distribution == 'Ubuntu'
+
+- name: Install more wallpapers (works >= 24.04)
+  apt:
+    name:
+      - ubuntustudio-wallpapers-jammy
+      - ubuntustudio-wallpapers-kinetic
+      - ubuntustudio-wallpapers-lunar
+      - ubuntustudio-wallpapers-mantic
+      - ubuntustudio-wallpapers-noble
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == "24.04"
+
+- name: Install GTK themes
+  apt:
+    name:
+      - numix-gtk-theme
+      - numix-icon-theme
+      - numix-icon-theme-circle

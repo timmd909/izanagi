@@ -1,0 +1,9 @@
+---
+
+- name: 'Install Java JDK (Ubuntu 22.04)'
+  apt: name=openjdk-18-jdk
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '22.04'
+
+- name: 'Install Java JDK (Ubuntu 24.04)'
+  apt: name=openjdk-21-jdk
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '24.04'

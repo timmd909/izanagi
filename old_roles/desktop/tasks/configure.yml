@@ -1,0 +1,46 @@
+#
+# CINNAMON PREFERENCES
+#
+# Big thanks to https://superuser.com/questions/1006983/how-to-set-cinnamon-preferences-in-command-line
+#
+
+- name: Change modifier key to Super instead of Alt
+  dconf:
+    key: /org/cinnamon/desktop/wm/preferences/mouse-button-modifier
+    value: "'<Super>'"
+
+- name: Disable weird touchpad scrolling
+  dconf:
+    key: /org/cinnamon/settings-daemon/peripherals/touchpad/natural-scroll
+    value: false
+
+- name: Disable tap to click w/ touchpad
+  dconf:
+    key: /org/cinnamon/settings-daemon/peripherals/touchpad/tap-to-click
+    value: false
+
+- name: Change background
+  dconf:
+    key: /org/cinnamon/desktop/background/picture-uri
+    value: "{{ cinnamon_wallpaper }}"
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '24.04'
+
+- name: Configure Cinnamon
+  dconf:
+    key: "{{ item.key }}"
+    value: "{{ item.value }}"
+  with_items: "{{ cinnamon_settings }}"
+
+- name: Configure Nemo
+  dconf:
+    key: "{{ item.key }}"
+    value: "{{ item.value }}"
+  with_items: "{{ nemo_settings }}"
+
+- name: Add Nemo bookmarks
+  lineinfile:
+    path: ~/.config/gtk-3.0/bookmarks
+    line: "{{ item.url }} {{ item.label }}"
+    state: present
+    create: yes
+  with_items: "{{ nemo_bookmarks }}"

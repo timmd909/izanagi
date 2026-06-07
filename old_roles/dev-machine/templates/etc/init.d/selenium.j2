@@ -1,0 +1,81 @@
+#!/bin/bash
+### BEGIN INIT INFO
+# Provides:          selenium
+# Required-Start:
+# Required-Stop:
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: selenium
+# Description:       Starts and stops the Selenium server
+### END INIT INFO
+#
+# Reference: http://pietervogelaar.nl/ubuntu-14-04-install-selenium-as-service-headless
+#
+
+XVFB_PID_FILE="/run/xvfb.pid"
+SELENIUM_PID_FILE="/run/selenium.pid"
+
+function startSelenium()
+{
+  if [ -f $XVFB_PID_FILE ]; then
+    echo "Xvfb already running"
+  else
+    echo "Starting Xvfb"
+    start-stop-daemon --start --background \
+      --name Xvfb \
+      --user {{ selenium_user }} --chuid {{ selenium_user }} \
+      --pidfile $XVFB_PID_FILE --make-pidfile \
+      --exec "/usr/bin/Xvfb" \
+      -- :99 -ac -screen 0 1024x1080x24
+  fi
+
+  if [ -f $SELENIUM_PID_FILE ]; then
+    echo "Selenium already running"
+  else
+    echo "Starting Selenium"
+    start-stop-daemon --start --background \
+      --name Selenium \
+      --user {{ selenium_user }} --chuid {{ selenium_user }} \
+      --pidfile $SELENIUM_PID_FILE --make-pidfile \
+      --exec "/usr/bin/env" \
+      -- DISPLAY=":99" /usr/bin/java -Dwebdriver.chrome.driver=/opt/selenium/chromedriver \
+      -jar /opt/selenium/selenium-server-standalone.jar -port {{ selenium_port }}
+  fi
+}
+
+function stopSelenium()
+{
+  if [ -f $XVFB_PID_FILE ]; then
+    echo "Stopping Xvfb"
+    start-stop-daemon --stop --pidfile $XVFB_PID_FILE
+    rm -f $XVFB_PID_FILE
+  else
+    echo "Xvfb already stopped"
+  fi
+
+  if [ -f $SELENIUM_PID_FILE ]; then
+    echo "Stopping Selenium"
+    start-stop-daemon --stop --pidfile $SELENIUM_PID_FILE
+    rm -f $SELENIUM_PID_FILE
+  else
+    echo "Selenium server already stopped"
+  fi
+}
+
+case "${1:-''}" in
+  'start')
+    startSelenium
+  ;;
+  'stop')
+    stopSelenium
+  ;;
+  'restart')
+    stopSelenium
+    sleep 1s
+    startSelenium
+  ;;
+  *)    # no parameter specified
+    echo "Usage: $SELF start|stop|restart"
+    exit 1
+  ;;
+esac

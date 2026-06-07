@@ -1,0 +1,6 @@
+---
+
+- name: "Restart Apache"
+  become: yes
+  become_user: root
+  service: state=restarted name=apache2
