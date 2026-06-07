@@ -1,0 +1,21 @@
+---
+
+- name: Install VLC
+  apt: name=vlc state=latest
+
+- name: Install HandBrake
+  apt:
+    state: latest
+    name:
+      - handbrake
+      - handbrake-cli
+  when: ansible_distribution == "Ubuntu"
+
+- name: Install ffmpeg
+  apt:
+    state: latest
+    name:
+      - ffmpeg
+      - x264
+      - x265
+  when: ansible_distribution == "Ubuntu"
