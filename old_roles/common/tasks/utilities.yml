@@ -1,0 +1,55 @@
+---
+
+- name: Install ACL
+  apt: name=acl state=present
+
+- name: 'Install necessary utilities (shared)'
+  apt:
+    name:
+      - anacron
+      - bash-completion
+      - bc
+      - command-not-found
+      - cron
+      - curl
+      - imagemagick
+      - iputils-ping
+      - lsof
+      - pv
+      - rsync
+      - screen
+      - sshfs
+      - unzip
+      - vim
+      - wget
+    state: present
+
+- name: Set VIM as default editor
+  alternatives:
+    name: editor
+    path: /usr/bin/vim
+
+- name: Install top-like programs
+  apt:
+    name:
+      - btop
+      - htop
+      - iotop
+    state: present
+
+- name: Install glances
+  apt: name=glances state=present
+  # when: ansible_distribution == 'Ubuntu' -- seems it's available in the latest raspbian stuff
+
+- name: Install Git tools
+  apt: name=git state=present
+
+- name: "iPhone utilities (Ubuntu only)"
+  apt:
+    name:
+      - usbmuxd
+      - libimobiledevice6
+      - libimobiledevice-utils
+      - ifuse
+    state: present
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == "24.04"

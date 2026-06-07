@@ -1,0 +1,45 @@
+---
+
+# APT will only be updated if the cache is older than 6 hours
+apt_cache_valid_time: 21600
+
+# Make sure to define this in all your hostnames
+hostname: unconfigured-server
+
+#
+# Swap file to work around Ubuntu's new bullshit one size fits all approach
+# to hard drive partitioning.
+#
+
+swapfile_enabled: false
+swapfile_path: /swapfile
+swapfile_size: 4G
+
+#
+# BORG BACKUP
+#
+
+# Switch to true to enable Borg Backup install
+borg_backup_enabled: false
+
+borg_client_config_path: /etc/default/borg
+
+borg_passphrase: "change this or it'll come to haunt you / chickens->home->roost"
+# Ubuntu x64
+borg_download_url: "https://github.com/borgbackup/borg/releases/download/1.2.7/borg-linux64"
+# ARM64/Raspberry Pi
+# borg_download_url: "https://borg.bauerj.eu/bin/borg-1.2.7-arm64"
+
+borg_auto_backup: true
+borg_backup_hour: 6
+borg_backup_minute: 40
+
+borg_keep_hourly: 0   # set to N>=1 to enable
+borg_keep_daily: 7
+borg_keep_weekly: 4
+borg_keep_monthly: 6
+borg_keep_yearly: 1
+
+borg_compact_weekday: 0
+borg_compact_hour: 8
+borg_compact_minute: 20
