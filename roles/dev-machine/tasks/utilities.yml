@@ -11,7 +11,11 @@
       - xvfb
 
 - name: Install Git
-  apt: name=git state=present
+  apt:
+    state: present
+    name:
+      - git
+      - git-lfs
 
 # - name: Install Git related tools
 #   apt:
