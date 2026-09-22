@@ -3,7 +3,7 @@
 - import_tasks: automation.yml
   become: yes
   become_user: root
-
+  
 - import_tasks: utilities.yml
   become: yes
   become_user: root
@@ -11,4 +11,3 @@
 - import_tasks: java.yml
   become: yes
   become_user: root
-  when: ansible_distribution == 'Ubuntu'

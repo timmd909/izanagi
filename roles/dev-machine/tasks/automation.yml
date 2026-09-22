@@ -2,13 +2,11 @@
 
 - name: Install Ansible
   apt: name=ansible state=present
-  when: ansible_distribution == 'Ubuntu'
 
 - name: Add Hashicorp keys
   shell: "wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg"
   args:
     creates: /usr/share/keyrings/hashicorp-archive-keyring.gpg
-  when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == "24.04"
 
 - name: Add Hashicorp APT sources
   lineinfile:
@@ -16,11 +14,9 @@
     state: present
     create: yes
     line: deb [arch=amd64 signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com noble main
-  when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == "24.04"
 
 - name: Update APT
   apt: update_cache=yes
 
 - name: Install Vagrant
   apt: name=vagrant state=present
-  when: ansible_distribution == 'Ubuntu'
