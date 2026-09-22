@@ -1,5 +1,13 @@
 ---
 
+- name: Install wallpapers (Devuan)
+  apt:
+    name:
+      - budgie-backgrounds
+      - blackbird-gtk-theme
+    state: present
+  when: ansible_distribution == 'Ubuntu'
+
 - name: Install wallpapers (Ubuntu)
   apt:
     name:
