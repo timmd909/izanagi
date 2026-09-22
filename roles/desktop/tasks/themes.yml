@@ -1,6 +1,6 @@
 ---
 
-- name: Install wallpapers (common >= 22.04)
+- name: Install wallpapers (Ubuntu)
   apt:
     name:
       - budgie-wallpapers
@@ -49,7 +49,7 @@
       - xubuntu-wallpapers
   when: ansible_distribution == 'Ubuntu'
 
-- name: Install more wallpapers (works >= 24.04)
+- name: Install more wallpapers (Ubuntu >= 24.04)
   apt:
     name:
       - ubuntustudio-wallpapers-jammy
@@ -59,7 +59,7 @@
       - ubuntustudio-wallpapers-noble
   when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == "24.04"
 
-- name: Install GTK themes
+- name: Install GTK themes (All)
   apt:
     name:
       - numix-gtk-theme

@@ -9,7 +9,6 @@
     name:
       - handbrake
       - handbrake-cli
-  when: ansible_distribution == "Ubuntu"
 
 - name: Install ffmpeg
   apt:
@@ -18,4 +17,4 @@
       - ffmpeg
       - x264
       - x265
-  when: ansible_distribution == "Ubuntu"
+
