@@ -27,27 +27,25 @@
 - import_tasks: cinnamon.yml
   become: yes
   become_user: root
-  when: ansible_distribution == "Ubuntu"
 
 - import_tasks: brave-browser.yml
   become: yes
   become_user: root
-  when: ansible_distribution == 'Ubuntu'
 
 - import_tasks: google-chrome.yml
   become: yes
   become_user: root
-  when: ansible_distribution == 'Ubuntu'
 
 - import_tasks: plymouth.yml
   become: yes
   become_user: root
+  when: ansible_distribution == 'Ubuntu'
 
-- import_tasks: nextcloud.yml
-  become: yes
-  become_user: root
+#- import_tasks: nextcloud.yml
+#  become: yes
+#  become_user: root
 
 #
 # Set some Gnome/GUI defaults
 #
-- import_tasks: configure.yml
+#- import_tasks: configure.yml
