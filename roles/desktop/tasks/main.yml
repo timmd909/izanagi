@@ -48,4 +48,4 @@
 #
 # Set some Gnome/GUI defaults
 #
-#- import_tasks: configure.yml
+- import_tasks: configure.yml

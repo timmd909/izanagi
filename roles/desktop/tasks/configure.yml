@@ -9,21 +9,27 @@
     key: /org/cinnamon/desktop/wm/preferences/mouse-button-modifier
     value: "'<Super>'"
 
-- name: Disable weird touchpad scrolling
-  dconf:
-    key: /org/cinnamon/settings-daemon/peripherals/touchpad/natural-scroll
-    value: false
+# - name: Disable weird touchpad scrolling
+#   dconf:
+#     key: /org/cinnamon/settings-daemon/peripherals/touchpad/natural-scroll
+#     value: false
 
-- name: Disable tap to click w/ touchpad
+- name: Disable tap to click w/ touchpad (Ubuntu)
   dconf:
     key: /org/cinnamon/settings-daemon/peripherals/touchpad/tap-to-click
     value: false
+  when: ansible_distribution == 'Ubuntu'
 
-- name: Change background
+- name: Disable tap to click w/ touchpad (Devuan)
+  dconf:
+    key: /org/cinnamon/desktop/peripherals/touchpad/tap-to-click
+    value: false
+  when: ansible_distribution == 'Devuan'
+
+- name: Change background (Ubuntu 24.04)
   dconf:
     key: /org/cinnamon/desktop/background/picture-uri
     value: "{{ cinnamon_wallpaper }}"
-  when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '24.04'
 
 - name: Configure Cinnamon
   dconf:
