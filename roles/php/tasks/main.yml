@@ -15,6 +15,12 @@
   become_user: root
   when: ansible_distribution == 'Debian' and ansible_lsb.id == 'Raspbian'
 
-- import_tasks: "configure.yml"
+- import_tasks: install-devuan.yml
   become: yes
   become_user: root
+  when: ansible_distribution == 'Devuan'
+
+#- import_tasks: "configure.yml"
+#  become: yes
+#  become_user: root
+
