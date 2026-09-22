@@ -7,3 +7,7 @@
 - name: 'Install Java JDK (Ubuntu 24.04)'
   apt: name=openjdk-21-jdk
   when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '24.04'
+  
+- name: 'Install Java JDK (Devuan)'
+  apt: name=openjdk-25-jdk
+  when: ansible_distribution == 'Devuan'
