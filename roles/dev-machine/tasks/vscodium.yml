@@ -1,0 +1,22 @@
+---
+
+- name: Add VSCodium keys
+  shell: "wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg \
+    | gpg --dearmor \
+    | sudo dd of=/usr/share/keyrings/vscodium-archive-keyring.gpg"
+  args:
+    creates: /usr/share/keyrings/vscodium-archive-keyring.gpg
+
+- name: Add Hashicorp APT sources
+  lineinfile:
+    path: /etc/apt/sources.list.d/vscodium.list
+    state: present
+    create: yes
+    line: deb [arch=amd64,arm64 signed-by=/usr/share/keyrings/vscodium-archive-keyring.gpg] https://download.vscodium.com/debs vscodium main
+    
+- name: Update APT
+  apt: update_cache=yes
+  
+- name: Install VSCodium
+  apt: name=codium state=present
+

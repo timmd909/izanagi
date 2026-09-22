@@ -11,3 +11,7 @@
 - import_tasks: java.yml
   become: yes
   become_user: root
+
+- import_tasks: vscodium.yml
+  become: yes
+  become_user: root
