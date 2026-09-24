@@ -8,10 +8,6 @@
   roles:
     - dev-machine
 
-- hosts: photoservers
-  roles:
-    - "photo-server"
-
 - hosts: webservers
   roles:
     - "web-server"
