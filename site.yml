@@ -40,10 +40,6 @@
   roles:
     - 3d
 
-- hosts: motionservers
-  roles:
-    - "motion-server"
-
 - hosts: hypervisors
   roles:
     - hypervisor
