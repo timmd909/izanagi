@@ -41,9 +41,9 @@
   become_user: root
   when: ansible_distribution == 'Ubuntu'
 
-#- import_tasks: nextcloud.yml
-#  become: yes
-#  become_user: root
+- import_tasks: nextcloud.yml
+  become: yes
+  become_user: root
 
 #
 # Set some Gnome/GUI defaults
