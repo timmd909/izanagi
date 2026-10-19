@@ -7,7 +7,9 @@
       - alsa-utils
       - dconf-editor
       - flameshot
+      - gedit
       - gnome-tweaks
+      - ibus
       - ntfs-3g
       - ntfs-3g-dev
 
