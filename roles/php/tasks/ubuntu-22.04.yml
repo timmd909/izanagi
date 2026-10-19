@@ -1,4 +1,7 @@
 ---
+#
+# WARNING! THIS INSTALLS AN ANCIENT VERSION OF PHP!
+#
 
 - name: memcache
   apt: name=memcached state=present
@@ -20,24 +23,24 @@
 - name: Install PHP and libraries
   apt:
     name:
-      - php7.2
-      - php7.2-bcmath
-      - php7.2-curl
-      - php7.2-gd
-      - php7.2-imagick
-      - php7.2-mysql
-      - php7.2-xml
-      - php7.2-zip
+      - php7.4
+      - php7.4-bcmath
+      - php7.4-curl
+      - php7.4-gd
+      - php7.4-imagick
+      - php7.4-mysql
+      - php7.4-xml
+      - php7.4-zip
     state: present
 
 - name: 'Set default PHP version'
   alternatives:
     name: php
     priority: -10
-    path: /usr/bin/php7.2
+    path: /usr/bin/php7.4
 
 - name: Enable PHP mods
-  shell: "phpenmod -v 7.2 {{ item }}"
+  shell: "phpenmod -v 7.4 {{ item }}"
   with_items:
     - amqplib
     - bcmath
