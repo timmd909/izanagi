@@ -1,1 +1,2 @@
-# izanagi-role-web-server
+# izanagi-role-hypervisor
+Hypervisor support
