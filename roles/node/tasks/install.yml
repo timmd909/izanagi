@@ -1,0 +1,59 @@
+---
+
+# Reference: https://github.com/nodesource/distributions#manual-installation
+
+# - name: "Add APT Repository key"
+#   apt_key:
+#     state: present
+#     url: "https://deb.nodesource.com/gpgkey/nodesource.gpg.key"
+
+- name: "Add Nodesource keys"
+  shell: >
+    curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key |
+    gpg --dearmor -o /usr/share/keyrings/nodesource.gpg
+  args:
+    creates: /usr/share/keyrings/nodesource.gpg
+
+- name: "Add Nodesource Sources (Ubuntu 22.04)"
+  template:
+    src: etc/apt/sources.list.d/nodesource.list.ubuntu-nodistro.j2
+    dest: /etc/apt/sources.list.d/nodesource.list
+  when: >
+    ansible_architecture == "x86_64" and
+    ansible_distribution == "Ubuntu" and
+    ansible_distribution_version == "22.04"
+
+- name: "Add Nodesource Sources (Ubuntu 24.04)"
+  template:
+    src: etc/apt/sources.list.d/nodesource.list.ubuntu-nodistro.j2
+    dest: /etc/apt/sources.list.d/nodesource.list
+  when: >
+    ansible_architecture == "x86_64" and
+    ansible_distribution == "Ubuntu" and
+    ansible_distribution_version == "24.04"
+
+- name: "Add Nodesource Sources (Devuan)"
+  template:
+    src: etc/apt/sources.list.d/nodesource.sources.devuan.j2
+    dest: /etc/apt/sources.list.d/nodesource.sources
+  when: >
+    ansible_architecture == "x86_64" and
+    ansible_distribution == "Devuan" and
+    ansible_distribution_version == "6"
+  vars:
+    node_os_distribution: nodistro
+
+- name: "Install Node + NPM"
+  apt:
+    update_cache: yes
+    state: latest
+    name: nodejs
+
+- name: "Install NPM global packages (latest)"
+  npm:
+    global: yes
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - gulp-cli
+    # add more later
