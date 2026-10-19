@@ -1,5 +1,5 @@
 ---
 
-dependencies:
-  - { role: node }
-  - { role: php }
+# dependencies:
+#   - { role: node }
+#   - { role: php }

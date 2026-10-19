@@ -6,6 +6,3 @@
 
 [sqlservers]
 # hostorip   HOSTNAME=hostname
-
-[timemachines]
-# hostorip   HOSTNAME=hostname

@@ -12,10 +12,6 @@
   roles:
     - "web-server"
 
-- hosts: timemachines
-  roles:
-    - "time-machine"
-
 - hosts: sqlservers
   roles:
     - "sql-server"

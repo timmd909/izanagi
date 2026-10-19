@@ -7,16 +7,15 @@
   args:
     creates: /usr/share/keyrings/vscodium-archive-keyring.gpg
 
-- name: Add Hashicorp APT sources
+- name: Add VSCodium APT sources
   lineinfile:
     path: /etc/apt/sources.list.d/vscodium.list
     state: present
     create: yes
     line: deb [arch=amd64,arm64 signed-by=/usr/share/keyrings/vscodium-archive-keyring.gpg] https://download.vscodium.com/debs vscodium main
-    
+
 - name: Update APT
   apt: update_cache=yes
-  
+
 - name: Install VSCodium
   apt: name=codium state=present
-
