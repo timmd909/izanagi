@@ -1,6 +1,0 @@
----
-
-- name: Install ddclient
-  become: yes
-  become_user: root
-  apt: name=ddclient

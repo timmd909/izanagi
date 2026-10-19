@@ -57,7 +57,7 @@
       - xubuntu-wallpapers
   when: ansible_distribution == 'Ubuntu'
 
-- name: Install more wallpapers (Ubuntu >= 24.04)
+- name: Install more wallpapers (Ubuntu = 24.04)
   apt:
     name:
       - ubuntustudio-wallpapers-jammy
