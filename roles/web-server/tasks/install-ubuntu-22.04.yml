@@ -8,13 +8,6 @@
       - libapache2-mod-php7.4
     state: present
 
-# - name: Install libsass
-#   apt:
-#     name:
-#     - libsass1
-#     - libsass-dev
-#     state: present
-
 - name: 'Enable PHP 7.4 in Apache'
   shell: "a2enmod php7.4"
 
