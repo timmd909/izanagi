@@ -5,8 +5,8 @@
     state: latest
     name:
       - alsa-utils
-      # - synaptic
       - dconf-editor
+      - flameshot
       - gnome-tweaks
       - ntfs-3g
       - ntfs-3g-dev
