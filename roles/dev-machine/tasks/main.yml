@@ -15,3 +15,7 @@
 - import_tasks: docker.yml
   become: yes
   become_user: root
+
+- import_tasks: vagrant.yml
+  become: yes
+  become_user: root
