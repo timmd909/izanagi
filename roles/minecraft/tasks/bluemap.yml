@@ -1,0 +1,60 @@
+- file:
+    path: /opt/BlueMap
+    state: directory
+    mode: 0755
+    owner: root
+    group: root
+
+- name: Download BlueMap
+  get_url:
+    url: 'https://github.com/BlueMap-Minecraft/BlueMap/releases/download/v3.12/BlueMap-3.12-cli.jar'
+    dest: /opt/BlueMap/BlueMap-cli.jar
+
+- name: Make BlueMap config directory
+  file:
+    state: directory
+    path: /opt/BlueMap/config
+
+- name: 'Copy BlueMap configuration files'
+  template:
+    src: "opt/BlueMap/config/{{ item }}.j2"
+    dest: "/opt/BlueMap/config/{{ item }}"
+  with_items:
+    - core.conf
+    - webapp.conf
+    - webserver.conf
+    - maps/end.conf
+    - maps/nether.conf
+    - maps/overworld.conf
+
+- name: "Install Minecraft map website config"
+  template:
+    src: "etc/apache2/sites-available/minecraft.conf.j2"
+    dest: "/etc/apache2/sites-available/minecraft.conf"
+
+- name: 'Enable minecraft map site'
+  shell: a2ensite minecraft
+
+- name: Restart Apache
+  shell: service apache2 restart
+
+# BlueMap looks in the current directory, so this is necessary for the cron.d job
+- name: Add script to update the map
+  template:
+    src: "opt/BlueMap/regenerate.j2"
+    dest: "/opt/BlueMap/regenerate"
+    mode: '755'
+
+- name: Add cronjob to update the map every night
+  template:
+    src: "etc/cron.daily/update-minecraft-map.j2"
+    dest: "/etc/cron.daily/update-minecraft-map"
+    mode: '755'
+
+#
+# LAST BUT NOT LEAST, RENDER!
+#
+- name: "Generate world map"
+  shell: java -jar BlueMap-cli.jar -r
+  args:
+    chdir: /opt/BlueMap

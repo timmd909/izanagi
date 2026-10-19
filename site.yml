@@ -8,17 +8,9 @@
   roles:
     - dev-machine
 
-- hosts: photoservers
-  roles:
-    - "photo-server"
-
 - hosts: webservers
   roles:
     - "web-server"
-
-- hosts: timemachines
-  roles:
-    - "time-machine"
 
 - hosts: sqlservers
   roles:
@@ -35,14 +27,6 @@
 - hosts: desktops
   roles:
     - desktop
-
-- hosts: 3d
-  roles:
-    - 3d
-
-- hosts: motionservers
-  roles:
-    - "motion-server"
 
 - hosts: hypervisors
   roles:

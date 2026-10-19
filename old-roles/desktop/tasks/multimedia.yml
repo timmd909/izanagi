@@ -1,0 +1,27 @@
+---
+
+- name: Install VLC
+  apt: name=vlc state=latest
+
+- name: Install HandBrake
+  apt:
+    state: latest
+    name:
+      - handbrake
+      - handbrake-cli
+
+#- name: Install ffmpeg PPA (Mint)
+#  apt_repository: repo=ppa:jonathonf/ffmpeg-3 codename=bionic
+#  when: ansible_distribution == "Linux Mint"
+
+- name: Install ffmpeg PPA (Ubuntu 16.04)
+  apt_repository: repo=ppa:jonathonf/ffmpeg-3
+  when: ansible_distribution == "Ubuntu" and ansible_distribution_version == '16.04'
+
+- name: Install ffmpeg
+  apt: name="{{ item }}" state=latest
+  with_items:
+    - ffmpeg
+    - x264
+    - x265
+  when: ansible_distribution == "Ubuntu"

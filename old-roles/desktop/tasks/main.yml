@@ -1,0 +1,31 @@
+---
+
+#
+# COMMON
+#
+
+- include: utilities.yml
+  become: yes
+  become_user: root
+
+- include: networking.yml
+  become: yes
+  become_user: root
+
+- include: multimedia.yml
+  become: yes
+  become_user: root
+
+#
+# UBUNTU 22.04 SPECIFIC
+#
+
+- include: ubuntu-22.04.yml
+  become: yes
+  become_user: root
+  when: ansible_distribution == "Ubuntu" and ansible_distribution_version == "22.04"
+
+- include: google-chrome-22.04.yml
+  become: yes
+  become_user: root
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '22.04'

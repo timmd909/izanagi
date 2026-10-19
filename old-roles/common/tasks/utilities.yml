@@ -1,0 +1,29 @@
+---
+
+- name: 'Install necessary utilities (shared)'
+  apt:
+    name:
+      - bc
+      - curl
+      - imagemagick
+      - lsof
+      - pv
+      - screen
+      - unzip
+      - vim
+      - wget
+
+- name: Set VIM as default editor
+  alternatives:
+    name: editor
+    path: /usr/bin/vim
+
+- name: Install top-like programs
+  apt:
+    name:
+      - htop
+      - iotop
+      - glances
+
+- name: Install Git tools
+  apt: name=git state=present

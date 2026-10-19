@@ -1,0 +1,46 @@
+
+# - name: Download Minecraft client
+#   get_url:
+#     url: https://launcher.mojang.com/v1/objects/3737db93722a9e39eeada7c27e7aca28b144ffa7/server.jar
+#     dest: "/home/{{ minecraft_user }}/minecraft_client.1.12.jar"
+
+- name: Download Minecraft server
+  get_url:
+    url: "{{ minecraft_download_url }}"
+    dest: "/home/{{ minecraft_user }}/minecraft_server.{{ minecraft_version }}.jar"
+
+- name: Fix Minecraft permissions
+  file:
+    owner: "{{ minecraft_user }}"
+    group: "{{ minecraft_user }}"
+    recurse: yes
+    path: "/home/{{ minecraft_user }}"
+
+- name: Create Minecraft server properties file
+  template:
+    owner: "{{ minecraft_user }}"
+    group: "{{ minecraft_user }}"
+    src: home/user/server.properties.j2
+    dest: "/home/{{ minecraft_user }}/server.properties"
+
+- name: Agree to Minecraft EULA
+  lineinfile:
+    owner: "{{ minecraft_user }}"
+    group: "{{ minecraft_user }}"
+    path: "/home/{{ minecraft_user }}/eula.txt"
+    line: "eula=true"
+    create: yes
+
+- name: Copy Minecraft init script
+  template:
+    src: etc/init.d/minecraft.j2
+    dest: /etc/init.d/minecraft
+    mode: 0755
+
+- name: '(Re)start Minecraft server'
+  service:
+    name: minecraft
+    state: restarted
+
+- name: 'Start Minecraft at Boot'
+  shell: update-rc.d minecraft defaults 80 80

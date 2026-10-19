@@ -1,0 +1,53 @@
+---
+#
+# WARNING! THIS INSTALLS AN ANCIENT VERSION OF PHP!
+#
+
+- name: memcache
+  apt: name=memcached state=present
+
+- name: 'Install up-to-date PHP PPA'
+  shell: add-apt-repository -y ppa:ondrej/php
+
+- name: Download latest Composer
+  get_url:
+    # if checksum ever breaks, find out the new one at:
+    # curl -sS https://composer.github.io/installer.sig
+    checksum: sha384:55ce33d7678c5a611085589f1f3ddf8b3c52d662cd01d4ba75c0ee0459970c2200a51f492d557530c71c15d8dba01eae
+    url: 'https://getcomposer.org/installer'
+    dest: '/tmp/composer-setup.php'
+
+- name: Install Composer
+  shell: php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
+
+- name: Install PHP and libraries
+  apt:
+    name:
+      - php7.4
+      - php7.4-bcmath
+      - php7.4-curl
+      - php7.4-gd
+      - php7.4-imagick
+      - php7.4-mysql
+      - php7.4-xml
+      - php7.4-zip
+    state: present
+
+- name: 'Set default PHP version'
+  alternatives:
+    name: php
+    priority: -10
+    path: /usr/bin/php7.4
+
+- name: Enable PHP mods
+  shell: "phpenmod -v 7.4 {{ item }}"
+  with_items:
+    - amqplib
+    - bcmath
+    - curl
+    - dom
+    - mbstring
+    - mcrypt
+    - phar
+    - xml
+    - zip

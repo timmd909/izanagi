@@ -1,0 +1,14 @@
+---
+
+- name: Install fonts
+  apt:
+    name:
+      - fonts-dejavu
+      - fonts-liberation
+      - fonts-noto
+      - fonts-roboto
+      - fonts-ubuntu-console
+      - ttf-mscorefonts-installer
+      - ttf-xfree86-nonfree
+      - xfonts-base
+      - xfonts-scalable

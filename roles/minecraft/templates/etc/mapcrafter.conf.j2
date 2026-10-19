@@ -1,0 +1,46 @@
+output_dir = /var/www/mapcrafter
+
+[global:map]
+render_view = isometric
+render_mode = daylight
+texture_size = 16
+use_image_mtimes = true
+render_leaves_transparent = true
+water_opacity = 0.5
+rotations = top-left top-right bottom-right bottom-left
+
+
+[world:Overworld]
+input_dir = /home/{{ minecraft_user }}/{{ minecraft_level_name }}/
+dimension = overworld
+
+[world:Nether]
+input_dir = /home/{{ minecraft_user }}/{{ minecraft_level_name }}/
+dimension = nether
+
+[world:End]
+input_dir = /home/{{ minecraft_user }}/{{ minecraft_level_name }}/
+dimension = end
+
+
+[map:isometric_day]
+name = Day
+world = Overworld
+render_mode = daylight
+
+[map:isometric_night]
+name = Night
+world = Overworld
+render_mode = nightlight
+lighting_intensity = 1.25
+
+[map:isometric_nether]
+name = Nether
+world = Nether
+render_mode = cave
+
+[map:isometric_end]
+name = End
+world = End
+render_mode = nightlight
+lighting_intensity = 2.00

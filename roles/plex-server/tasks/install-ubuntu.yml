@@ -1,0 +1,23 @@
+---
+
+# Ubuntu (AMD64) specific installation of Plex Media server
+
+- name: "APT Transport"
+  apt: name=apt-transport-https state=latest
+
+- name: "Add Plex APT key"
+  apt_key:
+    url: https://downloads.plex.tv/plex-keys/PlexSign.key
+    state: present
+
+- name: "Add Plex APT repository"
+  apt_repository:
+    repo: deb https://downloads.plex.tv/repo/deb/ public main
+    state: present
+    filename: plexmediaserver
+
+- name: "Install Plex"
+  apt:
+    name: plexmediaserver
+    state: latest
+    install_recommends: yes

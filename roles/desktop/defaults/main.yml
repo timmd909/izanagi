@@ -1,0 +1,117 @@
+---
+
+cinnamon_settings:
+  - { key: /org/cinnamon/desktop/background/picture-options, value: "'zoom'" }
+  - { key: /org/cinnamon/desktop/applications/terminal/exec, value: "'/usr/bin/terminator'" }
+  - { key: /org/cinnamon/settings-daemon/plugins/xsettings/buttons-have-icons, value: true }
+  - { key: /org/cinnamon/settings-daemon/plugins/xsettings/menus-have-icons, value: true }
+  # WINDOW / CONTROL THEME
+  - { key: /org/cinnamon/desktop/interface/gtk-theme, value: "'Numix'" }
+  # ICONS!
+  - { key: /org/cinnamon/desktop/interface/icon-theme, value: "'menta'" }
+  - { key: /org/gnome/desktop/interface/icon-theme, value: "'menta'" }
+
+nemo_settings:
+  - { key: /org/nemo/preferences/date-format, value: "'iso'" }
+  - { key: /org/nemo/preferences/default-folder-viewer, value: "'list-view'" }
+  - { key: /org/nemo/preferences/show-location-entry, value: true }
+  # ICON SIZES
+  - { key: /org/nemo/icon-view/default-zoom-level, value: "'large'" }
+  - { key: /org/nemo/compact-view/default-zoom-level, value: "'standard'" }
+  - { key: /org/nemo/list-view/default-zoom-level, value: "'standard'" }
+
+nemo_bookmarks:
+  - { url: sftp://fundanbunko/srv/shared, label: 'shared' }
+
+# NOTE: These file locations are valid only in Ubuntu 24.04.
+# Earlier versions, you're on your own.
+# cinnamon_wallpaper: "'file:///usr/share/backgrounds/ubuntustudio/ubuntustudio-brushes.jpg'"
+cinnamon_wallpaper: "'file:///usr/share/backgrounds/budgie/silent_sunrise_in_the_rainforest_by_eric_li.jpg'"
+
+plymouth_themes:
+  # PACK 1
+  - { pack: pack_1, theme: abstract_ring }
+  - { pack: pack_1, theme: abstract_ring_alt }
+  - { pack: pack_1, theme: alienware }
+  - { pack: pack_1, theme: angular }
+  - { pack: pack_1, theme: angular_alt }
+  - { pack: pack_1, theme: black_hud }
+  - { pack: pack_1, theme: blockchain }
+  - { pack: pack_1, theme: circle }
+  - { pack: pack_1, theme: circle_alt }
+  - { pack: pack_1, theme: circle_flow }
+  - { pack: pack_1, theme: circle_hud }
+  - { pack: pack_1, theme: circuit }
+  - { pack: pack_1, theme: colorful }
+  - { pack: pack_1, theme: colorful_loop }
+  - { pack: pack_1, theme: colorful_sliced }
+  - { pack: pack_1, theme: connect }
+  - { pack: pack_1, theme: cross_hud }
+  - { pack: pack_1, theme: cubes }
+  - { pack: pack_1, theme: cuts }
+  - { pack: pack_1, theme: cuts_alt }
+  # PACK 2
+  - { pack: pack_2, theme: cyanide }
+  - { pack: pack_2, theme: cybernetic }
+  - { pack: pack_2, theme: dark_planet }
+  - { pack: pack_2, theme: darth_vader }
+  - { pack: pack_2, theme: deus_ex }
+  - { pack: pack_2, theme: dna }
+  - { pack: pack_2, theme: double }
+  - { pack: pack_2, theme: dragon }
+  - { pack: pack_2, theme: flame }
+  - { pack: pack_2, theme: glitch }
+  - { pack: pack_2, theme: glowing }
+  - { pack: pack_2, theme: green_blocks }
+  - { pack: pack_2, theme: green_loader }
+  - { pack: pack_2, theme: hexagon }
+  - { pack: pack_2, theme: hexagon_2 }
+  - { pack: pack_2, theme: hexagon_alt }
+  - { pack: pack_2, theme: hexagon_dots }
+  - { pack: pack_2, theme: hexagon_dots_alt }
+  - { pack: pack_2, theme: hexagon_hud }
+  - { pack: pack_2, theme: hexagon_red }
+  # PACK 3
+  - { pack: pack_3, theme: hexa_retro }
+  - { pack: pack_3, theme: hud }
+  - { pack: pack_3, theme: hud_2 }
+  - { pack: pack_3, theme: hud_3 }
+  - { pack: pack_3, theme: hud_space }
+  - { pack: pack_3, theme: ibm }
+  - { pack: pack_3, theme: infinite_seal }
+  - { pack: pack_3, theme: ironman }
+  - { pack: pack_3, theme: liquid }
+  - { pack: pack_3, theme: loader }
+  - { pack: pack_3, theme: loader_2 }
+  - { pack: pack_3, theme: loader_alt }
+  - { pack: pack_3, theme: lone }
+  - { pack: pack_3, theme: metal_ball }
+  - { pack: pack_3, theme: motion }
+  - { pack: pack_3, theme: optimus }
+  - { pack: pack_3, theme: owl }
+  - { pack: pack_3, theme: pie }
+  - { pack: pack_3, theme: pixels }
+  - { pack: pack_3, theme: polaroid }
+  # PACK 4
+  - { pack: pack_4, theme: red_loader }
+  - { pack: pack_4, theme: rings }
+  - { pack: pack_4, theme: rings_2 }
+  - { pack: pack_4, theme: rog }
+  - { pack: pack_4, theme: rog_2 }
+  - { pack: pack_4, theme: seal }
+  - { pack: pack_4, theme: seal_2 }
+  - { pack: pack_4, theme: seal_3 }
+  - { pack: pack_4, theme: sliced }
+  - { pack: pack_4, theme: sphere }
+  - { pack: pack_4, theme: spin }
+  - { pack: pack_4, theme: spinner_alt }
+  - { pack: pack_4, theme: splash }
+  - { pack: pack_4, theme: square }
+  - { pack: pack_4, theme: square_hud }
+  - { pack: pack_4, theme: target }
+  - { pack: pack_4, theme: target_2 }
+  - { pack: pack_4, theme: tech_a }
+  - { pack: pack_4, theme: tech_b }
+  - { pack: pack_4, theme: unrap }
+
+plymouth_default_theme: green_blocks

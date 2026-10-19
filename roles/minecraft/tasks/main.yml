@@ -1,0 +1,12 @@
+---
+- include: requirements.yml
+  become: yes
+  become_user: root
+
+- include: minecraft.yml
+  become: yes
+  become_user: root
+
+- include: bluemap.yml
+  become: yes
+  become_user: root
