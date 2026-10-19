@@ -35,6 +35,7 @@
 - import_tasks: google-chrome.yml
   become: yes
   become_user: root
+  when: ansible_distribution == 'Ubuntu'
 
 - import_tasks: plymouth.yml
   become: yes

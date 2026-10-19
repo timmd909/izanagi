@@ -1,0 +1,98 @@
+- name: Remove potential conflicting packages
+  apt:
+    state: absent
+    name:
+      - docker.io
+      - docker-compose
+      - docker-compose-v2
+      - docker-doc
+      - docker-buildx
+      - podman-docker
+      - containerd
+      - runc
+
+- name: Ensure /etc/apt/keyrings exists
+  file:
+    path: /etc/apt/keyrings
+    mode: '755'
+    state: directory
+
+- name: Fetch Docker key
+  get_url:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    dest: /etc/apt/keyrings/docker.asc
+    mode: '644'
+
+- name: Install APT sources file (Ubuntu 22.04)
+  template:
+    src: etc/apt/sources.list.d/docker.sources.j2
+    dest: /etc/apt/sources.list.d/docker.sources
+  when: >
+    ansible_architecture == "x86_64" and
+    ansible_distribution == "Ubuntu" and
+    ansible_distribution_version == "22.04"
+  vars:
+    dev_machine_distribution: ubuntu
+    dev_machine_version_codename: jammy
+    dev_machine_architecture: amd64
+
+- name: Install APT sources file (Ubuntu 24.04)
+  template:
+    src: etc/apt/sources.list.d/docker.sources.j2
+    dest: /etc/apt/sources.list.d/docker.sources
+  when: >
+    ansible_architecture == "x86_64" and
+    ansible_distribution == "Ubuntu" and
+    ansible_distribution_version == "24.04"
+  vars:
+    dev_machine_distribution: ubuntu
+    dev_machine_version_codename: noble
+    dev_machine_architecture: amd64
+
+- name: Install APT sources file (Devuan Excalibur)
+  template:
+    src: etc/apt/sources.list.d/docker.sources.j2
+    dest: /etc/apt/sources.list.d/docker.sources
+  when: >
+    ansible_architecture == "x86_64" and
+    ansible_distribution == "Devuan" and
+    ansible_distribution_version == "6"
+  vars:
+    dev_machine_distribution: debian
+    dev_machine_version_codename: bookworm
+    dev_machine_architecture: amd64
+
+- name: Install Docker packages
+  apt:
+    update_cache: true
+    state: present
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-buildx-plugin
+      - docker-compose-plugin
+
+- name: Docker Remap - subuid
+  lineinfile:
+    path: /etc/subuid
+    state: present
+    line: "dockremap:{{ dev_machine_docker_subuid }}:66536"
+
+- name: Docker Remap - subgid
+  lineinfile:
+    path: /etc/subgid
+    state: present
+    line: "dockremap:{{ dev_machine_docker_subgid }}:66536"
+
+- name: Restart docker service
+  service:
+    name: docker
+    state: restarted
+
+- name: Add Ansbile user to docker container
+  user:
+    append: true
+    groups: docker
+    name: "{{ ansible_user_id }}"
+  # ansible_user_id
