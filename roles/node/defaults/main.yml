@@ -1,4 +1,4 @@
 # Set to false to disable installing nvm for the playbook user
 node_install_nvm: false
 
-node_latest_version: 24
+node_version: 24

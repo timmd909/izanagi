@@ -1,0 +1,22 @@
+- name: Install PHP
+  apt:
+    state: present
+    name:
+      - php
+      - composer
+
+- name: Install PHP modules
+  apt:
+    state: present
+    name:
+      - php-bcmath
+      - php-cli
+      - php-common
+      - php-curl
+      - php-intl
+      - php-mbstring
+      - php-mysql
+      - php-opcache
+      - php-readline
+      - php-xml
+      - php-zip

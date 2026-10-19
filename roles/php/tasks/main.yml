@@ -9,3 +9,13 @@
   become: yes
   become_user: root
   when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '22.04'
+
+- import_tasks: ubuntu-24.04.yml
+  become: yes
+  become_user: root
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '24.04'
+
+- import_tasks: devuan.yml
+  become: yes
+  become_user: root
+  when: ansible_distribution == 'Devuan'

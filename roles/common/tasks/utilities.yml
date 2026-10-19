@@ -29,6 +29,30 @@
     name: editor
     path: /usr/bin/vim
 
+- name: Configure VIM color scheme
+  lineinfile:
+    line: "colorscheme {{ vim_color_scheme }}"
+    regex: "^colorscheme.*"
+    state: present
+    create: true
+    path: "/home/{{ ansible_user_id }}/.vimrc"
+
+- name: Configure VIM tab stop
+  lineinfile:
+    line: "set tabstop={{ vim_tab_stop }}"
+    regex: "^set tabstop.*"
+    state: present
+    create: true
+    path: "/home/{{ ansible_user_id }}/.vimrc"
+
+- name: Configure VIM syntax
+  lineinfile:
+    line: "syntax on"
+    regex: "^syntax .*"
+    state: present
+    create: true
+    path: "/home/{{ ansible_user_id }}/.vimrc"
+
 - name: Install top-like programs
   apt:
     name:

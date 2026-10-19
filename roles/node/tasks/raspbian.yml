@@ -1,8 +1,0 @@
----
-
-- name: "Install NodeJS"
-  apt:
-    state: latest
-    name:
-      - nodejs
-      - npm

@@ -43,3 +43,7 @@ borg_keep_yearly: 1
 borg_compact_weekday: 0
 borg_compact_hour: 8
 borg_compact_minute: 20
+
+# vim_color_scheme: elflord
+vim_color_scheme: zaibatsu
+vim_tab_stop: 2
