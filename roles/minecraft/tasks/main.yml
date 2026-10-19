@@ -1,12 +1,12 @@
 ---
-- include: requirements.yml
+- import_tasks: requirements.yml
   become: yes
   become_user: root
 
-- include: minecraft.yml
+- import_tasks: minecraft.yml
   become: yes
   become_user: root
 
-- include: bluemap.yml
+- import_tasks: bluemap.yml
   become: yes
   become_user: root

@@ -17,6 +17,13 @@
       - git
       - git-lfs
 
+- name: Install Ansible
+  apt:
+    state: present
+    name:
+      - ansible
+      - ansible-lint
+
 # - name: Install Git related tools
 #   apt:
 #     name:
