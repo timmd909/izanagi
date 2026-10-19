@@ -22,7 +22,7 @@
   become: yes
 
 - name: Update APT
-  apt: update_cache=yes cache_valid_time={{ apt_cache_valid_time }}
+  apt: update_cache=true cache_valid_time={{ apt_cache_valid_time }}
   become: yes
 
 - name: Update packages

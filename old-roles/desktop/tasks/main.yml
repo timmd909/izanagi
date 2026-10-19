@@ -24,8 +24,3 @@
   become: yes
   become_user: root
   when: ansible_distribution == "Ubuntu" and ansible_distribution_version == "22.04"
-
-- import_tasks: google-chrome-22.04.yml
-  become: yes
-  become_user: root
-  when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '22.04'
