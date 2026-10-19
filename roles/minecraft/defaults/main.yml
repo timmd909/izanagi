@@ -1,12 +1,36 @@
----
 
-apache_http_root: "/var/www"
+minecraft_user: minecraft
 
-apache_php_max_execution_time: 100
-apache_php_post_max_size: 8M
-apache_php_upload_max_size: 16M
-apache_php_upload_max_filesize: 32M
-apache_php_memory_limit: 64M
-apache_username: www-data
+# these can be determined by visiting
+# https://www.minecraft.net/en-us/download/server
+# Really annoyed it's not easier to download the appropriate version....
+# minecraft_version: 1.16.5
+# minecraft_download_url: https://launcher.mojang.com/v1/objects/1b557e7b033b583cd9f66746b7a9ab1ec1673ced/server.jar
+# minecraft_version: 1.18.2
+# minecraft_download_url: https://launcher.mojang.com/v1/objects/c8f83c5655308435b3dcf03c06d9fe8740a77469/server.jar
+minecraft_version: 1.92.3
+minecraft_download_url: https://piston-data.mojang.com/v1/objects/c9df48efed58511cdd0213c56b9013a7b5c9ac1f/server.jar
 
-apache_admin_email: "webmaster@localhost"
+minecraft_server_port: 25565
+
+# minecraft_difficulty: 3 <- huh.... seems difficulty used to be an integer...
+minecraft_difficulty: normal
+minecraft_level_name: Picraft
+minecraft_level_seed: raspicraft
+minecraft_level_type: DEFAULT
+minecraft_game_mode: survival
+minecraft_max_players: 4
+minecraft_motd: See https://github.com/timmd909/minecraft-server.git
+minecraft_public: false
+minecraft_pvp: false
+minecraft_spawn_protection: 16
+minecraft_view_distance: 32
+# minecraft_view_distance: 16
+minecraft_min_memory: 1024M
+minecraft_max_memory: 2048M
+
+# ambient light in main world. (default is 0)
+minecraft_map_ambient_light: 0.2
+
+# false = quicker but could misrender some stuff
+minecraft_map_render_caves: false

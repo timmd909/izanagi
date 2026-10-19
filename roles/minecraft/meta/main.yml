@@ -1,5 +1,4 @@
 ---
 
 dependencies:
-  - role: node
-  - role: php
+  - role: "web-server"
