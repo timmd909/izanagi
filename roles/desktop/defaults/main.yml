@@ -115,3 +115,6 @@ plymouth_themes:
   - { pack: pack_4, theme: unrap }
 
 plymouth_default_theme: green_blocks
+
+# Set to true to enable steam
+steam_enabled: false

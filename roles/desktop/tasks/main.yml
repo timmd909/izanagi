@@ -46,6 +46,11 @@
   become: yes
   become_user: root
 
+- import_tasks: steam.yml
+  when: steam_enabled and ansible_architecture == "x86_64"
+  become: yes
+  become_user: root
+
 #
 # Set some Gnome/GUI defaults
 #
