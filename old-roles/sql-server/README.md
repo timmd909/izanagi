@@ -1,1 +1,0 @@
-# izanagi-role-sql-server
