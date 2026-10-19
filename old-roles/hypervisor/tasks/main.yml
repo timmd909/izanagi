@@ -1,7 +1,0 @@
-- include: deps.yml
-  become: yes
-  become_user: root
-
-- include: virt-manager.yml
-  become: yes
-  become_user: root

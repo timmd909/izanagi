@@ -1,4 +1,0 @@
-- name: Install bridge utils
-  apt:
-    name: bridge-utils
-    state: latest

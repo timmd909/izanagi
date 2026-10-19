@@ -1,19 +1,19 @@
 ---
 
-- include: ubuntu-22.04.yml
+- import_tasks: ubuntu-22.04.yml
   become: yes
   become_user: root
   when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '22.04'
 
-- include: ubuntu-24.04.yml
+- import_tasks: ubuntu-24.04.yml
   become: yes
   become_user: root
   when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '24.04'
 
-- include: raspbian.yml
+- import_tasks: raspbian.yml
   become: yes
   become_user: root
   when: ansible_lsb.id == "Raspbian"
 
-- include: nvm.yml
+- import_tasks: nvm.yml
   when: node_install_nvm

@@ -1,11 +1,11 @@
 ---
 
-- include: "install-pi.yml"
+- import_tasks: "install-pi.yml"
   when: ansible_lsb.id == "Raspbian"
   become: yes
   become_user: root
 
-- include: "install-ubuntu.yml"
+- import_tasks: "install-ubuntu.yml"
   when: ansible_distribution == 'Ubuntu'
   become: yes
   become_user: root

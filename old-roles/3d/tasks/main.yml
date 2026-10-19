@@ -1,13 +1,13 @@
 ---
 
-- include: libraries.yml
+- import_tasks: libraries.yml
   become: yes
   become_user: root
 
-- include: eigen.yml
+- import_tasks: eigen.yml
   become: yes
   become_user: root
 
-- include: openmvg.yml
+- import_tasks: openmvg.yml
   become: yes
   become_user: root

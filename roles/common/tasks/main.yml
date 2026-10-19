@@ -1,5 +1,9 @@
 ---
 
+- name: Display Distribution Version
+  ansible.builtin.debug:
+    msg: "OS: {{ ansible_distribution }} - {{ ansible_distribution_version }} ({{ ansible_architecture }})"
+
 - import_tasks: apt.yml
   become: yes
   become_user: root
