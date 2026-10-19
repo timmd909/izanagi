@@ -1,0 +1,17 @@
+---
+
+- name: Install required support libraries
+  apt: name="{{ item }}" state=present
+  with_items:
+    - libboost-iostreams-dev
+    - libboost-program-options-dev
+    - libopencv-dev
+    - libboost-system-dev
+    - libcgal-dev
+    - libcgal-qt5-dev
+    - libboost-serialization-dev
+
+- name: Install required binaries
+  apt: name="{{ item }}" state=present
+  with_items:
+    - git

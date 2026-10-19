@@ -1,0 +1,58 @@
+#!/bin/bash
+### BEGIN INIT INFO
+# Provides:          minecraft
+# Required-Start:    $all
+# Required-Stop:
+# Default-Start:     2 3 4 5
+# Default-Stop:
+# Short-Description: Starts minecraft server
+### END INIT INFO
+
+# Quick start-stop-daemon example, derived from Debian /etc/init.d/ssh
+set -e
+
+# Must be a valid filename
+NAME=minecraft
+PIDFILE=/var/run/$NAME.pid
+MINECRAFT_SERVER="minecraft_server.{{ minecraft_version }}.jar"
+
+start_daemon ()
+{
+  echo -n "Starting daemon: "$NAME
+   start-stop-daemon --start --quiet --pidfile $PIDFILE \
+    --chdir "/home/{{ minecraft_user }}" --chuid "{{ minecraft_user }}" \
+    -b --exec /usr/bin/java -- \
+      -Xmx{{ minecraft_max_memory }} \
+      -Xms{{ minecraft_min_memory }} \
+      -jar $MINECRAFT_SERVER
+  echo "."
+}
+
+stop_daemon ()
+{
+  echo -n "Stopping daemon: "$NAME
+  start-stop-daemon --stop --quiet --oknodo --pidfile $PIDFILE
+  echo "."
+}
+
+case "$1" in
+  start)
+    start_daemon
+  ;;
+  stop)
+    stop_daemon
+  ;;
+  restart)
+    echo -n "Restarting daemon: "$NAME
+    stop_daemon
+    sleep 5s
+    start_daemon
+    echo "."
+  ;;
+
+  *)
+  echo "Usage: \"$1\" {start|stop|restart}"
+  exit 1
+esac
+
+exit 0

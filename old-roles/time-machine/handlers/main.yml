@@ -1,0 +1,15 @@
+---
+
+- name: "Mount Time Machine partition"
+  mount:
+    fstype: "{{ time_machine_drive_fstype }}"
+    name: "{{ time_machine_root_dir }}"
+    src: "{{ time_machine_drive }}"
+    state: mounted
+
+- name: "Unmount Time Machine partition"
+  mount:
+    fstype: "{{ time_machine_drive_fstype }}"
+    name: "{{ time_machine_root_dir }}"
+    src: "{{ time_machine_drive }}"
+    state: unmounted

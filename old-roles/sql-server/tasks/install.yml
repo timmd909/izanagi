@@ -1,0 +1,13 @@
+- name: Install MariaDB
+  apt:
+    state: latest
+    name:
+      - mariadb-server
+      - mariadb-client
+
+- name: Install python3-mysqldb
+  apt:
+    state: latest
+    name:
+      - python3-mysqldb
+      - libmysqlclient-dev

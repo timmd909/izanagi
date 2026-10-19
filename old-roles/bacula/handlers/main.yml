@@ -1,0 +1,12 @@
+---
+
+- name: "Restart Bacula"
+  become: yes
+  become_user: root
+  service:
+    state: restarted
+    name: "{{ item }}"
+  loop:
+    - bacula-director
+    - bacula-fd
+    - bacula-sd

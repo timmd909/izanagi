@@ -1,0 +1,14 @@
+---
+
+- name: Clone OpenMVG
+  git:
+    clone: yes
+    dest: "{{ openmvg_path }}"
+    force: yes
+    recursive: yes
+    repo: https://github.com/timmd909/openMVG.git
+    version: master
+
+- name: Build OpenMVG
+  make:
+    chdir: "{{ openmvg_path }}"

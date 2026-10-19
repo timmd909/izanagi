@@ -1,0 +1,16 @@
+---
+
+- name: "Create Lychee database"
+  mysql_db:
+    state: present
+    name: "{{ lychee_db_database }}"
+
+- name: "Create Lychee database user"
+  mysql_user:
+    append_privs: yes
+    host: "localhost"
+    name: "{{ lychee_db_user }}"
+    password: ""
+    priv: "{{ lychee_db_database }}.*:ALL"
+    state: present
+    update_password: always

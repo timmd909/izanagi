@@ -1,0 +1,64 @@
+---
+
+- name: Create backup directory
+  file:
+    path: "{{ bacula_backup_dir }}"
+    state: directory
+    owner: bacula
+    group: bacula
+    mode: 0770
+
+- name: Automatically mount external hard drive
+  lineinfile:
+    path: /etc/fstab
+    regexp: '\# Backup volume'
+    state: present
+    line: "{{ bacula_block_device }} {{ bacula_backup_dir }} ext4 defaults,nosuid,nodev,nofail 0 4    # Backup volume"
+
+- name: Configure default passwords
+  template:
+    src: etc/bacula/common_default_passwords.j2
+    dest: /etc/bacula/common_default_passwords
+    owner: root
+    group: root
+    mode: 0600
+
+- name: Configure Bacula Director
+  template:
+    src: etc/bacula/bacula-dir.conf.j2
+    dest: /etc/bacula/bacula-dir.conf
+    owner: root
+    group: bacula
+    mode: 0640
+
+- name: Configure Bacula File Daemon
+  template:
+    src: etc/bacula/bacula-fd.conf.j2
+    dest: /etc/bacula/bacula-fd.conf
+    owner: root
+    group: bacula
+    mode: 0640
+
+- name: Configure Bacula Storage Daemon
+  template:
+    src: etc/bacula/bacula-sd.conf.j2
+    dest: /etc/bacula/bacula-sd.conf
+    owner: bacula
+    group: bacula
+    mode: 0640
+
+- name: Configure Bacula Console
+  template:
+    src: etc/bacula/bconsole.conf.j2
+    dest: /etc/bacula/bconsole.conf
+    owner: root
+    group: bacula
+    mode: 0640
+
+- name: Update Postgresql user
+  postgresql_user:
+    db: bacula
+    name: bacula
+    password: "{{ bacula_catalog_password }}"
+  become: true
+  become_user: postgres

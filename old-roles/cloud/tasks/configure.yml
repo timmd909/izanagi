@@ -1,0 +1,46 @@
+#
+# Apache configuration
+#
+- name: Install owncloud site configuration
+  template:
+    src: etc/apache2/sites-available/owncloud.conf.j2
+    dest: /etc/apache2/sites-available/owncloud.conf
+
+- name: Disable default site
+  shell: a2dissite 000-default
+  notify: "Restart Apache"
+
+- name: Enable owncloud site
+  shell: a2ensite owncloud
+  notify: "Restart Apache"
+
+- name: Enable Apache modules
+  shell: "a2enmod {{ item }}"
+  loop:
+    - dir
+    - env
+    - headers
+    - mime
+    - rewrite
+    - setenvif
+  notify: "Restart Apache"
+
+#
+# MariaDB configuration
+#
+- name: Create owncloud database
+  mysql_db:
+    name: "{{ owncloud_database_name }}"
+    state: present
+
+# If you have problems w/ this, check that `ansible_python_interpreter`
+# is set to use Python3
+- name: Add owncloud database user
+  mysql_user:
+    append_privs: yes
+    host: localhost
+    name: "{{ owncloud_database_user }}"
+    password: "{{ owncloud_database_pass }}"
+    priv: "{{ owncloud_database_name }}.*:ALL,GRANT"
+    state: present
+    update_password: always

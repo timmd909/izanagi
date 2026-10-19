@@ -1,0 +1,61 @@
+motion_stream_quality: 75
+
+# Set to `false` to allow connections from anywhere
+motion_server_localhost: true
+motion_server_enabled: false
+
+#
+# Capture Device Options
+#
+motion_server_image_width: 640
+motion_server_image_height: 480
+motion_server_framerate: 1
+motion_server_auto_brightness: 'off'
+motion_server_brightness: 0
+
+
+#
+# Motion Detection
+#
+motion_server_lightswitch: 0
+motion_server_pre_capture: 0
+motion_server_post_capture: 0
+motion_server_event_gap: 60
+motion_server_max_movie_time: 0
+
+#
+# Image File Output
+#
+motion_server_output_pictures: off
+motion_server_quality: 75
+
+#
+# ffmpeg
+#
+motion_server_ffmpeg_output_movies: no
+motion_server_ffmpeg_video_codec: mpeg4
+motion_server_ffmpeg_timelapse: 0
+motion_server_ffmpeg_duplicate_frames: true
+motion_server_ffmpeg_timelapse: 0
+motion_server_ffmpeg_timelapse_mode: daily
+motion_server_ffmpeg_bps: 400000
+
+#
+# Live Stream Server
+#
+motion_server_stream_maxrate: 30
+motion_server_stream_quality: 75
+motion_server_stream_limit: 0
+
+#
+# HTTP based control
+#
+motion_server_webcontrol_localhost: on
+
+#
+# Target Directories
+#
+motion_server_snapshot_filename: "%v-%Y%m%d%H%M%S-snapshot"
+motion_server_picture_filename: "%v-%Y%m%d%H%M%S-%q"
+motion_server_movie_filename: "%v-%Y%m%d%H%M%S"
+motion_server_timelapse_filename: "%Y%m%d-timelapse"

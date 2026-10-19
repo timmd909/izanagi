@@ -1,0 +1,9 @@
+---
+
+# Where the time machine files will be stored
+time_machine_root_dir: "/srv/tim-machine"
+# Leave empty to disable mounting another drive or partition
+# to the time machine root.
+time_machine_drive:
+time_machine_drive_fstype: ext4
+time_machine_drive_opts: "defaults,auto,nofail"

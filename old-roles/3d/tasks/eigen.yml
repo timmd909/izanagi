@@ -1,0 +1,19 @@
+---
+
+- name: Clone eigen
+  git:
+    clone: yes
+    dest: "{{ eigen_path }}"
+    force: yes
+    repo: https://github.com/RLovelett/eigen.git
+    version: master
+
+- name: Run CMake on eigen
+  shell: cmake -DCMAKE_BUILD_TYPE=RELEASE -DOpenMVG_BUILD_EXAMPLES=ON
+  args:
+    chdir: "{{ eigen_path }}"
+    creates: Makefile
+
+- name: Build eigen
+  make:
+    chdir: "{{ openmvg_path }}"

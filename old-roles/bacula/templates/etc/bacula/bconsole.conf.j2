@@ -1,0 +1,18 @@
+# -------------------------------------------------------------------------- #
+# NOTE: This almost completely verbatim from the default bacula-dir.conf     #
+# installed by RPi OS.                                                       #
+# -------------------------------------------------------------------------- #
+
+#
+# Bacula User Agent (or Console) Configuration File
+#
+# Copyright (C) 2000-2020 Kern Sibbald
+# License: BSD 2-Clause; see file LICENSE-FOSS
+#
+
+Director {
+  Name = {{ bacula_director_name }}
+  DIRport = 9101
+  address = localhost
+  Password = "{{ bacula_director_password }}"
+}

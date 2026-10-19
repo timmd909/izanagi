@@ -1,0 +1,79 @@
+---
+
+# Set to `true` to install the bacula server components
+bacula_server: false
+# Set to `true` on all bacula clients
+bacula_client: false
+
+# The working directory for Bacula where status files can be found.
+# This area will be shared by any Bacula daemon running on the
+# client or server.
+bacula_working_directory: /var/lib/bacula
+
+bacula_backup_dir: /media/external
+
+# The block device or filesystem to mount at `bacula_backup_dir`.
+# It's recommended to replace this with a UUID to avoid weirdness
+# if more than 1 USB drive is plugged in. Run `lsblk -f /dev/sda`
+# to get that quickly.
+bacula_block_device: /dev/sda1
+
+
+# --------------------------------------------------------------------------- #
+# Bacula Daemon names
+#
+# In practice, these would be all the same. These should probably go in
+# `group_vars/baculas`.
+# --------------------------------------------------------------------------- #
+
+bacula_director_name: changeme-dir
+bacula_director_monitor_name: changeme-mon
+bacula_file_daemon_name: changeme-fd
+bacula_storage_daemon_name: changeme-sd
+
+# --------------------------------------------------------------------------- #
+# Bacula Passwords
+# --------------------------------------------------------------------------- #
+bacula_director_password: "Director!ChangeMe"
+bacula_director_monitor_password: "Director!ChangeMe!RO"
+
+bacula_storage_daemon_password: "StorageDaemon!ChangeMe"
+bacula_storage_daemon_monitor_password: "StorageDaemon!ChangeMe!RO"
+
+bacula_file_daemon_password: 'FileDaemon!ChangeMe'
+bacula_file_daemon_monitor_password: 'FileDaemon!ChangeMe!RO'
+
+# Password for the postgresql database for user `bacula`
+bacula_catalog_password: "Catalog!ChangeMe"
+
+# --------------------------------------------------------------------------- #
+# Bacula Backup Settings
+# --------------------------------------------------------------------------- #
+
+# max size of a bacula volume in MB. You probably will want to leave this
+# as it is, unless you ever intend on burning your backups to something
+# smaller than a Bluray, like a CD or DVD. As every one has a lot of data
+# these days, I doubt you'd want to change this.
+bacula_volume_size: 22000
+
+# --------------------------------------------------------------------------- #
+# Bacula client definitions. Update to suite your network
+# --------------------------------------------------------------------------- #
+bacula_clients:
+  - name: "Example Laptop Client"
+    # Hostname (or IP address if you absolutely must)
+    host: ClientA
+    # The prefix that should be use for this particular client's
+    # backup pools
+    pool: clienta
+    # Size (in GB) of all space required to do one full
+    # backup of this particular machine
+    size: 500
+
+  - name: "Example Desktop Client"
+    host: clientb
+    pool: ClientB
+    ip: 192.168.1.101
+    size: 1000
+
+  # ... and so forth

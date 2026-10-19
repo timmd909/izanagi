@@ -1,0 +1,9 @@
+# Set to true to use the default node+npm that comes w/ the
+# distribution. Set to false (default) to always use the latest
+# LTS version of Node
+node_use_legacy_version: false
+
+# Set to false to disable installing nvm for the playbook user
+node_install_nvm: true
+
+node_latest_version: 18

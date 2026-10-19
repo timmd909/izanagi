@@ -1,0 +1,43 @@
+---
+
+- name: memcache
+  apt: name=memcached state=present
+
+- name: Install PHP (Mint)
+  apt: name="{{ item }}" state=present
+  with_items:
+    - php
+    - php-apcu
+    - php-bcmath
+    - php-cgi
+    - php-curl
+    - php-dom
+    - php-gd
+    - php-imagick
+    - php-json
+    - php-mbstring
+    - php-memcached
+    - php-mysqlnd
+    - php-sqlite3
+    - php-xml
+
+- name: Install Composer (Mint)
+  apt: name=composer state=latest
+
+- name: Enable PHP mods (Mint)
+  shell: "phpenmod {{ item }}"
+  args:
+    creates: "/etc/apache2/mods-enabled/{{ item }}.load"
+  with_items:
+    - bcmath
+    - calendar
+    - ctype
+    - curl
+    - dom
+    - mbstring
+    - mcrypt
+    - pdo
+    - phar
+    - readline
+    - sockets
+    - xml

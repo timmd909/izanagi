@@ -1,0 +1,69 @@
+---
+
+- name: Install python-dev libraries (Ubuntu 20.04)
+  apt: name=python-dev
+  when: ansible_distribution == "Ubuntu" and ansible_distribution_version == "20.04"
+
+- name: 'Install necessary utilities (shared)'
+  apt:
+    name:
+      - bc
+      - curl
+      - imagemagick
+      - lsof
+      - pv
+      - screen
+      - unzip
+      - vim
+      - wget
+
+- name: 'Python Utilities (Ubuntu 18.04)'
+  apt:
+    name:
+      - python-mysqldb
+      - python-pip
+      - python-setuptools
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '18.04'
+
+- name: 'Utilities (Mint)'
+  apt:
+    name:
+      - locate
+      - tree
+      - whois
+  when: ansible_distribution == 'Linux Mint'
+
+- name: 'Utilities (Ubuntu 16.04)'
+  apt:
+    name:
+      - locate
+      - tree
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '16.04'
+
+- name: 'Utilities (Ubuntu 18.04)'
+  apt:
+    name:
+      - mlocate
+      - whois
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '18.04'
+
+# - name: 'Utilities (Ubuntu 20.04)'
+#   apt:
+#     name:
+#       - imagemagick
+#   when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '20.04'
+
+- name: Set VIM as default editor
+  alternatives:
+    name: editor
+    path: /usr/bin/vim
+
+- name: Install top-like programs
+  apt:
+    name:
+      - htop
+      - iotop
+      - glances
+
+- name: Install Git tools
+  apt: name=git state=present

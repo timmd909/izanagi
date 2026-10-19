@@ -1,0 +1,7 @@
+vagrant_version: 1.9.8
+vagrant_deb_path: /tmp/vagrant_1.9.8_x86_64.deb
+
+selenium_user: selenium
+selenium_group: selenium
+selenium_dir: /opt/selenium
+selenium_port: 4444

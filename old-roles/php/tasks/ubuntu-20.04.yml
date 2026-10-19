@@ -1,0 +1,62 @@
+---
+
+- name: memcache
+  apt: name=memcached state=present
+
+- name: "PHP : Install up-to-date PHP PPA"
+  shell: add-apt-repository -y ppa:ondrej/php
+
+# At this time, I'm not interested in being a beta tester of the next PHP.
+# Plus a lot of packages won't work soon after a new major release, for
+# obvious reasons.
+- name: Remove PHP 8.0 if found
+  apt:
+    state: absent
+    name:
+      - php8.0
+      - php8.0-apcu
+      - php8.0-bcmath
+      - php8.0-cgi
+      - php8.0-cli
+      - php8.0-curl
+      - php8.0-gd
+      - php8.0-imagick
+      - php8.0-mysql
+      - php8.0-opcache
+      - php8.0-pcov
+      - php8.0-readline
+      - php8.0-sqlite3
+      - php8.0-xml
+
+- name: Install PHP 7.4
+  apt:
+    state: latest
+    name:
+      - php-amqplib
+      - php7.4
+      - php7.4-apcu
+      - php7.4-bcmath
+      - php7.4-cgi
+      - php7.4-curl
+      - php7.4-gd
+      - php7.4-imagick
+      - php7.4-json
+      - php7.4-mysql
+      - php7.4-pcov
+      - php7.4-sqlite3
+      - php7.4-xml
+
+- name: Install Composer
+  apt: name=composer state=latest
+
+- name: Enable PHP mods
+  shell: "phpenmod {{ item }}"
+  with_items:
+    - amqplib
+    - bcmath
+    - curl
+    - dom
+    - mbstring
+    - mcrypt
+    - phar
+    - xml

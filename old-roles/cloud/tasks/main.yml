@@ -1,0 +1,17 @@
+
+- include: 'deps.yml'
+  become: yes
+  become_user: root
+
+- include: 'ubuntu-20.04.yml'
+  become: yes
+  become_user: root
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '20.04'
+
+- include: 'configure.yml'
+  become: yes
+  become_user: root
+
+- include: 'install.yml'
+  become: yes
+  become_user: root

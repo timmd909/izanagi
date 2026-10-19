@@ -1,0 +1,12 @@
+---
+
+- include: 'install-server.yml'
+  become: yes
+  become_user: root
+  when: bacula_server
+
+- include: 'configure-server.yml'
+  become: yes
+  become_user: root
+  notify: "Restart Bacula"
+  when: bacula_server

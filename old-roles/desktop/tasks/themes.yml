@@ -1,0 +1,102 @@
+---
+
+#
+# Ubuntu 20.04
+#
+- name: Install GTK themes (Ubuntu 20.04)
+  apt:
+    name:
+      - gnome-themes-standard
+      - adium-theme-ubuntu
+      - adwaita-icon-theme-full
+      - blackbird-gtk-theme
+      - bluebird-gtk-theme
+      - greybird-gtk-theme
+      - numix-blue-gtk-theme
+      - numix-gtk-theme
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '20.04'
+
+- name: Install wallpapers (Ubuntu 20.04)
+  apt:
+    name:
+      - budgie-wallpapers
+      - budgie-wallpapers-artful
+      - budgie-wallpapers-bionic
+      - budgie-wallpapers-xenial
+      - budgie-wallpapers-yakkety
+      - budgie-wallpapers-zesty
+      - edgy-community-wallpapers
+      - tropic-wallpapers
+      - ubuntu-mate-wallpapers
+      - ubuntu-mate-wallpapers-artful
+      - ubuntu-mate-wallpapers-bionic
+      - ubuntu-mate-wallpapers-common
+      - ubuntu-mate-wallpapers-complete
+      - ubuntu-mate-wallpapers-legacy
+      - ubuntu-mate-wallpapers-photos
+      - ubuntu-mate-wallpapers-utopic
+      - ubuntu-mate-wallpapers-vivid
+      - ubuntu-mate-wallpapers-wily
+      - ubuntu-mate-wallpapers-xenial
+      - ubuntu-mate-wallpapers-yakkety
+      - ubuntu-mate-wallpapers-zesty
+      - ubuntu-wallpapers
+      - ubuntu-wallpapers-karmic
+      - ubuntu-wallpapers-lucid
+      - ubuntu-wallpapers-maverick
+      - ubuntu-wallpapers-natty
+      - ubuntu-wallpapers-oneiric
+      - ubuntu-wallpapers-precise
+      - ubuntu-wallpapers-quantal
+      - ubuntu-wallpapers-raring
+      - ubuntu-wallpapers-saucy
+      - ubuntu-wallpapers-trusty
+      - ubuntu-wallpapers-xenial
+      - xubuntu-community-wallpapers
+      - xubuntu-community-wallpapers-xenial
+      - xubuntu-wallpapers
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '20.04'
+
+#
+# Ubuntu 22.04
+#
+- name: Install wallpapers (Ubuntu 22.04)
+  apt:
+    name:
+      - budgie-wallpapers
+      - budgie-wallpapers-artful
+      - budgie-wallpapers-bionic
+      - budgie-wallpapers-xenial
+      - budgie-wallpapers-yakkety
+      - budgie-wallpapers-zesty
+      - edgy-community-wallpapers
+      - tropic-wallpapers
+      - ubuntu-mate-wallpapers
+      - ubuntu-mate-wallpapers-artful
+      - ubuntu-mate-wallpapers-bionic
+      - ubuntu-mate-wallpapers-common
+      - ubuntu-mate-wallpapers-complete
+      - ubuntu-mate-wallpapers-legacy
+      - ubuntu-mate-wallpapers-photos
+      - ubuntu-mate-wallpapers-utopic
+      - ubuntu-mate-wallpapers-vivid
+      - ubuntu-mate-wallpapers-wily
+      - ubuntu-mate-wallpapers-xenial
+      - ubuntu-mate-wallpapers-yakkety
+      - ubuntu-mate-wallpapers-zesty
+      - ubuntu-wallpapers
+      - ubuntu-wallpapers-karmic
+      - ubuntu-wallpapers-lucid
+      - ubuntu-wallpapers-maverick
+      - ubuntu-wallpapers-natty
+      - ubuntu-wallpapers-oneiric
+      - ubuntu-wallpapers-precise
+      - ubuntu-wallpapers-quantal
+      - ubuntu-wallpapers-raring
+      - ubuntu-wallpapers-saucy
+      - ubuntu-wallpapers-trusty
+      - ubuntu-wallpapers-xenial
+      - xubuntu-community-wallpapers
+      - xubuntu-community-wallpapers-xenial
+      - xubuntu-wallpapers
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '20.04'

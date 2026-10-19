@@ -1,0 +1,12 @@
+- name: Install Atom repo key (Ubuntu 22.04)
+  shell: curl -fsSL https://packagecloud.io/AtomEditor/atom/gpgkey | gpg --dearmor > /usr/share/keyrings/atom.gpg
+  args:
+    creates: /usr/share/keyrings/atom.gpg
+
+- name: Install Atom repo (Ubuntu 22.04)
+  shell: echo "deb [arch=amd64 signed-by=/usr/share/keyrings/atom.gpg] https://packagecloud.io/AtomEditor/atom/any/ any main" > /etc/apt/sources.list.d/atom.list
+  args:
+    creates: /etc/apt/sources.list.d/atom.list
+
+- name: Install Atom (Ubuntu 22.04)
+  apt: name=atom state=latest update_cache=yes

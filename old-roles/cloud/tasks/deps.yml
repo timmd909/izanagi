@@ -1,0 +1,27 @@
+
+- name: Install necessary packages
+  apt:
+    name:
+      - bzip2
+      - coreutils
+      - curl
+      - inetutils-ping
+      - jq
+      - php7.4-imap
+      - php7.4-intl
+      - php7.4-ldap
+      - php7.4-redis
+      - php7.4-smbclient
+      - php7.4-ssh2
+      - php7.4-zip
+      - redis-server
+      - rsync
+      - smbclient
+      - ssh
+    state: latest
+
+- name: Copy occ helper script
+  template:
+    src: usr/local/bin/occ.j2
+    dest: /usr/local/bin/occ
+    mode: '755'

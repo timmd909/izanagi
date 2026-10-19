@@ -1,0 +1,38 @@
+---
+
+- name: memcache
+  apt: name=memcached state=present
+
+- name: Install Composer (Ubuntu)
+  apt: name=composer state=latest
+
+- name: Enable PHP mods (Raspbian)
+  shell: "phpenmod {{ item }}"
+  args:
+    creates: "/etc/apache2/mods-enabled/{{ item }}.load"
+  with_items:
+    - curl
+    - mcrypt
+    - bcmath
+    - dom
+    - mbstring
+    - phar
+    - xml
+
+- name: Install PHP (Raspbian)
+  apt:
+    state: latest
+    name:
+      - php
+      - php-apcu
+      - php-bcmath
+      - php-cgi
+      - php-curl
+      - php-gd
+      - php-imagick
+      - php-json
+      - php-mbstring
+      # - php-mcrypt
+      # - php-mysqlnd
+      - php-sqlite3
+      - php-xml
