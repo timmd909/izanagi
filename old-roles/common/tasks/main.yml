@@ -26,7 +26,3 @@
   become_user: root
 
 - include: user-env.yml
-
-- include: delete-bullshit.yml
-  become: yes
-  become_user: root

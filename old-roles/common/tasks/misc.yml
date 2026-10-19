@@ -1,8 +1,5 @@
 ---
 
-- name: Install ACL
-  apt: name=acl state=present
-
 - name: Update USB automount location
   when: udisk_filesystem_shared
   lineinfile:
@@ -10,6 +7,3 @@
     create: yes
     line: 'ENV{ID_FS_USAGE}=="filesystem", ENV{UDISKS_FILESYSTEM_SHARED}="1"'
     state: present
-
-- name: Install HTTPS transport for APT
-  apt: name=apt-transport-https state=present
