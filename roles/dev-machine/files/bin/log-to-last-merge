@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Maximum number of git log entries to look back before giving up
+MAX_LOOK_BACK=100
+
+# OPTIONAL: allow going back more than 1 merge (this is helpful for
+# long running branches)
+if [[ "$1" == "" ]]; then
+  MR_LIMIT=1
+else
+  MR_LIMIT=$1
+fi
+
+# Find the most recent merge request
+# LAST_MERGE_MSG="`git log -n $MAX_LOOK_BACK --oneline | grep -Ei '^[0-9a-f]{6,12}\s+Merge branch ' | head -n $MR_LIMIT`"
+LAST_MERGE_MSG="`git log -n $MAX_LOOK_BACK --oneline | grep -Ei '(Merge branch |Merge pull request )' | head -n $MR_LIMIT`"
+LAST_MERGE_SHA="`echo \"$LAST_MERGE_MSG\" | grep -Eio '^[0-9a-f]+'`"
+
+NUM_COMMITS="`git log --oneline $LAST_MERGE_SHA..HEAD | wc -l`"
+
+git log --oneline -n $NUM_COMMITS

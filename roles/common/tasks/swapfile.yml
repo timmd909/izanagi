@@ -1,3 +1,5 @@
+- name: "Turn off swap file"
+  shell: swapoff -a
 
 #
 # Enabled

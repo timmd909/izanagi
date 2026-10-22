@@ -1,0 +1,10 @@
+
+# For when something isn't available by normal means, I can
+# always try building the sources
+#
+# - name: Add Debian sources repo
+#   lineinfile:
+#     create: true
+#     path: /etc/apt/sources.list.d/debian.list
+#     line: "deb-src https://deb.debian.org/debian trixie main non-free-firmware"
+#     state: present

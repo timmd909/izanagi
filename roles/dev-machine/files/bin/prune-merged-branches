@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# https://gist.github.com/ryoma-yama/72f454b25707c973e33a8b154aa849ad
+# has a nice little article on this topic, and used the 
+# same solution  
+
+git branch --merged  | egrep -v '^\*\s*' | xargs git branch -d

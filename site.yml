@@ -27,7 +27,3 @@
 - hosts: desktops
   roles:
     - desktop
-
-- hosts: hypervisors
-  roles:
-    - hypervisor
