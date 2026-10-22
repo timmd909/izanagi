@@ -1,32 +1,34 @@
----
+# ---
 
-- name: Update hostname
-  shell: hostname {{ hostname }}
+# - name: Update hostname
+#   shell: hostname {{ hostname }}
 
-- name: Update /etc/hostname
-  copy:
-    content: "{{ hostname }}\n"
-    dest: /etc/hostname
+# - name: Update /etc/hostname
+#   copy:
+#     content: "{{ hostname }}\n"
+#     dest: /etc/hostname
 
-- name: Update /etc/hosts
-  template:
-    src: etc/hosts.j2
-    dest: /etc/hosts
-    mode: 0644
+# - name: Update /etc/hosts
+#   template:
+#     src: etc/hosts.j2
+#     dest: /etc/hosts
+#     mode: 0644
 
-# Thank you to https://askubuntu.com/questions/1028633/host-name-reverts-to-old-name-after-reboot-in-18-04-lts
+# # Thank you to https://askubuntu.com/questions/1028633/host-name-reverts-to-old-name-after-reboot-in-18-04-lts
 
-- name: See if that bullshit cloud shit is installed
-  stat:
-    path: /etc/cloud/cloud.cfg
-  register: cloud_bullshit
+# - name: See if that bullshit cloud shit is installed
+#   stat:
+#     path: /etc/cloud/cloud.cfg
+#   register: cloud_bullshit
+#   when: ansible_distribution == 'Ubuntu'
 
-- name: "Disable bullshit cloud shit"
-  lineinfile:
-    path: /etc/cloud/cloud.cfg
-    regexp: "^preserve_hostname.*"
-    line: "preserve_hostname: true"
-  when: cloud_bullshit.stat.exists
+# - name: "Disable bullshit cloud shit"
+#   lineinfile:
+#     path: /etc/cloud/cloud.cfg
+#     regexp: "^preserve_hostname.*"
+#     line: "preserve_hostname: true"
+#   when: cloud_bullshit.stat.exists
+#   when: ansible_distribution == 'Ubuntu'
 
 #
 # Below is the same way to avoid the hostname bullshit that worked well w/
