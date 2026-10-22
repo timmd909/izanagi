@@ -6,7 +6,7 @@
 - name: memcache
   apt: name=memcached state=present
 
-- name: 'Install up-to-date PHP PPA'
+- name: Install ppa:ondrej PHP PPA'
   shell: add-apt-repository -y ppa:ondrej/php
 
 - name: Download latest Composer

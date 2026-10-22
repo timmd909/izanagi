@@ -59,7 +59,7 @@
     ansible_distribution_version == "6"
   vars:
     dev_machine_distribution: debian
-    dev_machine_version_codename: bookworm
+    dev_machine_version_codename: trixie
     dev_machine_architecture: amd64
 
 - name: Install Docker packages

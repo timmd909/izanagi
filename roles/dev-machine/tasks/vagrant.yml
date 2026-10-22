@@ -25,6 +25,8 @@
     ansible_distribution == "Devuan" and
     ansible_distribution_version == "6"
   vars:
+    # note: hashicorp doesn't have a recent version of this software,
+    # so we go w/ the previous version.
     vagrant_release: bookworm
 
 - name: Update APT cache

@@ -1,22 +1,40 @@
+- name: PHP install dependencies
+  apt:
+    state: present
+    name:
+      - ca-certificates
+      - curl
+
+- name: "Add PHP Sury keys"
+  shell: >
+    curl -fsSL https://packages.sury.org/php/apt.gpg |
+    gpg --dearmor -o /usr/share/keyrings/sury-php.gpg
+  args:
+    creates: /usr/share/keyrings/sury-php.gpg
+
+- name: Add repo source
+  lineinfile:
+    create: true
+    state: present
+    regex: '^deb.*'
+    line: deb [signed-by=/usr/share/keyrings/sury-php.gpg] https://packages.sury.org/php/ trixie main
+    path: /etc/apt/sources.list.d/sury-php.list
+
 - name: Install PHP
   apt:
     state: present
+    update_cache: true
     name:
-      - php
+      - php8.5
       - composer
-
-- name: Install PHP modules
-  apt:
-    state: present
-    name:
-      - php-bcmath
-      - php-cli
-      - php-common
-      - php-curl
-      - php-intl
-      - php-mbstring
-      - php-mysql
-      - php-opcache
-      - php-readline
-      - php-xml
-      - php-zip
+      - php8.5-bcmath
+      - php8.5-cli
+      - php8.5-common
+      - php8.5-curl
+      - php8.5-intl
+      - php8.5-mbstring
+      - php8.5-mysql
+      # # - php8.5-opcache <- should already be a part of PHP... double check that it's enabled
+      - php8.5-readline
+      - php8.5-xml
+      - php8.5-zip
