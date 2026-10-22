@@ -14,6 +14,7 @@
   copy:
     src:  "bin/{{ item }}"
     dest: "{{ ansible_user_dir }}/bin/"
+    mode: '755'
   with_items:
     - log-to-last-merge
     - prune-merged-branches
