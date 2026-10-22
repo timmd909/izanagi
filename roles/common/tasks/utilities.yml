@@ -24,6 +24,14 @@
       - wget
     state: present
 
+- name: Install Figlet and Toilet
+  apt:
+    state: present
+    name:
+      - figlet
+      - toilet
+      - toilet-fonts
+
 - name: Set VIM as default editor
   alternatives:
     name: editor
