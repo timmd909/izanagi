@@ -1,0 +1,3 @@
+[submodule "host_vars"]
+	path = host_vars
+	url = git@baicha.lan:tim/host_vars.git

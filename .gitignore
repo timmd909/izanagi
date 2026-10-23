@@ -1,14 +1,13 @@
 #
-# Ansible 
+# Ansible
 #
 
-host_vars
 hosts
 site.retry
 
 #
-# Vagrant 
-# 
+# Vagrant
+#
 Vagrantfile
 vagrant-site.retry
 vagrant-site.yml
@@ -17,4 +16,3 @@ vagrant-site.yml
 #
 # Miscellaneous
 #
-
