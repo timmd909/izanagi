@@ -14,8 +14,10 @@
     create: yes
     line: deb [arch=amd64,arm64 signed-by=/usr/share/keyrings/vscodium-archive-keyring.gpg] https://download.vscodium.com/debs vscodium main
 
-- name: Update APT
-  apt: update_cache=yes
-
 - name: Install VSCodium
-  apt: name=codium state=present
+  apt: update_cache=yes name=codium state=present
+  when: dev_machine_install_vscodium
+
+- name: Uninstall VSCodium
+  apt: update_cache=yes name=codium state=absent
+  when: not dev_machine_install_vscodium

@@ -1,2 +1,4 @@
 dev_machine_docker_subuid: 200000
 dev_machine_docker_subgid: 200000
+
+dev_machine_install_vscodium: true
