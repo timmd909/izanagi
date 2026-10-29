@@ -1,0 +1,2 @@
+- name: Install MariaDB client utils
+  apt: name=mariadb-client state=present
