@@ -1,2 +1,8 @@
 - name: Install MariaDB client utils
   apt: name=mariadb-client state=present
+
+- name: 'Install DBeaver PPA'
+  shell: add-apt-repository -y ppa:serge-rider/dbeaver-ce
+
+- name: Install DBeaver
+  apt: update_cache=true name=dbeaver-ce state=present
