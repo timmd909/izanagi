@@ -1,11 +1,16 @@
 ---
 
-- import_tasks: "install-pi.yml"
-  when: ansible_lsb.id == "Raspbian"
-  become: yes
-  become_user: root
+#
+# Plex sources are no longer working,
+# disabling for now
+#
 
-- import_tasks: "install-ubuntu.yml"
-  when: ansible_distribution == 'Ubuntu'
-  become: yes
-  become_user: root
+# - import_tasks: "install-pi.yml"
+#   when: ansible_lsb.id == "Raspbian"
+#   become: yes
+#   become_user: root
+
+# - import_tasks: "install-ubuntu.yml"
+#   when: ansible_distribution == 'Ubuntu'
+#   become: yes
+#   become_user: root

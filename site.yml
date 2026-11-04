@@ -16,9 +16,9 @@
   roles:
     - "sql-server"
 
-- hosts: plexservers
-  roles:
-    - "plex-server"
+# - hosts: plexservers
+#   roles:
+#     - "plex-server"
 
 - hosts: minecraft
   roles:
