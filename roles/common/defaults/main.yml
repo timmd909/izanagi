@@ -44,6 +44,16 @@ borg_compact_weekday: 0
 borg_compact_hour: 8
 borg_compact_minute: 20
 
+#
+# Vim Settinsg
+#
+
 # vim_color_scheme: elflord
 vim_color_scheme: zaibatsu
 vim_tab_stop: 2
+
+#
+# sysctl settings
+#
+
+fs_inotify_max_user_watches: 65536

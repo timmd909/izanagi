@@ -1,5 +1,14 @@
 # ---
 
+- name: Set inotify limits
+  sysctl:
+    name: fs.inotify.max_user_watches
+    value: "{{ fs_inotify_max_user_watches }}"
+    sysctl_set: true
+    state: present
+    reload: true
+    sysctl_file: "/etc/sysctl.d/99-fs-inotify-limits.conf"
+
 # - name: Update hostname
 #   shell: hostname {{ hostname }}
 

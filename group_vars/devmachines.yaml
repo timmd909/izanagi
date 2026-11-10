@@ -1,0 +1,2 @@
+# What Vite recommends  (1024 * 512)
+fs_inotify_max_user_watches: 524288
