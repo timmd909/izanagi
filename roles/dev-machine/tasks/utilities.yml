@@ -80,10 +80,23 @@
       - fonts-tlwg-loma-otf
       - fonts-unifont
       - fonts-wqy-zenhei
-      - libavcodec60
       - libwoff1
       - xfonts-cyrillic
       - xvfb
+
+- name: Install vitest/playwright deps (Ubuntu)
+  apt:
+    state: present
+    name:
+      - libavcodec60
+  when: ansible_distribution == "Ubuntu"
+
+- name: Install vitest/playwright deps (Devuan)
+  apt:
+    state: present
+    name:
+      - libavcodec61
+  when: ansible_distribution == "Devuan"
 
 - name: Install epiphany browser
   apt: name=epiphany-browser state=present
