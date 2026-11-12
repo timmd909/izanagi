@@ -35,6 +35,7 @@
       - php8.5-mbstring
       - php8.5-mysql
       # # - php8.5-opcache <- should already be a part of PHP... double check that it's enabled
+      - php8.5-pcov
       - php8.5-readline
       - php8.5-xml
       - php8.5-zip
