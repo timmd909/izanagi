@@ -1,8 +1,24 @@
 - name: Install MariaDB client utils
   apt: name=mariadb-client state=present
 
-- name: 'Install DBeaver PPA'
+- name: Install DBeaver PPA
   shell: add-apt-repository -y ppa:serge-rider/dbeaver-ce
+  when: ansible_distribution == "Ubuntu"
+
+- name: Add DBeaver GPG key
+  shell: >
+    curl -fsSL https://dbeaver.io/debs/dbeaver.gpg.key |
+    gpg --dearmor -o /usr/share/keyrings/dbeaver.gpg.key
+  args:
+    creates: /usr/share/keyrings/dbeaver.gpg.key
+  when: ansible_distribution == "Devuan"
+
+- name: Add DBeaver sources
+  lineinfile:
+    path: /etc/apt/sources.list.d/dbeaver.list
+    create: true
+    line: 'deb [signed-by=/usr/share/keyrings/dbeaver.gpg.key] https://dbeaver.io/debs/dbeaver-ce /'
+  when: ansible_distribution == "Devuan"
 
 - name: Install DBeaver
   apt: update_cache=true name=dbeaver-ce state=present
