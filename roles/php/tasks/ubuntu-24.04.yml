@@ -6,23 +6,32 @@
 - name: 'Install up-to-date PHP PPA'
   shell: add-apt-repository -y ppa:ondrej/php
 
-# - name: Download latest Composer
-#   get_url:
-#     # if checksum ever breaks, find out the new one at:
-#     # curl -sS https://composer.github.io/installer.sig
-#     checksum: sha384:55ce33d7678c5a611085589f1f3ddf8b3c52d662cd01d4ba75c0ee0459970c2200a51f492d557530c71c15d8dba01eae
-#     url: 'https://getcomposer.org/installer'
-#     dest: '/tmp/composer-setup.php'
+- name: Check for composer install
+  stat:
+    path: /usr/local/bin/composer
+  register: composer_exists
 
-# - name: Install Composer
-#   shell: php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
+- name: Download latest Composer
+  get_url:
+    url: 'https://getcomposer.org/installer'
+    dest: '/tmp/composer-setup.php'
+  when: not composer_exists.stat.exists
+
+- name: Install Composer
+  shell: php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
+  when: not composer_exists.stat.exists
+
+- name: Cleanup Composer installer
+  file:
+    state: absent
+    path: /tmp/composer-setup.php
+  when: not composer_exists.stat.exists
 
 - name: Install PHP and libraries
   apt:
     update_cache: true
     name:
       - php8.5
-      - composer
       - php8.5-bcmath
       - php8.5-curl
       - php8.5-gd
