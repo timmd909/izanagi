@@ -42,10 +42,10 @@
 # ▘   ▘▝▀▘ ▀ ▐  ▝▀ ▘  ▘▝ ▘ ▝▀ ▌  ▝▀▘▝▀ ▀▘▐  ▀▘▝▀
 #
 
-- import_tasks: devuan.yml
-  become: yes
-  become_user: root
-  when: ansible_distribution == "Devuan"
+# - import_tasks: devuan.yml
+#   become: yes
+#   become_user: root
+#   when: ansible_distribution == "Devuan"
 
 - import_tasks: raspberry-pi.yml
   become: yes
