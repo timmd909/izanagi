@@ -12,3 +12,9 @@ or similar again
 
 the standard shell scripts (like log-to-last-merge, etc)
 should be added to the ansible scripts
+# update /etc/default/console-setup
+
+Add this to make the font readable on large monitors:
+FONTSIZE="16x32"
+
+otherwise, keep it fine.... make a host var so that it's only on shirokage?
