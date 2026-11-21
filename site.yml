@@ -4,17 +4,17 @@
   roles:
     - common
 
+- hosts: desktops
+  roles:
+    - desktop
+
 - hosts: devmachines
   roles:
     - dev-machine
 
-- hosts: webservers
+- hosts: docker
   roles:
-    - "web-server"
-
-- hosts: sqlservers
-  roles:
-    - "sql-server"
+    - docker
 
 # - hosts: plexservers
 #   roles:
@@ -24,6 +24,14 @@
   roles:
     - minecraft
 
-- hosts: desktops
+- hosts: nextcloudserver
   roles:
-    - desktop
+    - "nextcloud-server"
+
+- hosts: sqlservers
+  roles:
+    - "sql-server"
+
+- hosts: webservers
+  roles:
+    - "web-server"

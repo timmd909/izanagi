@@ -1,6 +1,4 @@
----
-
-- name: Install NextCloud  desktop support
+- name: Install NextCloud desktop support
   apt:
     state: present
     name: "{{ item }}"
@@ -8,3 +6,5 @@
     - nextcloud-desktop
     - nextcloud-desktop-common
     - nextcloud-desktop-doc
+  become: yes
+  become_user: root

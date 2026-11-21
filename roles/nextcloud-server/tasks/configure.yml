@@ -1,0 +1,16 @@
+- name: Copy compose.yml file
+  copy:
+    src: compose.yml
+    mode: '0644'
+    dest: "/home/{{ nextcloud_user }}/compose.yml"
+
+- name: Copy Makefile
+  copy:
+    src: Makefile
+    mode: '0644'
+    dest: "/home/{{ nextcloud_user }}/Makefile"
+
+- name: Pull latest Nextcloud containers
+  shell: docker compose pull
+  args:
+    chdir: "/home/{{ nextcloud_user }}"

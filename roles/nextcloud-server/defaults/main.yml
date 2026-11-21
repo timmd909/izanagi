@@ -1,0 +1,3 @@
+# Defaults for Nextcloud installs
+nextcloud_user: nextcloud
+nextcloud_group: nextcloud
