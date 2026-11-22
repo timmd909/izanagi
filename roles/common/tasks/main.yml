@@ -26,9 +26,9 @@
 
 # - import_tasks: user-env.yml
 
-# - import_tasks: delete-bullshit.yml
-#   become: yes
-#   become_user: root
+- import_tasks: delete-bullshit.yml
+  become: yes
+  become_user: root
 
 - import_tasks: borg.yml
   become: yes
