@@ -1,0 +1,22 @@
+- name: Create nextcloud group
+  group:
+    name: "{{ nextcloud_group }}"
+    state: present
+
+- name: Install nextcloud user
+  user:
+    name: "{{ nextcloud_user }}"
+    state: present
+    shell: "/bin/bash"
+    create_home: true
+    home: "/home/{{ nextcloud_user }}"
+    group: "{{ nextcloud_group }}"
+
+- name: Add nextcloud user to Docker group
+  user:
+    name: "{{ nextcloud_user }}"
+    append: true
+    groups: docker
+
+- name: Install make
+  apt: name=make state=present

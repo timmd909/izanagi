@@ -77,13 +77,13 @@
   lineinfile:
     path: /etc/subuid
     state: present
-    line: "dockremap:{{ dev_machine_docker_subuid }}:66536"
+    line: "dockremap:{{ docker_subuid }}:66536"
 
 - name: Docker Remap - subgid
   lineinfile:
     path: /etc/subgid
     state: present
-    line: "dockremap:{{ dev_machine_docker_subgid }}:66536"
+    line: "dockremap:{{ docker_subgid }}:66536"
 
 - name: Restart docker service
   service:

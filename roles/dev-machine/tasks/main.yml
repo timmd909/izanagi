@@ -12,11 +12,7 @@
   become: yes
   become_user: root
 
-- import_tasks: docker.yml
-  become: yes
-  become_user: root
-
-- import_tasks: mariadb.yml
+- import_tasks: database-tools.yml
   become: yes
   become_user: root
 
