@@ -1,1 +1,3 @@
-# izanagi-role-sql-server
+# SQL Server role
+
+This installs MariaDB server and client.
