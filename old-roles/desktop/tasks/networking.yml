@@ -1,4 +1,0 @@
----
-
-- name: Install Transmission
-  apt: name=transmission state=latest
