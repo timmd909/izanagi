@@ -9,6 +9,10 @@
     reload: true
     sysctl_file: "/etc/sysctl.d/99-fs-inotify-limits.conf"
 
+- name: Set timezone to Eastern
+  timezone:
+    name: America/New_York
+
 # - name: Update hostname
 #   shell: hostname {{ hostname }}
 
