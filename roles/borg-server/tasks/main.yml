@@ -2,6 +2,6 @@
   become: true
   become_user: root
 
-# - import_tasks: configure.yml
-#   become: true
-#   become_user: root
+- import_tasks: configure.yml
+  become: true
+  become_user: root
