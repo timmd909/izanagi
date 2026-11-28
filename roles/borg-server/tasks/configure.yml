@@ -1,0 +1,64 @@
+- name: Create borg group
+  group:
+    name: borg
+    state: present
+
+- name: Create borg user
+  user:
+    name: borg
+    create_home: true
+    home: "/home/borg"
+
+- name: Create repo users
+  user:
+    name: "{{ item.host }}"
+    create_home: true
+    home: "/home/{{ item.host }}"
+    append: true
+    groups: borg
+  loop: "{{ borg_clients }}"
+
+- name: "Verify .ssh directory exists"
+  file:
+    path: "/home/{{ item.host }}/.ssh"
+    mode: '0700'
+    state: directory
+    owner: '{{ item.host }}'
+    group: '{{ item.host }}'
+  loop: "{{ borg_clients }}"
+
+- name: "Add pubkeys to repo users' authorized keys "
+  lineinfile:
+    path: "/home/{{ item.host }}/.ssh/authorized_keys"
+    create: true
+    state: present
+    line: "{{ item.pubkey }}"
+    owner: '{{ item.host }}'
+    group: '{{ item.host }}'
+  loop: "{{ borg_clients }}"
+
+- name: "Verify users' repository directories exist"
+  file:
+    path: "/{{ borg_repo_dir }}/{{ item.host }}"
+    state: directory
+    owner: '{{ item.host }}'
+    group: '{{ item.host }}'
+  loop: "{{ borg_clients }}"
+
+#
+#  ▙ ▌   ▐      ▐      ▛▀▘  ▐            ▞▀▖   ▜ ▗▀▖
+#  ▌▌▌▞▀▖▜▀ ▞▀▖ ▜▀ ▞▀▖ ▙▄▌ ▌▜▀ ▌ ▌▙▀▖▞▀▖ ▚▄ ▞▀▖▐ ▐
+#  ▌▝▌▌ ▌▐ ▖▛▀  ▐ ▖▌ ▌ ▌ ▌ ▌▐ ▖▌ ▌▌  ▛▀  ▖ ▌▛▀ ▐ ▜▀
+#  ▘ ▘▝▀  ▀ ▝▀▘  ▀ ▝▀  ▘ ▝▀▘ ▀ ▝▀▘▘  ▝▀▘ ▝▀ ▝▀▘ ▘▐
+#
+# Do **not** be tempted to init Borg repositories from here.
+#
+# 1) it might accidentally wipe out a repository that exists
+# 2) You need a passphrase when creating a new repo,
+#    WHICH THE BORG SERVER SHOULD NEVER HAVE!
+# 3) Therefore the proper pllace to init (with extreme caution)
+#    would be in the borg-client role, and even that seems like
+#    a bad idea.
+# 4) BETTER IDEA: if the repository looks empty, dump a
+#    an `INSTALL.md` file or something explaining what to do next on
+#    the client side.

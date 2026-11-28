@@ -1,0 +1,15 @@
+- name: Install Python PIP
+  apt: name=python3-pip state=present
+
+- name: Install Borg 1.4.5
+  pip:
+    name: borgbackup
+    version: 1.4.5
+
+- name: Ensure repositories directory exists
+  file:
+    state: directory
+    create: true
+    owner: borg
+    group: borg
+    path: "{{ borg_repo_dir }}"
