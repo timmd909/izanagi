@@ -1,0 +1,51 @@
+#
+# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+# ░░█▀▄░█▀█░█▀▄░█▀▀░░░█▀▀░█░░░▀█▀░█▀▀░█▀█░▀█▀░░
+# ░░█▀▄░█░█░█▀▄░█░█░░░█░░░█░░░░█░░█▀▀░█░█░░█░░░
+# ░░▀▀░░▀▀▀░▀░▀░▀▀▀░░░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀░▀░░▀░░░
+# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+#
+
+# Set to true to all borg backup clients
+borg_client: false
+# the password for the client.
+# This should be different for all clients.
+borg_client_passphrase: "change me to be super secret"
+# Where to mount backups for clients
+borg_client_mount: "/mnt/backups"
+borg_client_excludes: >
+  --exclude-caches                          \
+  --exclude 'root/.config/borg/security/*'  \
+  --exclude 'home/*/.cache/*'               \
+  --exclude 'var/tmp/*'                     \
+  --exclude 'var/lib/libvirt/images/*'      \
+  --exclude 'var/cache/*'
+
+borg_client_backup_weekday: "*"
+borg_client_backup_hour: "*/6"
+borg_client_backup_minute: "20"
+
+borg_client_keep_hourly: 0   # set to N>=1 to enable
+borg_client_keep_daily: 7
+borg_client_keep_weekly: 4
+borg_client_keep_monthly: 6
+borg_client_keep_yearly: 1
+
+borg_client_compact_weekday: "0"
+borg_client_compact_hour: "30"
+borg_client_compact_minute: "4"
+
+#
+# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+# ░░█▀▄░█▀█░█▀▄░█▀▀░░░█▀▀░█▀▀░█▀▄░█░█░█▀▀░█▀▄░░
+# ░░█▀▄░█░█░█▀▄░█░█░░░▀▀█░█▀▀░█▀▄░▀▄▀░█▀▀░█▀▄░░
+# ░░▀▀░░▀▀▀░▀░▀░▀▀▀░░░▀▀▀░▀▀▀░▀░▀░░▀░░▀▀▀░▀░▀░░
+# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+#
+# Server only settings. Notice there's a lot less.
+#
+
+# Set to true only for the master server
+borg_server: false
+# Where the borg server puts repos.
+borg_server_repo_dir: /mnt/repositories

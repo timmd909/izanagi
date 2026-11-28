@@ -1,7 +1,7 @@
 #!/bin/bash
 
 . {{ borg_client_config_path }}
-BACKUPS_DIR="/media/backups"
+BACKUPS_DIR="{{ borg_client_mount }}"
 
 if [ ! -e "$BACKUPS_DIR" ]; then
   mkdir "$BACKUPS_DIR"

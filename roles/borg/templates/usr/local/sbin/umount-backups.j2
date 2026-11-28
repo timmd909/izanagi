@@ -1,0 +1,5 @@
+#!/bin/bash
+
+. {{ borg_client_config_path }}
+umount "$BORG_BACKUPS_DIR"
+echo "Backups umounted"

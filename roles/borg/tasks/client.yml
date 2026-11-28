@@ -1,0 +1,33 @@
+- name: Install borg config file
+  template:
+    src: etc/default/borg.j2
+    dest: /etc/default/borg
+    mode: '0600'
+
+- name: Install Borg scripts
+  template:
+    src: "usr/local/sbin/{{item}}.j2"
+    dest: "/usr/local/sbin/{{item}}"
+  with_items:
+    - compact-backup
+    - mount-backups
+    - umount-backups
+    - run-backup
+
+- name: Install Borg backup cronjob
+  cron:
+    name: "Borg Backup"
+    job: /usr/local/sbin/run-backup
+    weekday: "{{ borg_client_backup_weekday }}"
+    hour: "{{ borg_client_backup_hour }}"
+    minute: "{{ borg_client_backup_minute }}"
+  when: borg_auto_backup
+
+- name: Install Borg compact cronjob
+  cron:
+    name: "Borg Compact"
+    job: /usr/local/sbin/compact-backup
+    weekday: "{{ borg_client_compact_weekday }}"
+    hour: "{{ borg_client_compact_hour }}"
+    minute: "{{ borg_client_compact_minute }}"
+  when: borg_auto_backup

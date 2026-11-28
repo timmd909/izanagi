@@ -1,0 +1,13 @@
+- import_tasks: install.yml
+  become: true
+  become_user: root
+
+- import_tasks: server.yml
+  become: true
+  become_user: root
+  when: borg_server
+
+- import_tasks: client.yml
+  become: true
+  become_user: root
+  when: borg_client

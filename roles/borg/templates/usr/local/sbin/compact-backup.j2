@@ -1,0 +1,5 @@
+#!/bin/bash
+
+. {{ borg_client_config_path }}
+
+borg compact --progress

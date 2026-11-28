@@ -15,7 +15,7 @@
     owner: borg
     group: borg
     mode: '0750'
-    path: "{{ borg_repo_dir }}"
+    path: "{{ borg_server_repo_dir }}"
 
 # - name: Create repo users
 #   user:
@@ -47,7 +47,7 @@
 
 # - name: "Verify users' repository directories exist"
 #   file:
-#     path: "/{{ borg_repo_dir }}/{{ item.host }}"
+#     path: "/{{ borg_server_repo_dir }}/{{ item.host }}"
 #     state: directory
 #     owner: '{{ item.host }}'
 #     group: '{{ item.host }}'

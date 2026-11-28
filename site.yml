@@ -4,9 +4,9 @@
   roles:
     - common
 
-- hosts: borgserver
+- hosts: borg
   roles:
-    - borg-server
+    - borg
 
 - hosts: desktops
   roles:
