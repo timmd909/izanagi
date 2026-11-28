@@ -1,15 +1,51 @@
-- name: Install Python PIP
-  apt: name=python3-pip state=present
+- name: Install Borg build dependencies
+  apt:
+    state: present
+    name:
+      - build-essential
+      - libacl1-dev
+      - liblz4-dev
+      - libssl-dev
+      - libxxhash-dev
+      - libzstd-dev
+      - pkg-config
+      - python3
+      - python3-dev
+      - python3-pip
+      - python3-virtualenv
+
+- name: Install pyinstaller
+  apt: name=pyinstaller state=present
 
 - name: Install Borg 1.4.5
   pip:
     name: borgbackup
     version: 1.4.5
+    virtualenv: /opt/borg
 
-- name: Ensure repositories directory exists
+- name: Symlink built Borg to /usr/local/bin/borg
   file:
+    src: /opt/borg/bin/borg
+    dest: /usr/local/bin/borg
+    state: link
+
+# We need the repo to get the man pages
+- name: Clone Borg repo
+  git:
+    repo: https://github.com/borgbackup/borg.git
+    dest: /usr/local/src/borg
+    version: 1.4.5
+
+- name: Make sure /usr/local/share/man/man1/ exists
+  file:
+    path: /usr/local/share/man/man1/
     state: directory
-    create: true
-    owner: borg
-    group: borg
-    path: "{{ borg_repo_dir }}"
+
+- name: Install borg man pages
+  shell: >
+    install -D -m 0644 docs/man/borg*.1* /usr/local/share/man/man1
+  args:
+    chdir: /usr/local/src/borg
+
+- name: Update man page cache
+  shell: mandb

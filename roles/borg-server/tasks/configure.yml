@@ -1,3 +1,11 @@
+- name: Ensure repositories directory exists
+  file:
+    state: directory
+    create: true
+    owner: borg
+    group: borg
+    path: "{{ borg_repo_dir }}"
+
 - name: Create borg group
   group:
     name: borg
