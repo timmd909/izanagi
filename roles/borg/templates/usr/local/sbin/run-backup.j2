@@ -9,23 +9,15 @@ trap 'echo $( date ) Backup interrupted >&2; exit 2' INT TERM
 # Backup the most important directories into an archive named after
 # the machine this script is currently running on:
 
-borg create                                 \
-  --verbose                                 \
-  --filter AME                              \
-  --list                                    \
-  --stats                                   \
-  --show-rc                                 \
-  --compression lz4                         \
-                                            \
-  {{ borg_client_excludes}}                 \
-                                            \
-  ::'{hostname}-{now}'                      \
-  /etc                                      \
-  /home                                     \
-  /root                                     \
-  /opt                                      \
-  /srv                                      \
-  /var
+borg create \
+  --verbose \
+  --filter AME \
+  --list --stats \
+  --show-rc \
+  --compression lz4 \
+{{ borg_client_excludes }} \
+  ::'{hostname}-{now}' \
+{{ borg_client_includes -}}
 
 BACKUP_EXIT=$?
 
@@ -40,12 +32,11 @@ borg prune                        \
   --list                          \
   --glob-archives '{hostname}-*'  \
   --show-rc                       \
-{% if borg_keep_hourly  %}  --keep-hourly  {{ borg_keep_hourly  }} {% endif %} \
-{% if borg_keep_daily   %}  --keep-daily   {{ borg_keep_daily   }} {% endif %} \
-{% if borg_keep_weekly  %}  --keep-weekly  {{ borg_keep_weekly  }} {% endif %} \
-{% if borg_keep_monthly %}  --keep-monthly {{ borg_keep_monthly }} {% endif %}
-{% if borg_keep_yearly  %}  --keep-yearly  {{ borg_keep_yearly  }} {% endif %}
-
+{% if borg_client_keep_hourly  %}  --keep-hourly  {{ borg_client_keep_hourly  }} {% endif %} \
+{% if borg_client_keep_daily   %}  --keep-daily   {{ borg_client_keep_daily   }} {% endif %} \
+{% if borg_client_keep_weekly  %}  --keep-weekly  {{ borg_client_keep_weekly  }} {% endif %} \
+{% if borg_client_keep_monthly %}  --keep-monthly {{ borg_client_keep_monthly }} {% endif %}
+{% if borg_client_keep_yearly  %}  --keep-yearly  {{ borg_client_keep_yearly  }} {% endif %}
 
 PRUNE_EXIT=$?
 

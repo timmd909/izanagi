@@ -8,6 +8,7 @@
   template:
     src: "usr/local/sbin/{{item}}.j2"
     dest: "/usr/local/sbin/{{item}}"
+    mode: '0700'
   with_items:
     - compact-backup
     - mount-backups
@@ -21,7 +22,6 @@
     weekday: "{{ borg_client_backup_weekday }}"
     hour: "{{ borg_client_backup_hour }}"
     minute: "{{ borg_client_backup_minute }}"
-  when: borg_auto_backup
 
 - name: Install Borg compact cronjob
   cron:
@@ -30,4 +30,3 @@
     weekday: "{{ borg_client_compact_weekday }}"
     hour: "{{ borg_client_compact_hour }}"
     minute: "{{ borg_client_compact_minute }}"
-  when: borg_auto_backup

@@ -14,8 +14,13 @@
       - python3-pip
       - python3-virtualenv
 
-- name: Install pyinstaller
+- name: Install pyinstaller (Devuan)
   apt: name=pyinstaller state=present
+  when: ansible_distribution == 'Devuan'
+
+- name: Install pyinstaller (Ubuntu)
+  pip: name=pyinstaller
+  when: ansible_distribution == 'Ubuntu'
 
 - name: Install Borg 1.4.5
   pip:
@@ -28,6 +33,7 @@
     src: /opt/borg/bin/borg
     dest: /usr/local/bin/borg
     state: link
+    force: true # overwrite any old binary files (if exists)
 
 # We need the repo to get the man pages
 - name: Clone Borg repo
@@ -46,6 +52,9 @@
     install -D -m 0644 docs/man/borg*.1* /usr/local/share/man/man1
   args:
     chdir: /usr/local/src/borg
+    creates: /usr/local/man/man1/borg.1
 
 - name: Update man page cache
   shell: mandb
+  args:
+    creates: /usr/local/man/man1/borg.1

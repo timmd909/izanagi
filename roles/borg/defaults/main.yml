@@ -8,18 +8,28 @@
 
 # Set to true to all borg backup clients
 borg_client: false
+# Where we put all the secrets
+borg_client_config_path: /etc/default/borg
 # the password for the client.
 # This should be different for all clients.
 borg_client_passphrase: "change me to be super secret"
 # Where to mount backups for clients
 borg_client_mount: "/mnt/backups"
-borg_client_excludes: >
-  --exclude-caches                          \
-  --exclude 'root/.config/borg/security/*'  \
-  --exclude 'home/*/.cache/*'               \
-  --exclude 'var/tmp/*'                     \
-  --exclude 'var/lib/libvirt/images/*'      \
-  --exclude 'var/cache/*'
+borg_client_excludes: |
+  --exclude-caches                         \
+  --exclude 'root/.config/borg/security/*' \
+  --exclude 'home/*/.cache/*'              \
+  --exclude 'var/tmp/*'                    \
+  --exclude 'var/lib/libvirt/images/*'     \
+  --exclude 'var/cache/*'                  \
+
+borg_client_includes: |
+  /etc   \
+  /home  \
+  /root  \
+  /opt   \
+  /srv   \
+  /var
 
 borg_client_backup_weekday: "*"
 borg_client_backup_hour: "*/6"
@@ -32,8 +42,8 @@ borg_client_keep_monthly: 6
 borg_client_keep_yearly: 1
 
 borg_client_compact_weekday: "0"
-borg_client_compact_hour: "30"
-borg_client_compact_minute: "4"
+borg_client_compact_hour: "6"
+borg_client_compact_minute: "30"
 
 #
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
