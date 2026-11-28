@@ -30,11 +30,6 @@
   become: yes
   become_user: root
 
-# - import_tasks: borg.yml
-#   become: yes
-#   become_user: root
-#   when: borg_backup_enabled
-
 #
 # ▛▀▖▜    ▐  ▗▀▖           ▞▀▖         ▗ ▗▀▖▗
 # ▙▄▘▐ ▝▀▖▜▀ ▐  ▞▀▖▙▀▖▛▚▀▖ ▚▄ ▛▀▖▞▀▖▞▀▖▄ ▐  ▄ ▞▀▖
